@@ -20,7 +20,7 @@ public class Manager {
 	 * @param date der relevante Zeitpunkt
 	 * @return eine Liste der Mitglieder
 	 */
-	public List<Member> getMembers(final Date date) {
+	public List<Member> getMembers(Date date) {
 		List<Member> result = new LinkedList<Member>();
 		
 		for (Member member : members)
@@ -45,7 +45,7 @@ public class Manager {
 	 * @param phoneNumber die Telefonnummer des neuen Mitglieds
 	 * @param instrument das Instrument, dass das neue Mitglied in der Band spielt
 	 */
-	public void addMember(final String name, final String phoneNumber, final String instrument) {
+	public void addMember(String name, String phoneNumber, String instrument) {
 		members.add(new Member(name, phoneNumber, instrument));
 	}
 	
@@ -53,7 +53,7 @@ public class Manager {
 	 * Scheidet ein Mitglied aus der Band aus.
 	 * @param name der Name des Mitglieds
 	 */
-	public void removeMember(final String name) {
+	public void removeMember(String name) {
 		for (Member member : members) {
 			if (member.getName().equals(name)) {
 				member.delete();
