@@ -9,8 +9,7 @@ import entity.Member;
 /**
  * Diese Klasse führt alle Operationen aus.
  * Die Klasse Test (main) darf nur auf den Manager zugreifen!
- * @author Simon
- *
+ * @author Simon, Lorenz
  */
 public class Manager {
 
@@ -18,7 +17,7 @@ public class Manager {
 	
 	/**
 	 * Listet alle Mitglieder zum angegebenen Zeitpunkt auf.
-	 * @param date Der relevante Zeitpunkt
+	 * @param date der relevante Zeitpunkt
 	 * @return eine Liste der Mitglieder
 	 */
 	public List<Member> getMembers(final Date date) {
@@ -51,7 +50,7 @@ public class Manager {
 	}
 	
 	/**
-	 * Scheidet ein Matglied aus der Band aus.
+	 * Scheidet ein Mitglied aus der Band aus.
 	 * @param name der Name des Mitglieds
 	 */
 	public void removeMember(final String name) {
