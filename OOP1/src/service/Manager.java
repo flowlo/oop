@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NavigableSet;
 import java.util.TreeSet;
 
 import entity.Event;
@@ -155,9 +156,8 @@ public class Manager {
 	 * @return Alle Auftritte in dem gegeben Zeitraum
 	 */
 	public Event[] listPerformances(Date start, Date end) {
-		Event startDate = Event.getFromDate(start);
-		Event endDate = Event.getFromDate(end);
-		return (Event[]) performances.subSet(startDate, true, endDate, true).toArray();
+		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Performance);
+		return (Event[]) events.toArray();
 	}
 
 	/**
@@ -170,9 +170,8 @@ public class Manager {
 	 * @return Alle Bandproben in dem gegeben Zeitraum
 	 */
 	public Event[] listPractices(Date start, Date end) {
-		Event startDate = Event.getFromDate(start);
-		Event endDate = Event.getFromDate(end);
-		return (Event[]) practices.subSet(startDate, true, endDate, true).toArray();
+		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Practice);
+		return (Event[]) events.toArray();
 	}
 
 	/**
@@ -185,11 +184,9 @@ public class Manager {
 	 * @return Alle Termine in dem gegeben Zeitraum
 	 */
 	public Event[] listEvents(Date start, Date end) {
-		Event startDate = Event.getFromDate(start);
-		Event endDate = Event.getFromDate(end);
 		TreeSet<Event> set = new TreeSet<Event>();
-		set.addAll(practices.subSet(startDate, true, endDate, true));
-		set.addAll(performances.subSet(startDate, true, endDate, true));
+		set.addAll(getEventsInTime(start, end, EventType.Performance));
+		set.addAll(getEventsInTime(start, end, EventType.Practice));
 		return (Event[]) set.toArray();
 	}
 
@@ -204,9 +201,8 @@ public class Manager {
 	 */
 	public int getPerformanceSalary(Date start, Date end) {
 		int salary = 0;
-		Event startDate = Event.getFromDate(start);
-		Event endDate = Event.getFromDate(end);
-		for (Event e : practices.subSet(startDate, true, endDate, true)) {
+		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Performance);
+		for (Event e : events) {
 			salary += e.getMoney();
 		}
 		return salary;
@@ -223,9 +219,8 @@ public class Manager {
 	 */
 	public int getPracticeCosts(Date start, Date end) {
 		int costs = 0;
-		Event startDate = Event.getFromDate(start);
-		Event endDate = Event.getFromDate(end);
-		for (Event e : practices.subSet(startDate, true, endDate, true)) {
+		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Practice);
+		for (Event e : events) {
 			costs += e.getMoney();
 		}
 		return costs;
@@ -242,5 +237,28 @@ public class Manager {
 	 */
 	public int getEarnings(Date start, Date end) {
 		return getPerformanceSalary(start, end) - getPracticeCosts(start, end);
+	}
+
+	/**
+	 * Sucht alle Termine eines bestimmten Typs innerhalb eines Zeitraums
+	 * 
+	 * @param start
+	 *            Der Startzeitpunkt
+	 * @param end
+	 *            Der Endzeitpunkt
+	 * @param type
+	 *            Der Termintyp
+	 * @return Alle Termine des gegeben Typs in dem gegebenen Zeitraum
+	 */
+	private NavigableSet<Event> getEventsInTime(Date start, Date end, EventType type) {
+		Event startDate = Event.getFromDate(start);
+		Event endDate = Event.getFromDate(end);
+		if (type.equals(EventType.Performance)) {
+			return performances.subSet(startDate, true, endDate, true);
+		} else if (type.equals(EventType.Practice)) {
+			return practices.subSet(startDate, true, endDate, true);
+		} else {
+			return null;
+		}
 	}
 }
