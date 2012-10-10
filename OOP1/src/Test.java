@@ -7,7 +7,7 @@ import entity.Member;
 /**
  * Fuehrt saemtliche Tests aus. Darf nur auf den Manager zugreifen.
  * 
- * @author Simon, Lorenz, Dominik
+ * @author Simon
  * 
  */
 public class Test {

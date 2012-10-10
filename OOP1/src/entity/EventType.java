@@ -3,7 +3,7 @@ package entity;
 /**
  * Alle moeglichen Typen eines Termins
  * 
- * @author Simon, Lorenz, Dominik
+ * @author Dominik
  */
 public enum EventType {
 	Performance,

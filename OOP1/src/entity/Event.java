@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Repräsentiert sowohl eine Probe, als auch einen Auftritt
  * 
- * @author Simon, Lorenz, Dominik
+ * @author Dominik
  * 
  */
 public class Event implements Comparable<Event> {

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Ein Titel/ein Song
  * 
- * @author Simon, Lorenz, Dominik
+ * @author Lorenz
  * 
  */
 public class Titel extends BandObject {

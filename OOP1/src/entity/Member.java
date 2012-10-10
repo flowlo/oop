@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Ein Bandmitglied
  * 
- * @author Simon, Lorenz, Dominik
+ * @author Lorenz
  */
 public class Member extends BandObject {
 	/**

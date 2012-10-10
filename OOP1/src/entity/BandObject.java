@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Basisklasse für Member und Titel
  * 
- * @author Simon, Lorenz, Dominik
+ * @author Lorenz
  * 
  */
 public abstract class BandObject {
