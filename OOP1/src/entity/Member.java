@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Ein Bandmitglied
  * 
- * @author Simon, Lorenz
+ * @author Simon, Lorenz, Dominik
  */
 public class Member extends BandObject {
 	/**
@@ -54,14 +54,16 @@ public class Member extends BandObject {
 		return instrument;
 	}
 
+	@Override
 	public String toString() {
 		String result = new String("Name: '" + name + "' Tel.: '" + phoneNumber
 				+ "' Instrument: '" + instrument + "'" + " spielt(e) von '"
 				+ start + "' bis ");
-		if (end == null)
+		if (end == null) {
 			result += "jetzt";
-		else
+		} else {
 			result += "'" + end + "'";
+		}
 		return result;
 	}
 }
