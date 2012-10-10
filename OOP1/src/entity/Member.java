@@ -25,6 +25,7 @@ public final class Member extends BandObject {
 	 */
 	public Member(final String name, final String phoneNumber, final String instrument)
 	{
+		this.name=name;
 		this.phoneNumber = phoneNumber;
 		this.instrument = instrument;
 		this.start = new Date();
@@ -47,5 +48,14 @@ public final class Member extends BandObject {
 	public String getInstrument()
 	{
 		return instrument;
+	}
+	
+	
+	public String toString()
+	{
+		String result=new String("Name: '"+name+"' Tel.: '"+phoneNumber+"' Instrument: '"+instrument+"'"+" spielt(e) von '"+start+"' bis ");
+		if(end==null) result+="jetzt";
+		else result+="'"+end+"'";
+		return result;
 	}
 }

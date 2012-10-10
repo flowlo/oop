@@ -23,7 +23,7 @@ public abstract class BandObject {
 	 */
 	public void delete()
 	{
-		this.end=new Date();
+		this.end=new Date(System.currentTimeMillis());
 	}
 	
 	/**
