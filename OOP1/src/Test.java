@@ -1,6 +1,6 @@
 
 /**
- * Führt sämtliche Tests aus. Darf nur auf den Manager zugreifen.
+ * FÃ¼hrt sÃ¤mtliche Tests aus. Darf nur auf den Manager zugreifen.
  * @author Simon
  *
  */
