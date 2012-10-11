@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Test {
 		Manager manager = new Manager();
 		Date start = new Date(System.currentTimeMillis());
 		Date zwischenzeit;
+		boolean result = true;
 		System.out.println("Starte Tests (" + start + ")");
 		System.out.println("-----------------------------------------------");
 		System.out.println("MITGLIEDER TESTS");
@@ -31,6 +33,7 @@ public class Test {
 			System.out.print("PASSED - ");
 		} else {
 			System.out.print("FAILED - ");
+			result = false;
 		}
 		System.out.println("Abfragen aktiver Mitglieder - soll=3 ist=" + manager.getCurrentMembers().size());
 
@@ -59,6 +62,7 @@ public class Test {
 			System.out.print("PASSED - ");
 		} else {
 			System.out.print("FAILED - ");
+			result = false;
 		}
 		System.out.println("Abfragen aktiver Mitglieder - soll=2 ist=" + manager.getCurrentMembers().size());
 
@@ -66,6 +70,7 @@ public class Test {
 			System.out.print("PASSED - ");
 		} else {
 			System.out.print("FAILED - ");
+			result = false;
 		}
 		System.out.println("Abfrage der Mitglieder vor dem Loeschen - soll=3 ist=" + manager.getMembers(zwischenzeit).size()
 				+ " ... (Mitglieder zum Zeitpunkt: " + zwischenzeit + ").");
@@ -76,7 +81,15 @@ public class Test {
 		{
 			System.out.println(it.toString());
 		}
-		System.out.println();
+		System.out.println("\nMITGLIEDER TESTS ENDE\n-----------------------------------------------");
+		System.out.println("PROBEN TESTS");
+
+		try {
+			manager.addPractice("Garage von Jonny", "22.22.2012", "13:45", 90, 12);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
