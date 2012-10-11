@@ -3,7 +3,7 @@ package entity;
 import java.util.Date;
 
 /**
- * Ein Bandmitglied
+ * Ein Bandmitglied.
  * 
  * @author Lorenz
  */
@@ -56,14 +56,7 @@ public class Member extends BandObject {
 
 	@Override
 	public String toString() {
-		String result = new String("Name: '" + name + "' Tel.: '" + phoneNumber
-				+ "' Instrument: '" + instrument + "'" + " spielt(e) von '"
-				+ start + "' bis ");
-		if (end == null) {
-			result += "jetzt";
-		} else {
-			result += "'" + end + "'";
-		}
-		return result;
+		return name + " (" + phoneNumber + ") spielt(e) von " + start + " bis "
+				+ (end != null ? end : "jetzt") + " " + instrument + ".";
 	}
 }

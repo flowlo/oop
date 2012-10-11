@@ -4,16 +4,35 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Repräsentiert sowohl eine Probe, als auch einen Auftritt
+ * Repraesentiert sowohl eine Probe, als auch einen Auftritt
  * 
  * @author Dominik
- * 
  */
 public class Event implements Comparable<Event> {
+	/**
+	 * Ort der Veranstaltung (Probe/Auftritt).
+	 */
 	private String place;
-	private Date dateTime;//date+time
-	private int duration;//seconds
-	private float money; //Kosten und Einnahmen
+
+	/**
+	 * Beginnzeitpunkt dieses Events.
+	 */
+	private Date dateTime;
+
+	/**
+	 * Dauer dieses Events in Sekunden.
+	 */
+	private int duration;
+
+	/**
+	 * Kosten/Einnahmen die durch dieses Event zu Stande kamen (in Euro).
+	 * Vorzeichen beachten!
+	 */
+	private float money;
+
+	/**
+	 * Typ dieses Events, um zwischen Probe und Auftritt zu unterscheiden.
+	 */
 	private EventType type;
 
 	/**
@@ -22,16 +41,16 @@ public class Event implements Comparable<Event> {
 	 * @param place
 	 *            Ort der Veranstaltung
 	 * @param date
-	 *            Datum + Uhrzeit
+	 *            Datum und Uhrzeit
 	 * @param duration
 	 *            Dauer in Minuten
 	 * @param money
-	 *            Kosten/Gage
+	 *            Kosten/Gage in Euro
 	 * @param type
 	 *            typ des Events
 	 */
-	public Event(String place, Date date, int duration, float money, EventType type)
-	{
+	public Event(String place, Date date, int duration, float money,
+			EventType type) {
 		this.place = place;
 		this.dateTime = date;
 		this.duration = duration;
@@ -39,23 +58,19 @@ public class Event implements Comparable<Event> {
 		this.type = type;
 	}
 
-	public String getPlace()
-	{
+	public String getPlace() {
 		return place;
 	}
 
-	public Date getDate()
-	{
+	public Date getDate() {
 		return dateTime;
 	}
 
-	public int getDuration()
-	{
+	public int getDuration() {
 		return duration;
 	}
 
-	public float getMoney()
-	{
+	public float getMoney() {
 		return money;
 	}
 
@@ -75,13 +90,13 @@ public class Event implements Comparable<Event> {
 		if (type.equals(EventType.Performance)) {
 			typeString = "Auftritt";
 			moneyString = "Gage";
-		}
-		else if (type.equals(EventType.Practice)) {
+		} else if (type.equals(EventType.Practice)) {
 			typeString = "Probe";
 			moneyString = "Miete";
 		}
 
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		return typeString + " - Datum: " + df.format(dateTime) + " - Dauer: " + duration + " Minuten - " + moneyString + ": " + money;
+		return typeString + " - Datum: " + df.format(dateTime) + " - Dauer: "
+				+ duration + " Minuten - " + moneyString + ": " + money;
 	}
 }

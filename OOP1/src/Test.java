@@ -8,7 +8,6 @@ import entity.Member;
  * Fuehrt saemtliche Tests aus. Darf nur auf den Manager zugreifen.
  * 
  * @author Simon
- * 
  */
 public class Test {
 
@@ -53,7 +52,7 @@ public class Test {
 			return;
 		}
 		//----------------------------------------------------------------------------------
-		System.out.println("....Lösche Mitglied 'John Wayne'");
+		System.out.println("....Loesche Mitglied 'John Wayne'");
 
 		manager.removeMember("John Wayne");
 		if (manager.getCurrentMembers().size() == 2) {
@@ -68,7 +67,7 @@ public class Test {
 		} else {
 			System.out.print("FAILED - ");
 		}
-		System.out.println("Abfrage der Mitglieder vor dem Löschen - soll=3 ist=" + manager.getMembers(zwischenzeit).size()
+		System.out.println("Abfrage der Mitglieder vor dem Loeschen - soll=3 ist=" + manager.getMembers(zwischenzeit).size()
 				+ " ... (Mitglieder zum Zeitpunkt: " + zwischenzeit + ").");
 
 		System.out.println("\n....Auflisten von aktiven Mitgliedern: ");

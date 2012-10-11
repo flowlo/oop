@@ -3,10 +3,9 @@ package entity;
 import java.util.Date;
 
 /**
- * Basisklasse für Member und Titel
- * 
+ * Basisklasse fuer Member und Titel.
+ *
  * @author Lorenz
- * 
  */
 public abstract class BandObject {
 	protected String name;
@@ -19,17 +18,17 @@ public abstract class BandObject {
 	}
 
 	/**
-	 * das Mitglied/das Stück wird mit dem aktuellen Datum als gelöscht markiert
+	 * Das Mitglied/das Stueck wird mit dem aktuellen Datum als geloescht/inaktiv markiert
 	 */
 	public void delete()
 	{
-		this.end = new Date(System.currentTimeMillis());
+		end = new Date();
 	}
 
 	/**
-	 * Prüft, ob das Mitglied/das Stück zum gegebenen Zeitpunkt aktiv war
+	 * Prueft, ob das Mitglied/das Stueck zum gegebenen Zeitpunkt aktiv war.
 	 * 
-	 * @return true wenn start<date<end
+	 * @return {@code true} wenn {@code start < date < end}
 	 */
 	public boolean isActive(Date date)
 	{

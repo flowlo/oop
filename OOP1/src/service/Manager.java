@@ -14,9 +14,11 @@ import entity.Member;
 
 /**
  * Diese Klasse fuehrt alle Operationen aus.
- * Die Klasse Test (main) darf nur auf den Manager zugreifen!
+ * Die Klasse Test (mit main) darf nur auf den Manager zugreifen!
  * 
- * @author Simon, Lorenz, Dominik
+ * @author Simon
+ * @author Lorenz
+ * @author Dominik
  */
 public class Manager {
 
@@ -62,6 +64,8 @@ public class Manager {
 	 *            die Telefonnummer des neuen Mitglieds
 	 * @param instrument
 	 *            das Instrument, dass das neue Mitglied in der Band spielt
+	 * @see #getMembers(Date)
+	 * @see #getCurrentMembers()
 	 */
 	public void addMember(String name, String phoneNumber, String instrument) {
 		members.add(new Member(name, phoneNumber, instrument));
