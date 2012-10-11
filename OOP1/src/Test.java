@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -84,12 +83,7 @@ public class Test {
 		System.out.println("\nMITGLIEDER TESTS ENDE\n-----------------------------------------------");
 		System.out.println("PROBEN TESTS");
 
-		try {
-			manager.addPractice("Garage von Jonny", "22.22.2012", "13:45", 90, 12);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		manager.addPractice("Garage von Jonny", "22.12.2012", "13:45", 90, 12);
 	}
 
 }

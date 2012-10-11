@@ -1,7 +1,5 @@
 package service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.NavigableSet;
 import java.util.TreeSet;
 
 import entity.Event;
-import entity.EventType;
+import entity.Event.EventType;
 import entity.Member;
 
 /**
@@ -56,7 +54,7 @@ public class Manager {
 	}
 
 	/**
-	 * Fügt ein Mitglied mit angegebenen Eigenschaften zur Band als aktiv hinzu.
+	 * Fuegt ein Mitglied mit angegebenen Eigenschaften zur Band als aktiv hinzu.
 	 * 
 	 * @param name
 	 *            der Name des neuen Mitglieds
@@ -99,11 +97,9 @@ public class Manager {
 	 *            Die Dauer in Minuten
 	 * @param money
 	 *            Die Gage
-	 * @throws ParseException
-	 *             bei fehlerhafter Formatierung des Datums oder der Uhrzeit
 	 */
-	public void addPerformance(String place, String date, String time, int duration, int money) throws ParseException {
-		performances.add(toEvent(place, date, time, duration, money, EventType.Performance));
+	public void addPerformance(String place, String date, String time, int duration, int money) {
+		performances.add(Event.toEvent(place, date, time, duration, money, EventType.Performance));
 	}
 
 	/**
@@ -119,35 +115,9 @@ public class Manager {
 	 *            Die Dauer in Minuten
 	 * @param money
 	 *            Die Raummiete
-	 * @throws ParseException
-	 *             bei fehlerhafter Formatierung des Datums oder der Uhrzeit
 	 */
-	public void addPractice(String place, String date, String time, int duration, int money) throws ParseException {
-		practices.add(toEvent(place, date, time, duration, money, EventType.Practice));
-	}
-
-	/**
-	 * Erstellt einen Termin aus den gegeben Daten
-	 * 
-	 * @param place
-	 *            Der Ort
-	 * @param date
-	 *            Das Datum. Format: d.M.yyyy
-	 * @param time
-	 *            Die Start-Uhrzeit. Format: H:m
-	 * @param duration
-	 *            Die Dauer in Minuten
-	 * @param money
-	 *            Die Raummiete
-	 * @param type
-	 *            Der Typ des Termins
-	 * @return Der Termin
-	 * @throws ParseException
-	 */
-	private Event toEvent(String place, String date, String time, int duration, int money, EventType type) throws ParseException {
-		SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
-		Date datetime = df.parse(date + "-" + time);
-		return new Event(place, datetime, duration, money, type);
+	public void addPractice(String place, String date, String time, int duration, float money) {
+		practices.add(Event.toEvent(place, date, time, duration, money, EventType.Practice));
 	}
 
 	/**
@@ -255,8 +225,8 @@ public class Manager {
 	 * @return Alle Termine des gegeben Typs in dem gegebenen Zeitraum
 	 */
 	private NavigableSet<Event> getEventsInTime(Date start, Date end, EventType type) {
-		Event startDate = Event.getFromDate(start);
-		Event endDate = Event.getFromDate(end);
+		Event startDate = Event.fromDate(start);
+		Event endDate = Event.fromDate(end);
 		if (type.equals(EventType.Performance)) {
 			return performances.subSet(startDate, true, endDate, true);
 		} else if (type.equals(EventType.Practice)) {

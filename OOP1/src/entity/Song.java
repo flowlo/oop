@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class Song extends BandObject {
 	/**
-	 * Länge des Musikstuecks in Sekunden.
+	 * Laenge des Musikstuecks in Sekunden.
 	 */
 	private int length;
 

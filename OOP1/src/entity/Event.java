@@ -1,5 +1,6 @@
 package entity;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -79,8 +80,8 @@ public class Event implements Comparable<Event> {
 		return dateTime.compareTo(o.getDate());
 	}
 
-	public static Event getFromDate(Date date) {
-		return new Event("", date, 1, 0, EventType.Performance);
+	public static Event fromDate(Date date) {
+		return new Event("", date, 1, 0, EventType.Dummy);
 	}
 
 	@Override
@@ -98,5 +99,40 @@ public class Event implements Comparable<Event> {
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		return typeString + " - Datum: " + df.format(dateTime) + " - Dauer: "
 				+ duration + " Minuten - " + moneyString + ": " + money;
+	}
+
+	/**
+	 * Erstellt einen Termin aus den gegeben Daten
+	 * 
+	 * @param place
+	 *            Der Ort
+	 * @param date
+	 *            Das Datum. Format: d.M.yyyy
+	 * @param time
+	 *            Die Start-Uhrzeit. Format: H:m
+	 * @param duration
+	 *            Die Dauer in Minuten
+	 * @param money
+	 *            Die Raummiete
+	 * @param type
+	 *            Der Typ des Termins
+	 * @return Der Termin
+	 */
+	public static Event toEvent(String place, String date, String time, int duration, float money, EventType type) {
+		try {
+			SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
+			df.setLenient(false);
+			Date datetime = df.parse(date + "-" + time);
+			return new Event(place, datetime, duration, money, type);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public enum EventType {
+		Performance,
+		Practice,
+		Dummy
 	}
 }
