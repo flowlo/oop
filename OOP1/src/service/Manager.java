@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Manager {
 	 *            der relevante Zeitpunkt
 	 * @return eine Liste der Mitglieder
 	 */
-	public List<Member> getMembers(Date date) {
+	public List<Member> listMembers(Date date) {
 		List<Member> result = new LinkedList<Member>();
 
 		for (Member member : members) {
@@ -49,8 +50,8 @@ public class Manager {
 	 * @return eine Liste der Mitglieder
 	 * @see #getMembers(Date)
 	 */
-	public List<Member> getCurrentMembers() {
-		return getMembers(new Date());
+	public List<Member> listCurrentMembers() {
+		return listMembers(new Date());
 	}
 
 	/**
@@ -129,9 +130,9 @@ public class Manager {
 	 *            Endzeitpunkt
 	 * @return Alle Auftritte in dem gegeben Zeitraum
 	 */
-	public Event[] listPerformances(Date start, Date end) {
+	public List<Event> listPerformances(Date start, Date end) {
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Performance);
-		return (Event[]) events.toArray();
+		return new ArrayList<Event>(events);
 	}
 
 	/**
@@ -143,9 +144,9 @@ public class Manager {
 	 *            Endzeitpunkt
 	 * @return Alle Bandproben in dem gegeben Zeitraum
 	 */
-	public Event[] listPractices(Date start, Date end) {
+	public List<Event> listPractices(Date start, Date end) {
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Practice);
-		return (Event[]) events.toArray();
+		return new ArrayList<Event>(events);
 	}
 
 	/**
@@ -157,11 +158,11 @@ public class Manager {
 	 *            Endzeitpunkt
 	 * @return Alle Termine in dem gegeben Zeitraum
 	 */
-	public Event[] listEvents(Date start, Date end) {
+	public List<Event> listEvents(Date start, Date end) {
 		TreeSet<Event> set = new TreeSet<Event>();
 		set.addAll(getEventsInTime(start, end, EventType.Performance));
 		set.addAll(getEventsInTime(start, end, EventType.Practice));
-		return (Event[]) set.toArray();
+		return new ArrayList<Event>(set);
 	}
 
 	/**
