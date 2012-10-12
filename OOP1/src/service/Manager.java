@@ -1,5 +1,6 @@
 package service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -98,9 +99,14 @@ public class Manager {
 	 *            Die Dauer in Minuten
 	 * @param money
 	 *            Die Gage
+	 * @throws ServiceException
 	 */
-	public void addPerformance(String place, String date, String time, int duration, int money) {
-		performances.add(Event.toEvent(place, date, time, duration, money, EventType.Performance));
+	public void addPerformance(String place, String date, String time, int duration, int money) throws ServiceException {
+		try {
+			performances.add(Event.toEvent(place, date, time, duration, money, EventType.Performance));
+		} catch (ParseException e) {
+			throw new ServiceException("ERROR - Fehler beim Speichern eines Auftritts - ungültiges Datum/Format!");
+		}
 	}
 
 	/**
@@ -116,9 +122,17 @@ public class Manager {
 	 *            Die Dauer in Minuten
 	 * @param money
 	 *            Die Raummiete
+	 * @throws ServiceException
 	 */
-	public void addPractice(String place, String date, String time, int duration, float money) {
-		practices.add(Event.toEvent(place, date, time, duration, money, EventType.Practice));
+	public void addPractice(String place, String date, String time, int duration, float money) throws ServiceException {
+
+		try {
+			if (!practices.add(Event.toEvent(place, date, time, duration, money, EventType.Practice))) {
+				throw new ServiceException("Probe bereits gespeichert");
+			}
+		} catch (ParseException e) {
+			throw new ServiceException("ERROR - Fehler beim Speichern der Bandprobe - ungültiges Datum/Format!");
+		}
 	}
 
 	/**

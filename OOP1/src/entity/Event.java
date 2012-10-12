@@ -117,17 +117,14 @@ public class Event implements Comparable<Event> {
 	 * @param type
 	 *            Der Typ des Termins
 	 * @return Der Termin
+	 * @throws ParseException
 	 */
-	public static Event toEvent(String place, String date, String time, int duration, float money, EventType type) {
-		try {
-			SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
-			df.setLenient(false);
-			Date datetime = df.parse(date + "-" + time);
-			return new Event(place, datetime, duration, money, type);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public static Event toEvent(String place, String date, String time, int duration, float money, EventType type) throws ParseException {
+		SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
+		df.setLenient(false);
+		Date datetime = df.parse(date + "-" + time);
+		return new Event(place, datetime, duration, money, type);
+
 	}
 
 	public enum EventType {
