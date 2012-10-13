@@ -11,7 +11,7 @@ public class Song extends BandObject {
 	/**
 	 * Laenge des Musikstuecks in Sekunden.
 	 */
-	private int length;
+	private int duration;
 
 	/**
 	 * Initialisiert ein neues Musikstueck mit Name und Laenge.
@@ -23,7 +23,7 @@ public class Song extends BandObject {
 	 */
 	public Song(String name, int length) {
 		this.name = name;
-		this.length = length;
+		this.duration = length;
 		this.start = new Date();
 		this.end = null;
 	}
@@ -31,7 +31,12 @@ public class Song extends BandObject {
 	/**
 	 * @return Die Abspieldauer des Songs in Sekunden
 	 */
-	public int getLength() {
-		return length;
+	public int getDuration() {
+		return duration;
+	}
+
+	@Override
+	public String toString() {
+		return name + "(" + duration + "s)";
 	}
 }

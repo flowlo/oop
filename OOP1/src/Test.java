@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -6,11 +7,13 @@ import service.Manager;
 import service.ServiceException;
 import entity.Event;
 import entity.Member;
+import entity.Song;
 
 /**
  * Fuehrt saemtliche Tests aus. Darf nur auf den Manager zugreifen.
  * 
  * @author Simon
+ * @author Lorenz
  */
 public class Test {
 
@@ -21,13 +24,21 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		manager = new Manager();
-		Date start = new Date(System.currentTimeMillis());
+		Date start = new Date();
 
 		boolean result = true;
 		System.out.println("Starte Tests (" + start + ")");
 
 		try {
 			if (!testMitglieder()) {
+				result = false;
+			}
+		} catch (InterruptedException e) {
+			System.out.println("INTERRUPTED");
+			return;
+		}
+		try {
+			if (!testSongs()) {
 				result = false;
 			}
 		} catch (InterruptedException e) {
@@ -113,7 +124,7 @@ public class Test {
 		System.out.println("-----------------------------------------------");
 		System.out.println("PROBEN TESTS");
 
-		System.out.println("....... Proben einfügen");
+		System.out.println("....... Proben einfuegen");
 		try {
 			manager.addPractice("Garage von Jonny", "22.12.2012", "13:45", 90, 0);
 			manager.addPractice("Keller von Jimmy", "11.11.2011", "11:11", 120, 3);
@@ -163,13 +174,13 @@ public class Test {
 		manager.addMember("John Wayne", "01/41414141", "Maultrommel");
 		manager.addMember("Hans Wurst", "123456789", "Triangel");
 
-		if (manager.listCurrentMembers().size() == 3) {
+		if (manager.listMembers().size() == 3) {
 			System.out.print("PASSED - ");
 		} else {
 			System.out.print("FAILED - ");
 			result = false;
 		}
-		System.out.println("Abfragen aktiver Mitglieder - soll=3 ist=" + manager.listCurrentMembers().size());
+		System.out.println("Abfragen aktiver Mitglieder - soll=3 ist=" + manager.listMembers().size());
 
 		//----------------------------------------------------------------------------------
 		System.out.println("....... Warte 1 Sekunde...");
@@ -177,20 +188,20 @@ public class Test {
 		Thread.sleep(1000);
 
 		System.out.println("....... Zwischenzeit speichern");
-		zwischenzeit = new Date(System.currentTimeMillis());
+		zwischenzeit = new Date();
 		System.out.println("....... Warte 1 Sekunde...");
 		Thread.sleep(1000);
 		//----------------------------------------------------------------------------------
 		System.out.println("....... Loesche Mitglied 'John Wayne'");
 
 		manager.removeMember("John Wayne");
-		if (manager.listCurrentMembers().size() == 2) {
+		if (manager.listMembers().size() == 2) {
 			System.out.print("PASSED - ");
 		} else {
 			System.out.print("FAILED - ");
 			result = false;
 		}
-		System.out.println("Abfragen aktiver Mitglieder - soll=2 ist=" + manager.listCurrentMembers().size());
+		System.out.println("Abfragen aktiver Mitglieder - soll=2 ist=" + manager.listMembers().size());
 
 		if (manager.listMembers(zwischenzeit).size() == 3) {
 			System.out.print("PASSED - ");
@@ -202,12 +213,71 @@ public class Test {
 				+ " ... (Mitglieder zum Zeitpunkt: " + zwischenzeit + ").");
 
 		System.out.println("\nAuflisten von aktiven Mitgliedern: ");
-		List<Member> member = manager.listCurrentMembers();
+		Collection<Member> member = manager.listMembers();
 		for (Member it : member)
 		{
 			System.out.println(" " + it.toString());
 		}
 		System.out.println("\nMITGLIEDER TESTS ENDE\n-----------------------------------------------");
+		return result;
+	}
+
+	public static boolean testSongs() throws InterruptedException {
+		Date zwischenzeit;
+		boolean result = true;
+		System.out.println("-----------------------------------------------");
+		System.out.println("SONGS TESTS");
+		System.out.println("....... Fuege neue Songs hinzu...");
+
+		manager.addSong("Radetzkymarsch", 1337);
+		manager.addSong("Affekt", 42);
+		manager.addSong("Bolero", ~0xdeadbeef);
+
+		if (manager.listSongs().size() == 3) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Abfragen aktueller Songs - soll=3 ist=" + manager.listSongs().size());
+
+		//----------------------------------------------------------------------------------
+		System.out.println("....... Warte 1 Sekunde...");
+
+		Thread.sleep(1000);
+
+		System.out.println("....... Zwischenzeit speichern");
+		zwischenzeit = new Date();
+		System.out.println("....... Warte 1 Sekunde...");
+		Thread.sleep(1000);
+		//----------------------------------------------------------------------------------
+		System.out.println("....... Loesche Song 'Affekt'");
+
+		manager.removeSong("Affekt");
+		if (manager.listSongs().size() == 2) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Abfragen aktueller Songs - soll=2 ist=" + manager.listSongs().size());
+
+		if (manager.listSongs(zwischenzeit).size() == 3) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Abfrage der Songs vor dem Loeschen - soll=3 ist=" + manager.listSongs(zwischenzeit).size()
+				+ " ... (Mitglieder zum Zeitpunkt: " + zwischenzeit + ").");
+
+		System.out.println("\nAuflisten von aktuellen Songs: ");
+		Collection<Song> songs = manager.listSongs();
+		for (Song it : songs)
+		{
+			System.out.println(" " + it.toString());
+		}
+		System.out.println("\nSONGS TESTS ENDE\n-----------------------------------------------");
 		return result;
 	}
 

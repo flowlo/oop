@@ -2,15 +2,18 @@ package service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
+import entity.BandObject;
 import entity.Event;
 import entity.Event.EventType;
 import entity.Member;
+import entity.Song;
 
 /**
  * Diese Klasse fuehrt alle Operationen aus.
@@ -22,9 +25,92 @@ import entity.Member;
  */
 public class Manager {
 
-	private List<Member> members = new LinkedList<Member>();
+	private Collection<Member> members = new LinkedList<Member>();
+	private Collection<Song> songs = new LinkedList<Song>();
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
+
+	/**
+	 * Erzeugt eine neue Menge, die alle Elemente der gegebenen menge enthÃ¤lt,
+	 * die zum gegebenen Zeitpunkt als aktiv gekennzeichnet sind.
+	 * 
+	 * @param date
+	 *            Stichdatum
+	 * @param collection
+	 *            Menge der zu betrachtenden Objekte
+	 * @return Teilmenge
+	 */
+	private <T extends BandObject> Collection<T> listBandObjects(Date date, Collection<T> collection) {
+		Collection<T> result = new LinkedList<T>();
+
+		for (T item : collection) {
+			if (item.isActive(date)) {
+				result.add(item);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Entfernt das {@link entitiy.BandObject} mit dem gegebenen namen aus der gegebenen {@link java.util.Collection}.
+	 * 
+	 * @param name
+	 *            Name/Bezeichnung des BandObjects
+	 * @param collection
+	 *            Menge aus der das Element gelÃ¶scht werden soll.
+	 */
+	private <T extends BandObject> void removeBandObject(String name, Collection<T> collection) {
+		for (T item : collection) {
+			if (item.getName().equals(name)) {
+				item.delete();
+				return;
+			}
+		}
+	}
+
+	/**
+	 * Listet alle aktuellen Songs der Band auf.
+	 * 
+	 * @return eine Liste der aktuell im Repertoire befindlichen Songs
+	 */
+	public Collection<Song> listSongs() {
+		return listSongs(new Date());
+	}
+
+	/**
+	 * Listet alle Songs die zu einem bestimmten Zeitpunkt im Repertoire der Band waren/sind.
+	 * 
+	 * @param date
+	 *            Zeitpunkt, zu dem das Repertoire betrachtet werden soll
+	 * @return eine Liste aller Songs
+	 */
+	public Collection<Song> listSongs(Date date) {
+		return listBandObjects(date, songs);
+	}
+
+	/**
+	 * FÃ¼gt einen Song mit aktuellem Datum dem Repertoire der Band hinzu
+	 * 
+	 * @param name
+	 *            die Bezeichnung/der Titel des Songs
+	 * @param duration
+	 *            die Abspieldauer des Songs
+	 */
+	public void addSong(String name, int duration) {
+		songs.add(new Song(name, duration));
+	}
+
+	/**
+	 * Entfernt einen Song mit gegebenem Namen mit dem aktuellem Datum
+	 * aus dem Repertoire, bzw. markiert ihn als veraltet
+	 * 
+	 * @param name
+	 *            die Bezeichnung des zu entfernenden Songs
+	 */
+	public void removeSong(String name) {
+		removeBandObject(name, songs);
+	}
 
 	/**
 	 * Listet alle Mitglieder zum angegebenen Zeitpunkt auf.
@@ -33,16 +119,8 @@ public class Manager {
 	 *            der relevante Zeitpunkt
 	 * @return eine Liste der Mitglieder
 	 */
-	public List<Member> listMembers(Date date) {
-		List<Member> result = new LinkedList<Member>();
-
-		for (Member member : members) {
-			if (member.isActive(date)) {
-				result.add(member);
-			}
-		}
-
-		return result;
+	public Collection<Member> listMembers(Date date) {
+		return listBandObjects(date, members);
 	}
 
 	/**
@@ -51,7 +129,7 @@ public class Manager {
 	 * @return eine Liste der Mitglieder
 	 * @see #getMembers(Date)
 	 */
-	public List<Member> listCurrentMembers() {
+	public Collection<Member> listMembers() {
 		return listMembers(new Date());
 	}
 
@@ -78,12 +156,7 @@ public class Manager {
 	 *            der Name des Mitglieds
 	 */
 	public void removeMember(String name) {
-		for (Member member : members) {
-			if (member.getName().equals(name)) {
-				member.delete();
-				return;
-			}
-		}
+		removeBandObject(name, members);
 	}
 
 	/**
@@ -105,7 +178,7 @@ public class Manager {
 		try {
 			performances.add(Event.toEvent(place, date, time, duration, money, EventType.Performance));
 		} catch (ParseException e) {
-			throw new ServiceException("ERROR - Fehler beim Speichern eines Auftritts - ungültiges Datum/Format!");
+			throw new ServiceException("ERROR - Fehler beim Speichern eines Auftritts - ungï¿½ltiges Datum/Format!");
 		}
 	}
 
@@ -125,13 +198,12 @@ public class Manager {
 	 * @throws ServiceException
 	 */
 	public void addPractice(String place, String date, String time, int duration, float money) throws ServiceException {
-
 		try {
 			if (!practices.add(Event.toEvent(place, date, time, duration, money, EventType.Practice))) {
 				throw new ServiceException("Probe bereits gespeichert");
 			}
 		} catch (ParseException e) {
-			throw new ServiceException("ERROR - Fehler beim Speichern der Bandprobe - ungültiges Datum/Format!");
+			throw new ServiceException("ERROR - Fehler beim Speichern der Bandprobe - ungï¿½ltiges Datum/Format!");
 		}
 	}
 
