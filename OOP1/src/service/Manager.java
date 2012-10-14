@@ -31,7 +31,7 @@ public class Manager {
 	private TreeSet<Event> practices = new TreeSet<Event>();
 
 	/**
-	 * Erzeugt eine neue Menge, die alle Elemente der gegebenen menge enthält,
+	 * Erzeugt eine neue Menge, die alle Elemente der gegebenen menge enthaelt,
 	 * die zum gegebenen Zeitpunkt als aktiv gekennzeichnet sind.
 	 * 
 	 * @param date
@@ -58,7 +58,7 @@ public class Manager {
 	 * @param name
 	 *            Name/Bezeichnung des BandObjects
 	 * @param collection
-	 *            Menge aus der das Element gelöscht werden soll.
+	 *            Menge aus der das Element geloescht werden soll.
 	 */
 	private <T extends BandObject> void removeBandObject(String name, Collection<T> collection) {
 		for (T item : collection) {
@@ -90,7 +90,7 @@ public class Manager {
 	}
 
 	/**
-	 * Fügt einen Song mit aktuellem Datum dem Repertoire der Band hinzu
+	 * Fuegt einen Song mit aktuellem Datum dem Repertoire der Band hinzu
 	 * 
 	 * @param name
 	 *            die Bezeichnung/der Titel des Songs
@@ -178,7 +178,7 @@ public class Manager {
 		try {
 			performances.add(Event.toEvent(place, date, time, duration, money, EventType.Performance));
 		} catch (ParseException e) {
-			throw new ServiceException("ERROR - Fehler beim Speichern eines Auftritts - ung�ltiges Datum/Format!");
+			throw new ServiceException("ERROR - Fehler beim Speichern eines Auftritts - ungueltiges Datum/Format!");
 		}
 	}
 
@@ -203,7 +203,7 @@ public class Manager {
 				throw new ServiceException("Probe bereits gespeichert");
 			}
 		} catch (ParseException e) {
-			throw new ServiceException("ERROR - Fehler beim Speichern der Bandprobe - ung�ltiges Datum/Format!");
+			throw new ServiceException("ERROR - Fehler beim Speichern der Bandprobe - ungueltiges Datum/Format!");
 		}
 	}
 
