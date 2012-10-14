@@ -1,6 +1,5 @@
 package entity;
 
-import java.util.Date;
 
 /**
  * Ein Bandmitglied.
@@ -29,11 +28,9 @@ public class Member extends BandObject {
 	 *            Instrument, dass das Mitglied in der Band spielt.
 	 */
 	public Member(String name, String phoneNumber, String instrument) {
-		this.name = name;
+		super(name);
 		this.phoneNumber = phoneNumber;
 		this.instrument = instrument;
-		this.start = new Date();
-		this.end = null;
 	}
 
 	/**

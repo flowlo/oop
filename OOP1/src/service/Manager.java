@@ -63,7 +63,7 @@ public class Manager {
 	private <T extends BandObject> void removeBandObject(String name, Collection<T> collection) {
 		for (T item : collection) {
 			if (item.getName().equals(name)) {
-				item.delete();
+				item.deactivate();
 				return;
 			}
 		}

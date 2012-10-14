@@ -4,13 +4,40 @@ import java.util.Date;
 
 /**
  * Basisklasse fuer Member und Titel.
- *
+ * 
  * @author Lorenz
  */
 public abstract class BandObject {
 	protected String name;
 	protected Date start;
 	protected Date end;
+
+	/**
+	 * Initialisiert ein Objekt mit angegebenem Namen sowie Gueltigkeitszeitraum.
+	 * 
+	 * @param name
+	 *            Name des Objekts
+	 * @param start
+	 *            Beginn der Gueltigkeit
+	 * @param end
+	 *            Ende der Gueltigkeit
+	 */
+	protected BandObject(String name, Date start, Date end) {
+		this.name = name;
+		this.start = start;
+		this.end = end;
+	}
+
+	/**
+	 * Initialisiert ein neues Objekt mit unbeschraenkter Gueltigkeit ab dem Zeitpunkt des Aufrufs.
+	 * 
+	 * @param name
+	 *            Name des Objekts
+	 * @see #BandObject(String, Date, Date)
+	 */
+	protected BandObject(String name) {
+		this(name, new Date(), null);
+	}
 
 	public String getName()
 	{
@@ -20,7 +47,7 @@ public abstract class BandObject {
 	/**
 	 * Das Mitglied/das Stueck wird mit dem aktuellen Datum als geloescht/inaktiv markiert
 	 */
-	public void delete()
+	public void deactivate()
 	{
 		end = new Date();
 	}

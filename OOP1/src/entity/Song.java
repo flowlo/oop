@@ -1,6 +1,5 @@
 package entity;
 
-import java.util.Date;
 
 /**
  * Ein Song aus dem Repertoire der Band.
@@ -22,10 +21,8 @@ public class Song extends BandObject {
 	 *            die Abspieldauer des Songs
 	 */
 	public Song(String name, int length) {
-		this.name = name;
+		super(name);
 		this.duration = length;
-		this.start = new Date();
-		this.end = null;
 	}
 
 	/**
