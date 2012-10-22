@@ -1,12 +1,13 @@
 package entity;
 
+import java.util.Date;
 
 /**
  * Ein Bandmitglied.
  * 
  * @author Lorenz
  */
-public class Member extends BandObject {
+public class Member extends User {
 	/**
 	 * Telefonnummer des Bandmitglieds.
 	 */
@@ -16,6 +17,9 @@ public class Member extends BandObject {
 	 * Instrument, dass das Mitglied in der Band spielt.
 	 */
 	private String instrument;
+
+	protected Date start;
+	protected Date end;
 
 	/**
 	 * Erzeugt ein neues Mitglied einer Band mit angegebenen Eigenschaften.
@@ -27,8 +31,10 @@ public class Member extends BandObject {
 	 * @param instrument
 	 *            Instrument, dass das Mitglied in der Band spielt.
 	 */
-	public Member(String name, String phoneNumber, String instrument) {
-		super(name);
+	public Member(String loginName, String phoneNumber, String instrument) {
+		//super(name);
+		this.loginName = loginName;
+		this.start = new Date();
 		this.phoneNumber = phoneNumber;
 		this.instrument = instrument;
 	}
@@ -53,7 +59,24 @@ public class Member extends BandObject {
 
 	@Override
 	public String toString() {
-		return name + " (" + phoneNumber + ") spielt(e) von " + start + " bis "
+		return this.firstName + " " + this.lastName + " (" + phoneNumber + ") spielt(e) von " + start + " bis "
 				+ (end != null ? end : "jetzt") + " " + instrument + ".";
+	}
+
+	public boolean isActive(Date date)
+	{
+		if (date.before(start)) {
+			return false;
+		} else if (end == null) {
+			return true;
+		} else if (date.after(start) && date.before(end)) {
+			return true;
+		}
+		return false;
+	}
+
+	public void deactivate()
+	{
+		end = new Date();
 	}
 }

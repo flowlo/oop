@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
-import service.Session.rights;
 import entity.BandObject;
 import entity.Event;
 import entity.Event.EventType;
@@ -121,7 +120,16 @@ public class Manager {
 	 * @return eine Liste der Mitglieder
 	 */
 	public Collection<Member> listMembers(Date date) {
-		return listBandObjects(date, members);
+		//return listBandObjects(date, members);
+		Collection<Member> result = new LinkedList<Member>();
+
+		for (Member item : this.members) {
+			if (item.isActive(date)) {
+				result.add(item);
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -148,20 +156,26 @@ public class Manager {
 	 * @see #getCurrentMembers()
 	 */
 	public void addMember(String name, String phoneNumber, String instrument) throws ServiceException {
-		if (Session.getRights() != rights.admin) {
+		/*if (Session.getRights() != rights.admin) {
 			throw new ServiceException("PERMISSION DENIED - required rights: admin");
-		}
+		}*/
 		members.add(new Member(name, phoneNumber, instrument));
 	}
 
 	/**
 	 * Scheidet ein Mitglied aus der Band aus.
 	 * 
-	 * @param name
-	 *            der Name des Mitglieds
+	 * @param loginName
+	 *            der Login-Name des Mitglieds
 	 */
-	public void removeMember(String name) {
-		removeBandObject(name, members);
+	public void removeMember(String loginName) {
+		//removeBandObject(name, members);
+		for (Member item : members) {
+			if (item.getLoginName().equals(loginName)) {
+				item.deactivate();
+				return;
+			}
+		}
 	}
 
 	/**
