@@ -1,5 +1,10 @@
 package service;
 
+import dao.DaoException;
+import dao.TestUserDao;
+import dao.UserDao;
+import entity.User;
+
 /**
  * Login des Users und Verwalten der Rechte.
  * für Allgemeine Rechte gibt es enum rights; für User-spezifische Rechte den login-Namen
@@ -24,6 +29,7 @@ public class Session {
 
 	}
 
+	private static UserDao userDao = new TestUserDao();
 	private static rights userRights = rights.none;
 	private static String loginName = null;
 
@@ -38,10 +44,23 @@ public class Session {
 	 */
 	public static boolean login(String loginName, String pwd)
 	{
-		//TODO: implement login
-		Session.loginName = loginName;
-		Session.userRights = rights.admin;
-		return true;
+		try {
+			User user = userDao.getUser(loginName);
+			if (user == null) {
+				return false;
+			}
+			if (user.checkPwd(pwd))
+			{
+				Session.loginName = loginName;
+				Session.userRights = user.getRights();
+				return true;
+			}
+		} catch (DaoException e) {
+			return false;
+		}
+
+		return false;
+
 	}
 
 	/**

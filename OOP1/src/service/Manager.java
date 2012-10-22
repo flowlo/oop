@@ -9,11 +9,16 @@ import java.util.List;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
+import service.Session.rights;
+import dao.DaoException;
+import dao.TestUserDao;
+import dao.UserDao;
 import entity.BandObject;
 import entity.Event;
 import entity.Event.EventType;
 import entity.Member;
 import entity.Song;
+import entity.User;
 
 /**
  * Diese Klasse fuehrt alle Operationen aus.
@@ -25,10 +30,23 @@ import entity.Song;
  */
 public class Manager {
 
+	private UserDao userDao = new TestUserDao();
 	private Collection<Member> members = new LinkedList<Member>();
 	private Collection<Song> songs = new LinkedList<Song>();
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
+
+	public Manager()
+	{
+		User user = new User("admin", "password");
+		user.setRights(rights.admin);
+		try {
+			userDao.createUser(user);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Erzeugt eine neue Menge, die alle Elemente der gegebenen menge enthaelt,
@@ -155,11 +173,11 @@ public class Manager {
 	 * @see #getMembers(Date)
 	 * @see #getCurrentMembers()
 	 */
-	public void addMember(String name, String phoneNumber, String instrument) throws ServiceException {
-		/*if (Session.getRights() != rights.admin) {
+	public void addMember(String name, String pwd, String phoneNumber, String instrument) throws ServiceException {
+		if (Session.getRights() != rights.admin) {
 			throw new ServiceException("PERMISSION DENIED - required rights: admin");
-		}*/
-		members.add(new Member(name, phoneNumber, instrument));
+		}
+		members.add(new Member(name, pwd, phoneNumber, instrument));
 	}
 
 	/**
@@ -340,5 +358,10 @@ public class Manager {
 		} else {
 			return null;
 		}
+	}
+
+	public boolean login(String user, String pwd)
+	{
+		return Session.login(user, pwd);
 	}
 }

@@ -17,8 +17,10 @@ public class User {
 	protected Session.rights rights;
 
 	//TODO: implementierung
-	public User()
+	public User(String loginName, String pwd)
 	{
+		this.setPwd(pwd, false);
+		this.loginName = loginName;
 		this.rights = Session.rights.none;
 	}
 
