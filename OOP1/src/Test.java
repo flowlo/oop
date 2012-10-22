@@ -170,10 +170,15 @@ public class Test {
 		System.out.println("MITGLIEDER TESTS");
 		System.out.println("....... Fuege neue Mitglieder hinzu...");
 
-		manager.addMember("Simon", "0900 666 666", "Gitarre");
-		manager.addMember("John Wayne", "01/41414141", "Maultrommel");
-		manager.addMember("Hans Wurst", "123456789", "Triangel");
-
+		try
+		{
+			manager.addMember("Simon", "0900 666 666", "Gitarre");
+			manager.addMember("John Wayne", "01/41414141", "Maultrommel");
+			manager.addMember("Hans Wurst", "123456789", "Triangel");
+		} catch (ServiceException e)
+		{
+			System.out.println(e.getMessage());
+		}
 		if (manager.listMembers().size() == 3) {
 			System.out.print("PASSED - ");
 		} else {

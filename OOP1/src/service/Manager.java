@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
+import service.Session.rights;
 import entity.BandObject;
 import entity.Event;
 import entity.Event.EventType;
@@ -142,10 +143,14 @@ public class Manager {
 	 *            die Telefonnummer des neuen Mitglieds
 	 * @param instrument
 	 *            das Instrument, dass das neue Mitglied in der Band spielt
+	 * @throws ServiceException
 	 * @see #getMembers(Date)
 	 * @see #getCurrentMembers()
 	 */
-	public void addMember(String name, String phoneNumber, String instrument) {
+	public void addMember(String name, String phoneNumber, String instrument) throws ServiceException {
+		if (Session.getRights() != rights.admin) {
+			throw new ServiceException("PERMISSION DENIED - required rights: admin");
+		}
 		members.add(new Member(name, phoneNumber, instrument));
 	}
 

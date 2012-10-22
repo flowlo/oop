@@ -3,6 +3,8 @@ package entity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import service.Session;
+
 /**
  * Basisklasse für alle Nutzer
  * 
@@ -11,12 +13,13 @@ import java.security.NoSuchAlgorithmException;
  */
 public class User {
 
-	private String loginName, firstName, lastName, pwd;
+	protected String loginName, firstName, lastName, pwd;
+	protected Session.rights rights;
 
 	//TODO: implementierung
 	public User()
 	{
-
+		this.rights = Session.rights.none;
 	}
 
 	public String getLoginName() {
@@ -76,6 +79,21 @@ public class User {
 		}
 		this.pwd = pwd;
 
+	}
+
+	/**
+	 * @return the rights
+	 */
+	public Session.rights getRights() {
+		return rights;
+	}
+
+	/**
+	 * @param rights
+	 *            the rights to set
+	 */
+	public void setRights(Session.rights rights) {
+		this.rights = rights;
 	}
 
 }

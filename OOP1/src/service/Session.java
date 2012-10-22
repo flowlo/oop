@@ -53,11 +53,21 @@ public class Session {
 		loginName = null;
 	}
 
+	/**
+	 * to validate public rights
+	 * 
+	 * @return rights of the user
+	 */
 	public static rights getRights()
 	{
 		return userRights;
 	}
 
+	/**
+	 * To validate private rights
+	 * 
+	 * @return login name of the user
+	 */
 	public static String getLoginName()
 	{
 		return loginName;
