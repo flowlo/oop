@@ -211,9 +211,10 @@ public class Manager {
 	 *            Die Gage
 	 * @throws ServiceException
 	 */
-	public void addPerformance(String place, String date, String time, int duration, int money) throws ServiceException {
+	public void addPerformance(String place, String date, String time, int duration, float money) throws ServiceException {
+		int cent = (int) (100.0f * money);
 		try {
-			performances.add(Event.toEvent(place, date, time, duration, money, EventType.Performance));
+			performances.add(Event.toEvent(place, date, time, duration, cent, EventType.Performance));
 		} catch (ParseException e) {
 			throw new ServiceException("ERROR - Fehler beim Speichern eines Auftritts - ungueltiges Datum/Format!");
 		}
@@ -235,8 +236,9 @@ public class Manager {
 	 * @throws ServiceException
 	 */
 	public void addPractice(String place, String date, String time, int duration, float money) throws ServiceException {
+		int cent = (int) (100.0f * money);
 		try {
-			if (!practices.add(Event.toEvent(place, date, time, duration, money, EventType.Practice))) {
+			if (!practices.add(Event.toEvent(place, date, time, duration, cent, EventType.Practice))) {
 				throw new ServiceException("Probe bereits gespeichert");
 			}
 		} catch (ParseException e) {
@@ -297,13 +299,13 @@ public class Manager {
 	 *            Endzeitpunkt
 	 * @return Die Gesamtgage des gegebenen Zeitraums
 	 */
-	public int getPerformanceSalary(Date start, Date end) {
+	public float getPerformanceSalary(Date start, Date end) {
 		int salary = 0;
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Performance);
 		for (Event e : events) {
 			salary += e.getMoney();
 		}
-		return salary;
+		return salary / 100.0f;
 	}
 
 	/**
@@ -315,13 +317,13 @@ public class Manager {
 	 *            Endzeitpunkt
 	 * @return Die Gesamtkosten des gegebenen Zeitraums
 	 */
-	public int getPracticeCosts(Date start, Date end) {
+	public float getPracticeCosts(Date start, Date end) {
 		int costs = 0;
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Practice);
 		for (Event e : events) {
 			costs += e.getMoney();
 		}
-		return costs;
+		return costs / 100.0f;
 	}
 
 	/**
@@ -333,7 +335,7 @@ public class Manager {
 	 *            Endzeitpunkt
 	 * @return Der Ertrag des gegebenen Zeitraums
 	 */
-	public int getEarnings(Date start, Date end) {
+	public float getEarnings(Date start, Date end) {
 		return getPerformanceSalary(start, end) - getPracticeCosts(start, end);
 	}
 

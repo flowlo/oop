@@ -9,27 +9,16 @@ import java.util.Date;
  * 
  * @author Dominik
  */
-public class Event implements Comparable<Event> {
+public class Event extends Item implements Comparable<Event> {
 	/**
 	 * Ort der Veranstaltung (Probe/Auftritt).
 	 */
 	private String place;
 
 	/**
-	 * Beginnzeitpunkt dieses Events.
-	 */
-	private Date dateTime;
-
-	/**
 	 * Dauer dieses Events in Sekunden.
 	 */
 	private int duration;
-
-	/**
-	 * Kosten/Einnahmen die durch dieses Event zu Stande kamen (in Euro).
-	 * Vorzeichen beachten!
-	 */
-	private float money;
 
 	/**
 	 * Typ dieses Events, um zwischen Probe und Auftritt zu unterscheiden.
@@ -50,7 +39,7 @@ public class Event implements Comparable<Event> {
 	 * @param type
 	 *            typ des Events
 	 */
-	public Event(String place, Date date, int duration, float money,
+	public Event(String place, Date date, int duration, int money,
 			EventType type) {
 		this.place = place;
 		this.dateTime = date;
@@ -119,7 +108,7 @@ public class Event implements Comparable<Event> {
 	 * @return Der Termin
 	 * @throws ParseException
 	 */
-	public static Event toEvent(String place, String date, String time, int duration, float money, EventType type) throws ParseException {
+	public static Event toEvent(String place, String date, String time, int duration, int money, EventType type) throws ParseException {
 		SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
 		df.setLenient(false);
 		Date datetime = df.parse(date + "-" + time);
