@@ -23,4 +23,5 @@ public class Item {
 	 * Rechnungszeitpunkt
 	 */
 	protected Date dateTime;
+
 }
