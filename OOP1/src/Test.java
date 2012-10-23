@@ -165,6 +165,10 @@ public class Test {
 		}
 		System.out.println("Kosten aller Proben - soll=15 ist="
 				+ bandmanager.getPracticeCosts(new GregorianCalendar(2011, 1, 1).getTime(), new GregorianCalendar(2013, 1, 1).getTime()));
+
+		Event practice = practices.get(0);
+		bandmanager.moveEvent(practice, new Date());
+
 		System.out.println("PROBEN TESTS ENDE");
 		System.out.println("-----------------------------------------------");
 
