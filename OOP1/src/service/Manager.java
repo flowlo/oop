@@ -38,6 +38,8 @@ public class Manager {
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
 
+	private ArrayList<String> bands = new ArrayList<String>();
+
 	public Manager()
 	{
 		User user = new User("admin", "password");
@@ -187,9 +189,13 @@ public class Manager {
 	 * 
 	 * @param loginName
 	 *            der Login-Name des Mitglieds
+	 * @throws ServiceException
 	 */
-	public void removeMember(String loginName) {
+	public void removeMember(String loginName) throws ServiceException {
 		//removeBandObject(name, members);
+		if (Session.getRights() != rights.admin) {
+			throw new ServiceException("PERMISSION DENIED - required rights: admin");
+		}
 		for (Member item : members) {
 			if (item.getLoginName().equals(loginName)) {
 				item.deactivate();
@@ -417,4 +423,18 @@ public class Manager {
 	public boolean removeLocation(String name) {
 		return removeLocation(getLocation(name));
 	}
+
+	public void addBand(String name) throws ServiceException
+	{
+		if (this.bands.contains(name)) {
+			throw new ServiceException("ERROR - Band already exists");
+		}
+		bands.add(name);
+	}
+
+	public void removeBand(String name)
+	{
+		bands.remove(name);
+	}
+
 }
