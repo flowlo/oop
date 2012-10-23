@@ -21,6 +21,8 @@ public class Member extends User {
 	protected Date start;
 	protected Date end;
 
+	private String band;
+
 	/**
 	 * Erzeugt ein neues Mitglied einer Band mit angegebenen Eigenschaften.
 	 * 
@@ -38,6 +40,11 @@ public class Member extends User {
 		this.instrument = instrument;
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}
+
+	public void setBand(String band)
+	{
+		this.band = band;
 	}
 
 	/**

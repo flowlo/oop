@@ -10,7 +10,6 @@ import java.util.NavigableSet;
 import java.util.TreeSet;
 
 import service.Session.rights;
-import dao.DaoException;
 import dao.TestUserDao;
 import dao.UserDao;
 import entity.BandObject;
@@ -19,7 +18,6 @@ import entity.Event.EventType;
 import entity.Location;
 import entity.Member;
 import entity.Song;
-import entity.User;
 
 /**
  * Diese Klasse fuehrt alle Operationen aus.
@@ -29,7 +27,7 @@ import entity.User;
  * @author Lorenz
  * @author Dominik
  */
-public class Manager {
+public class BandManager {
 
 	private UserDao userDao = new TestUserDao();
 	private Collection<Member> members = new LinkedList<Member>();
@@ -38,9 +36,7 @@ public class Manager {
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
 
-	private ArrayList<String> bands = new ArrayList<String>();
-
-	public Manager()
+	/*public BandManager()
 	{
 		User user = new User("admin", "password");
 		user.setRights(rights.admin);
@@ -50,7 +46,7 @@ public class Manager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Erzeugt eine neue Menge, die alle Elemente der gegebenen menge enthaelt,
@@ -422,19 +418,6 @@ public class Manager {
 
 	public boolean removeLocation(String name) {
 		return removeLocation(getLocation(name));
-	}
-
-	public void addBand(String name) throws ServiceException
-	{
-		if (this.bands.contains(name)) {
-			throw new ServiceException("ERROR - Band already exists");
-		}
-		bands.add(name);
-	}
-
-	public void removeBand(String name)
-	{
-		bands.remove(name);
 	}
 
 }
