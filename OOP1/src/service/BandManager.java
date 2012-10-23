@@ -26,7 +26,7 @@ import entity.Song;
  * @author Dominik
  */
 public class BandManager {
-
+	//----
 	private Collection<Member> members = new LinkedList<Member>();
 	private Collection<Song> songs = new LinkedList<Song>();
 	private List<Location> locations = new LinkedList<Location>();
