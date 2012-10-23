@@ -175,11 +175,11 @@ public class Manager {
 	 * @see #getMembers(Date)
 	 * @see #getCurrentMembers()
 	 */
-	public void addMember(String name, String pwd, String phoneNumber, String instrument) throws ServiceException {
+	public void addMember(String name, String firstName, String lastName, String pwd, String phoneNumber, String instrument) throws ServiceException {
 		if (Session.getRights() != rights.admin) {
 			throw new ServiceException("PERMISSION DENIED - required rights: admin");
 		}
-		members.add(new Member(name, pwd, phoneNumber, instrument));
+		members.add(new Member(name, firstName, lastName, pwd, phoneNumber, instrument));
 	}
 
 	/**

@@ -168,9 +168,9 @@ public class Test {
 		try
 		{
 			manager.login("admin", "password");
-			manager.addMember("Simon", "geheim", "0900 666 666", "Gitarre");
-			manager.addMember("John Wayne", "geheim", "01/41414141", "Maultrommel");
-			manager.addMember("Hans Wurst", "geheim", "123456789", "Triangel");
+			manager.addMember("Simon", "Simon", "Osim", "geheim", "0900 666 666", "Gitarre");
+			manager.addMember("John Wayne", "John", "Wayne", "geheim", "01/41414141", "Maultrommel");
+			manager.addMember("Hansy", "Hans", "Wurst", "geheim", "123456789", "Triangel");
 		} catch (ServiceException e)
 		{
 			System.out.println(e.getMessage());

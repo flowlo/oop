@@ -31,11 +31,13 @@ public class Member extends User {
 	 * @param instrument
 	 *            Instrument, dass das Mitglied in der Band spielt.
 	 */
-	public Member(String loginName, String pwd, String phoneNumber, String instrument) {
+	public Member(String loginName, String firstName, String lastName, String pwd, String phoneNumber, String instrument) {
 		super(loginName, pwd);
 		this.start = new Date();
 		this.phoneNumber = phoneNumber;
 		this.instrument = instrument;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	/**
