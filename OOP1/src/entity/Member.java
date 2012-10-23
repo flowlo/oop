@@ -1,6 +1,8 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Ein Bandmitglied.
@@ -18,8 +20,10 @@ public class Member extends User {
 	 */
 	private String instrument;
 
-	protected Date start;
-	protected Date end;
+	private List<String> messages = new ArrayList<String>();
+
+	private Date start;
+	private Date end;
 
 	private String band;
 
@@ -86,5 +90,15 @@ public class Member extends User {
 	public void deactivate()
 	{
 		end = new Date();
+	}
+
+	public void addMessage(String message) {
+		messages.add(message);
+	}
+
+	public List<String> getMessages() {
+		List<String> tempMessages = new ArrayList<String>(messages);
+		messages = new ArrayList<String>();
+		return tempMessages;
 	}
 }
