@@ -283,6 +283,12 @@ public class BandManager {
 		}
 	}
 
+	/**
+	 * Sagt das gegebene Event ab
+	 * 
+	 * @param event
+	 *            das Events
+	 */
 	public void cancelEvent(Event event) {
 		event.setCanceled(true);
 		String type = "";
@@ -296,6 +302,17 @@ public class BandManager {
 		}
 	}
 
+	/**
+	 * Verschiebt ein Event
+	 * 
+	 * @param event
+	 *            das Event
+	 * @param date
+	 *            das Datum - Format: d.M.yyyy
+	 * @param time
+	 *            die Uhrzeit - Format: H:m
+	 * @throws ServiceException
+	 */
 	public void moveEvent(Event event, String date, String time) throws ServiceException {
 		String type = "";
 		if (event.getType().equals(EventType.Performance)) {

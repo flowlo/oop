@@ -8,6 +8,7 @@ import java.util.List;
  * Ein Bandmitglied.
  * 
  * @author Lorenz
+ * @author Dominik
  */
 public class Member extends User {
 	/**
@@ -20,6 +21,9 @@ public class Member extends User {
 	 */
 	private String instrument;
 
+	/**
+	 * Speichert die Nachrichten für das Mitglied
+	 */
 	private List<String> messages = new ArrayList<String>();
 
 	private Date start;

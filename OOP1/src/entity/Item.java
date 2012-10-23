@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Oberklasse für alles was mit Geld zu tun hat =)
+ * Oberklasse fÃ¼r alles was mit Geld zu tun hat =)
  * 
  * @author Simon
  * @author Dominik
@@ -26,6 +26,9 @@ public abstract class Item {
 	 */
 	protected Date dateTime;
 
+	/**
+	 * Datensatz ist zum Lï¿½schen markiert
+	 */
 	boolean deleted;
 
 	public int getMoney() {
@@ -55,25 +58,46 @@ public abstract class Item {
 		this.dateTime = dateTime;
 	}
 
-	protected abstract void save();
-
-	public abstract List<?> getHistory();
-
-	public abstract Item getHistoryItem(int version);
-
-	public abstract void revert(int version);
-
-	public abstract void revert(Item version);
-
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
 
 	public void delete() {
-		setDeleted(false);
+		setDeleted(true);
 	}
 
 	public boolean isDeleted() {
 		return deleted;
 	}
+
+	/**
+	 * Speichert den aktuellen Zustand in der History
+	 */
+	protected abstract void save();
+
+	/**
+	 * Liefert ein bestimmtes History-Element
+	 */
+	public abstract Item getHistoryItem(int version);
+
+	/**
+	 * Gibt die History des Datensatzes zurï¿½ck
+	 * 
+	 * @return alle Versionen des Datensatzes
+	 */
+	public abstract List<?> getHistory();
+
+	/**
+	 * Reversiert den Datensatz zur angegebenen Version
+	 * 
+	 * @param version
+	 */
+	public abstract void revert(int version);
+
+	/**
+	 * Reversiert den Datensatz zum angegebenen Item
+	 * 
+	 * @param version
+	 */
+	public abstract void revert(Item version);
 }

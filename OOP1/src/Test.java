@@ -13,10 +13,11 @@ import entity.Member;
 import entity.Song;
 
 /**
- * Fuehrt saemtliche Tests aus. Darf nur auf den bandmanager zugreifen.
+ * Fuehrt sämtliche Tests aus. Darf nur auf den bandmanager zugreifen.
  * 
  * @author Simon
  * @author Lorenz
+ * @author Dominik
  */
 public class Test {
 
@@ -297,7 +298,6 @@ public class Test {
 
 		try
 		{
-
 			bandmanager.addMember("Simon", "Simon", "Osim", "geheim", "0900 666 666", "Gitarre");
 			bandmanager.addMember("John Wayne", "John", "Wayne", "asdf", "01/41414141", "Maultrommel");
 			bandmanager.addMember("Hansy", "Hans", "Wurst", "bla", "123456789", "Triangel");

@@ -11,19 +11,16 @@ import dao.UserDao;
 import entity.Member;
 import entity.User;
 
-//---
 public class Manager {
 	private UserDao userDao = new TestUserDao();
 	private HashMap<String, BandManager> bands = new HashMap<String, BandManager>();
 
-	public Manager()
-	{
+	public Manager() {
 		User user = new User("admin", "password");
 		user.setRights(rights.admin);
 		try {
 			userDao.createUser(user);
 		} catch (DaoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -37,8 +34,7 @@ public class Manager {
 	 * @throws ServiceException
 	 *             wirft Exception, wenn nicht als Admin angemeldet
 	 */
-	public BandManager createBand(String name) throws ServiceException
-	{
+	public BandManager createBand(String name) throws ServiceException {
 		if (Session.getRights() != rights.admin) {
 			throw new ServiceException("ERROR - Admin rights required");
 		}
@@ -52,16 +48,14 @@ public class Manager {
 		return result;
 	}
 
-	public Set<String> getAllBands()
-	{
+	public Set<String> getAllBands() {
 		if (Session.getRights() == rights.none) {
 			return null;
 		}
 		return bands.keySet();
 	}
 
-	public BandManager getBand(String name) throws ServiceException
-	{
+	public BandManager getBand(String name) throws ServiceException {
 		BandManager band = bands.get(name);
 		if (band == null) {
 			throw new ServiceException("WARNING - No such band");
@@ -85,28 +79,23 @@ public class Manager {
 		return band;
 	}
 
-	public void deleteUser(String loginName)
-	{
+	public void deleteUser(String loginName) {
 		try {
 			new TestUserDao().deleteUser(loginName);
 		} catch (DaoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public String getCurrentUser()
-	{
+	public String getCurrentUser() {
 		return Session.getLoginName();
 	}
 
-	public boolean login(String user, String pwd)
-	{
+	public boolean login(String user, String pwd) {
 		return Session.login(user, pwd);
 	}
 
-	public void logout()
-	{
+	public void logout() {
 		Session.logout();
 	}
 }

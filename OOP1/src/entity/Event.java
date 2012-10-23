@@ -27,11 +27,20 @@ public class Event extends Item implements Comparable<Event> {
 	 */
 	private EventType type;
 
+	/**
+	 * Event ist abgesagt
+	 */
+	private boolean canceled = false;
+
+	/**
+	 * Speichert die �nderungen in einer History
+	 */
 	private List<Event> history = new ArrayList<Event>();
 
+	/**
+	 * Blockiert das Sepichern, um nicht f�r jedes Feld ein neues History-Element anzulegen
+	 */
 	private boolean blockSave = false;
-
-	private boolean canceled = false;
 
 	/**
 	 * Neues Event erstellen
@@ -55,6 +64,12 @@ public class Event extends Item implements Comparable<Event> {
 		this.type = type;
 	}
 
+	/**
+	 * Deep-Copy-Constructor
+	 * 
+	 * @param event
+	 *            das Event, von dem eine tiefe Kopie erstellt werden soll
+	 */
 	public Event(Event event) {
 		this.location = event.getLocation();
 		this.dateTime = event.getDateTime();
@@ -233,12 +248,29 @@ public class Event extends Item implements Comparable<Event> {
 		return new Event(location, createDate(date, time), duration, money, type);
 	}
 
+	/**
+	 * Erzeugt ein Date zu einem gegeben Datum und einer gegebenen Uhrzeit
+	 * 
+	 * @param date
+	 *            Datum
+	 * @param time
+	 *            Uhzeit
+	 * @return Date-Entity
+	 * @throws ParseException
+	 */
 	public static Date createDate(String date, String time) throws ParseException {
 		SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
 		df.setLenient(false);
 		return df.parse(date + "-" + time);
 	}
 
+	/**
+	 * Erzeugt ein Dummy-Event aus einem Datum
+	 * 
+	 * @param date
+	 *            das Datum des Dummy-Events
+	 * @return das Dummy-Event
+	 */
 	public static Event fromDate(Date date) {
 		return new Event(new Location("", ""), date, 1, 0, EventType.Dummy);
 	}
