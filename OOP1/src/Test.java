@@ -88,8 +88,8 @@ public class Test {
 		System.out.println("-----------------------------------------------");
 		System.out.println("AUFTRITTE TESTS");
 		try {
-			manager.addPerformance("Vienna Unplugged", "24.12.2012", "20:00", 60, 400);
-			manager.addPerformance("Escape", "02.05.2012", "21:15", 90, 350);
+			manager.addPerformance("Vienna Unplugged", "Foogasse 41", "24.12.2012", "20:00", 60, 400);
+			manager.addPerformance("Escape", "Barweg 13/37", "02.05.2012", "21:15", 90, 350);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}
@@ -126,9 +126,9 @@ public class Test {
 
 		System.out.println("....... Proben einfuegen");
 		try {
-			manager.addPractice("Garage von Jonny", "22.12.2012", "13:45", 90, 0);
-			manager.addPractice("Keller von Jimmy", "11.11.2011", "11:11", 120, 3);
-			manager.addPractice("Proberaum im 20.", "21.12.2012", "13:45", 90, 12);
+			manager.addPractice("Garage von Jonny", "Johnnyplatz", "22.12.2012", "13:45", 90, 0);
+			manager.addPractice("Keller von Jimmy", "Jimmystraße", "11.11.2011", "11:11", 120, 3);
+			manager.addPractice("Proberaum", "im 20.", "21.12.2012", "13:45", 90, 12);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}

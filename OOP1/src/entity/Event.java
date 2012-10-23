@@ -13,7 +13,7 @@ public class Event extends Item implements Comparable<Event> {
 	/**
 	 * Ort der Veranstaltung (Probe/Auftritt).
 	 */
-	private String place;
+	private Location place;
 
 	/**
 	 * Dauer dieses Events in Sekunden.
@@ -39,7 +39,7 @@ public class Event extends Item implements Comparable<Event> {
 	 * @param type
 	 *            typ des Events
 	 */
-	public Event(String place, Date date, int duration, int money,
+	public Event(Location place, Date date, int duration, int money,
 			EventType type) {
 		this.place = place;
 		this.dateTime = date;
@@ -48,7 +48,7 @@ public class Event extends Item implements Comparable<Event> {
 		this.type = type;
 	}
 
-	public String getPlace() {
+	public Location getPlace() {
 		return place;
 	}
 
@@ -70,7 +70,7 @@ public class Event extends Item implements Comparable<Event> {
 	}
 
 	public static Event fromDate(Date date) {
-		return new Event("", date, 1, 0, EventType.Dummy);
+		return new Event(new Location("", ""), date, 1, 0, EventType.Dummy);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class Event extends Item implements Comparable<Event> {
 	 * @return Der Termin
 	 * @throws ParseException
 	 */
-	public static Event toEvent(String place, String date, String time, int duration, int money, EventType type) throws ParseException {
+	public static Event toEvent(Location place, String date, String time, int duration, int money, EventType type) throws ParseException {
 		SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
 		df.setLenient(false);
 		Date datetime = df.parse(date + "-" + time);

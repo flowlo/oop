@@ -16,6 +16,7 @@ import dao.UserDao;
 import entity.BandObject;
 import entity.Event;
 import entity.Event.EventType;
+import entity.Location;
 import entity.Member;
 import entity.Song;
 import entity.User;
@@ -33,6 +34,7 @@ public class Manager {
 	private UserDao userDao = new TestUserDao();
 	private Collection<Member> members = new LinkedList<Member>();
 	private Collection<Song> songs = new LinkedList<Song>();
+	private Collection<Location> locations = new LinkedList<Location>();
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
 
@@ -211,7 +213,15 @@ public class Manager {
 	 *            Die Gage
 	 * @throws ServiceException
 	 */
-	public void addPerformance(String place, String date, String time, int duration, float money) throws ServiceException {
+	public void addPerformance(String place, String address, String date, String time, int duration, float money) throws ServiceException {
+		addPerformanceAtLocation(new Location(place, address), date, time, duration, money);
+	}
+
+	public void addPerformanceAtLocation(Location place, String date, String time, int duration, float money) throws ServiceException {
+		if (!locations.contains(place)) {
+			locations.add(place);
+		}
+
 		int cent = (int) (100.0f * money);
 		try {
 			performances.add(Event.toEvent(place, date, time, duration, cent, EventType.Performance));
@@ -235,7 +245,11 @@ public class Manager {
 	 *            Die Raummiete
 	 * @throws ServiceException
 	 */
-	public void addPractice(String place, String date, String time, int duration, float money) throws ServiceException {
+	public void addPractice(String place, String address, String date, String time, int duration, float money) throws ServiceException {
+		addPracticeAtLocation(new Location(place, address), date, time, duration, money);
+	}
+
+	public void addPracticeAtLocation(Location place, String date, String time, int duration, float money) throws ServiceException {
 		int cent = (int) (100.0f * money);
 		try {
 			if (!practices.add(Event.toEvent(place, date, time, duration, cent, EventType.Practice))) {
@@ -365,5 +379,30 @@ public class Manager {
 	public boolean login(String user, String pwd)
 	{
 		return Session.login(user, pwd);
+	}
+
+	public Collection<Location> getLocationsProviding(String infrastructure) {
+		List<Location> result = new LinkedList<Location>();
+
+		for (Location item : locations) {
+			if (item.providesInfrastructure(infrastructure)) {
+				result.add(item);
+			}
+		}
+
+		return result;
+	}
+
+	public Collection<Location> getLocations() {
+		return locations;
+	}
+
+	public Location getLocation(String name) {
+		for (Location item : locations) {
+			if (item.getName().equals(name)) {
+				return item;
+			}
+		}
+		return null;
 	}
 }
