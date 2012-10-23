@@ -106,9 +106,66 @@ public class Test {
 		System.out.println("Admin abmelden");
 		bandmanager = null;
 		manager.logout();
-		System.out.println("Anmelden als User Simon mit Passwor 'falsches Passwort'");
-		manager.login("Simon", "falsches Passwor");
+		System.out.println("Anmelden als User 'Simon' mit Passwort 'falsches Passwort'");
+		if (!manager.login("Simon", "falsches Passwort")) {
+			System.out.println("SUCCESS - login war nicht erfolgreich");
+		} else
+		{
+			System.out.println("FAILED - Login war bei falschem Passwort erfolgreich");
+			result = false;
+		}
+		System.out.println("Versuche Bands anzuzeigen: ");
+		if (manager.getAllBands() == null) {
+			System.out.println("SUCCESS - Keine Bands angezeigt");
+		} else
+		{
+			System.out.println("FAILED - Bands werden angezeigt");
+			return false;
+		}
+		System.out.println("Anmelden als User 'Simon' mit korrektem Passwort 'geheim'");
+		if (manager.login("Simon", "geheim"))
+		{
+			System.out.println("SUCCESS - Login erfolgreich");
+		}
+		else
+		{
+			System.out.println("FAILED");
+			return false;
+		}
+		System.out.println("Liste alle Bands auf: ");
+		Set<String> bands = manager.getAllBands();
+		for (String it : bands)
+		{
+			System.out.println(it);
+		}
+		System.out.println("Versuche Zugriff auf Band 'COOL'");
+		try {
+			bandmanager = manager.getBand("COOL");
 
+		} catch (ServiceException e) {
+			System.out.println(e.getMessage());
+		}
+		if (bandmanager != null) {
+			System.out.println("FAILED - Zugriff erhalten");
+			result = false;
+		}
+		else
+		{
+			System.out.println("SUCCESS - Zugriff verweigert");
+		}
+		System.out.println("Versuche auf eigene Band zuzugreifen: ");
+		try {
+			bandmanager = manager.getBand("LOL");
+		} catch (ServiceException e) {
+			System.out.println(e);
+		}
+		if (bandmanager == null)
+		{
+			System.out.println("FAILED - Kein Zugriff");
+			result = false;
+		} else {
+			System.out.println("SUCCESS - Zugriff erhalten");
+		}
 		System.out.println("-----------------------------------------------");
 
 		return result;

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import service.Session;
+
 /**
  * Ein Bandmitglied.
  * 
@@ -48,6 +50,7 @@ public class Member extends User {
 		this.instrument = instrument;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.rights = Session.rights.member;
 	}
 
 	public void setBand(String band)
