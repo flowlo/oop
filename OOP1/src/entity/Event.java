@@ -214,11 +214,14 @@ public class Event extends Item implements Comparable<Event> {
 	 * @return Der Termin
 	 * @throws ParseException
 	 */
-	public static Event toEvent(Location location, String dateTime, String time, int duration, int money, EventType type) throws ParseException {
+	public static Event toEvent(Location location, String date, String time, int duration, int money, EventType type) throws ParseException {
+		return new Event(location, createDate(date, time), duration, money, type);
+	}
+
+	public static Date createDate(String date, String time) throws ParseException {
 		SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
 		df.setLenient(false);
-		Date datetime = df.parse(dateTime + "-" + time);
-		return new Event(location, datetime, duration, money, type);
+		return df.parse(date + "-" + time);
 	}
 
 	public static Event fromDate(Date date) {

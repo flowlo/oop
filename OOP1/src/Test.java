@@ -1,4 +1,4 @@
-import java.util.Collection;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -38,7 +38,6 @@ public class Test {
 		try {
 			bandmanager = manager.createBand("LOL");
 		} catch (ServiceException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		//-----------------------------------------------------------------
@@ -70,7 +69,6 @@ public class Test {
 		else {
 			System.out.println("ERROR - TEST(S) FAILED");
 		}
-
 	}
 
 	public static boolean testVerdienst()
@@ -136,10 +134,11 @@ public class Test {
 		System.out.println("....... Proben einfuegen");
 		try {
 			bandmanager.addPractice("Garage von Jonny", "Johnnyplatz", "22.12.2012", "13:45", 90, 0);
-			bandmanager.addPractice("Keller von Jimmy", "Jimmystraße", "11.11.2011", "11:11", 120, 3);
+			bandmanager.addPractice("Keller von Jimmy", "Jimmystrasse", "11.11.2011", "11:11", 120, 3);
 			bandmanager.addPractice("Proberaum", "im 20.", "21.12.2012", "13:45", 90, 12);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
+			result = false;
 		}
 
 		System.out.println("Es wurden 3 Proben gespeichert: ");
@@ -166,8 +165,27 @@ public class Test {
 		System.out.println("Kosten aller Proben - soll=15 ist="
 				+ bandmanager.getPracticeCosts(new GregorianCalendar(2011, 1, 1).getTime(), new GregorianCalendar(2013, 1, 1).getTime()));
 
-		Event practice = practices.get(0);
-		bandmanager.moveEvent(practice, new Date());
+		try {
+			Event practice = practices.get(0);
+			List<Member> members = bandmanager.listMembers();
+
+			bandmanager.moveEvent(practice, "23.12.2012", "14:00");
+			Date date = Event.createDate("23.12.2012", "14:00");
+			if (date.equals(practice.getDateTime())) {
+				System.out.print("PASSED - ");
+			} else {
+				System.out.print("FAILED - ");
+				result = false;
+			}
+			System.out.println("Probe verschieben");
+
+		} catch (ServiceException e) {
+			System.out.println(e.getMessage());
+			result = false;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			result = false;
+		}
 
 		System.out.println("PROBEN TESTS ENDE");
 		System.out.println("-----------------------------------------------");
@@ -216,7 +234,6 @@ public class Test {
 		try {
 			bandmanager.removeMember("John Wayne");
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (bandmanager.listMembers().size() == 2) {
@@ -237,7 +254,7 @@ public class Test {
 				+ " ... (Mitglieder zum Zeitpunkt: " + zwischenzeit + ").");
 
 		System.out.println("\nAuflisten von aktiven Mitgliedern: ");
-		Collection<Member> member = bandmanager.listMembers();
+		List<Member> member = bandmanager.listMembers();
 		for (Member it : member)
 		{
 			System.out.println(" " + it.toString());
@@ -296,7 +313,7 @@ public class Test {
 				+ " ... (Mitglieder zum Zeitpunkt: " + zwischenzeit + ").");
 
 		System.out.println("\nAuflisten von aktuellen Songs: ");
-		Collection<Song> songs = bandmanager.listSongs();
+		List<Song> songs = bandmanager.listSongs();
 		for (Song it : songs)
 		{
 			System.out.println(" " + it.toString());

@@ -2,7 +2,6 @@ package service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,8 +28,8 @@ import entity.Song;
  */
 public class BandManager {
 	//----
-	private Collection<Member> members = new LinkedList<Member>();
-	private Collection<Song> songs = new LinkedList<Song>();
+	private List<Member> members = new LinkedList<Member>();
+	private List<Song> songs = new LinkedList<Song>();
 	private List<Location> locations = new LinkedList<Location>();
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
@@ -58,8 +57,8 @@ public class BandManager {
 	 *            Menge der zu betrachtenden Objekte
 	 * @return Teilmenge
 	 */
-	private <T extends BandObject> Collection<T> listBandObjects(Date date, Collection<T> collection) {
-		Collection<T> result = new LinkedList<T>();
+	private <T extends BandObject> List<T> listBandObjects(Date date, List<T> collection) {
+		List<T> result = new LinkedList<T>();
 
 		for (T item : collection) {
 			if (item.isActive(date)) {
@@ -71,14 +70,14 @@ public class BandManager {
 	}
 
 	/**
-	 * Entfernt das {@link entitiy.BandObject} mit dem gegebenen namen aus der gegebenen {@link java.util.Collection}.
+	 * Entfernt das {@link entitiy.BandObject} mit dem gegebenen namen aus der gegebenen {@link java.util.List}.
 	 * 
 	 * @param name
 	 *            Name/Bezeichnung des BandObjects
 	 * @param collection
 	 *            Menge aus der das Element geloescht werden soll.
 	 */
-	private <T extends BandObject> void removeBandObject(String name, Collection<T> collection) {
+	private <T extends BandObject> void removeBandObject(String name, List<T> collection) {
 		for (T item : collection) {
 			if (item.getName().equals(name)) {
 				item.deactivate();
@@ -92,7 +91,7 @@ public class BandManager {
 	 * 
 	 * @return eine Liste der aktuell im Repertoire befindlichen Songs
 	 */
-	public Collection<Song> listSongs() {
+	public List<Song> listSongs() {
 		return listSongs(new Date());
 	}
 
@@ -103,7 +102,7 @@ public class BandManager {
 	 *            Zeitpunkt, zu dem das Repertoire betrachtet werden soll
 	 * @return eine Liste aller Songs
 	 */
-	public Collection<Song> listSongs(Date date) {
+	public List<Song> listSongs(Date date) {
 		return listBandObjects(date, songs);
 	}
 
@@ -137,9 +136,9 @@ public class BandManager {
 	 *            der relevante Zeitpunkt
 	 * @return eine Liste der Mitglieder
 	 */
-	public Collection<Member> listMembers(Date date) {
+	public List<Member> listMembers(Date date) {
 		//return listBandObjects(date, members);
-		Collection<Member> result = new LinkedList<Member>();
+		List<Member> result = new LinkedList<Member>();
 
 		for (Member item : this.members) {
 			if (item.isActive(date)) {
@@ -156,7 +155,7 @@ public class BandManager {
 	 * @return eine Liste der Mitglieder
 	 * @see #getMembers(Date)
 	 */
-	public Collection<Member> listMembers() {
+	public List<Member> listMembers() {
 		return listMembers(new Date());
 	}
 
@@ -302,16 +301,22 @@ public class BandManager {
 		}
 	}
 
-	public void moveEvent(Event event, Date date) {
-		event.edit(null, date, null, null, null, null, null, null);
+	public void moveEvent(Event event, String date, String time) throws ServiceException {
 		String type = "";
 		if (event.getType().equals(EventType.Performance)) {
 			type = "Auftritt";
 		} else if (event.getType().equals(EventType.Practice)) {
 			type = "Probe";
 		}
-		for (Member member : listMembers()) {
-			member.addMessage(type + " verschoben: " + event.toString());
+
+		try {
+			Date datetime = Event.createDate(date, time);
+			event.edit(null, datetime, null, null, null, null, null, null);
+			for (Member member : listMembers()) {
+				member.addMessage(type + " verschoben: " + event.toString());
+			}
+		} catch (ParseException e) {
+			throw new ServiceException("ERROR - Fehler beim Verschieben von " + type + " - ungueltiges Datum/Format!");
 		}
 	}
 
