@@ -145,8 +145,8 @@ public class Event extends Item implements Comparable<Event> {
 
 	public void edit(Location location, Date dateTime, Integer duration, Integer money, EventType type, String comment, Boolean deleted,
 			Boolean canceled) {
-		blockSave = true;
 		save();
+		blockSave = true;
 		if (location != null) {
 			setLocation(location);
 		}
@@ -194,6 +194,21 @@ public class Event extends Item implements Comparable<Event> {
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		return typeString + " - Datum: " + df.format(dateTime) + " - Dauer: "
 				+ duration + " Minuten - " + moneyString + ": " + money;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof Event) {
+			Event test = (Event) object;
+			return test.getComment().equals(comment) &&
+					test.getDateTime().equals(dateTime) &&
+					test.getDuration() == duration &&
+					test.getLocation().equals(location) &&
+					test.getMoney() == money &&
+					test.getType().equals(type);
+		} else {
+			return false;
+		}
 	}
 
 	/**

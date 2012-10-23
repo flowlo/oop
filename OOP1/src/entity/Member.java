@@ -75,8 +75,7 @@ public class Member extends User {
 				+ (end != null ? end : "jetzt") + " " + instrument + ".";
 	}
 
-	public boolean isActive(Date date)
-	{
+	public boolean isActive(Date date) {
 		if (date.before(start)) {
 			return false;
 		} else if (end == null) {
@@ -87,8 +86,7 @@ public class Member extends User {
 		return false;
 	}
 
-	public void deactivate()
-	{
+	public void deactivate() {
 		end = new Date();
 	}
 

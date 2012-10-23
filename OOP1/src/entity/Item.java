@@ -14,12 +14,12 @@ public abstract class Item {
 	/**
 	 * Rechnungsbetrag in Cent
 	 */
-	protected int money;
+	protected int money = 0;
 
 	/**
 	 * Name/Beschreibung der Dienstleistung
 	 */
-	protected String comment;
+	protected String comment = "";
 
 	/**
 	 * Rechnungszeitpunkt

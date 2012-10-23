@@ -195,6 +195,7 @@ public class Test {
 				+ bandmanager.getPracticeCosts(new GregorianCalendar(2011, 1, 1).getTime(), new GregorianCalendar(2013, 1, 1).getTime()));
 
 		Event practice = practices.get(0);
+		Event comparison = new Event(practice);
 		try {
 			bandmanager.moveEvent(practice, "23.12.2012", "14:00");
 			Date date = Event.createDate("23.12.2012", "14:00");
@@ -237,6 +238,17 @@ public class Test {
 			result = false;
 		}
 		System.out.println("Mitglieder benachrichtigen");
+
+		Event comparisonInHistory = new Event(practice.getHistoryItem(0));
+		practice.revert(0);
+
+		if (practice.equals(comparison) && practice.equals(comparisonInHistory)) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Event wiederherstellen");
 
 		System.out.println("PROBEN TESTS ENDE");
 		System.out.println("-----------------------------------------------");
