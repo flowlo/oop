@@ -10,8 +10,6 @@ import java.util.NavigableSet;
 import java.util.TreeSet;
 
 import service.Session.rights;
-import dao.TestUserDao;
-import dao.UserDao;
 import entity.BandObject;
 import entity.Event;
 import entity.Event.EventType;
@@ -29,7 +27,6 @@ import entity.Song;
  */
 public class BandManager {
 
-	private UserDao userDao = new TestUserDao();
 	private Collection<Member> members = new LinkedList<Member>();
 	private Collection<Song> songs = new LinkedList<Song>();
 	private List<Location> locations = new LinkedList<Location>();
@@ -376,11 +373,6 @@ public class BandManager {
 		} else {
 			return null;
 		}
-	}
-
-	public boolean login(String user, String pwd)
-	{
-		return Session.login(user, pwd);
 	}
 
 	public List<Location> getLocationsProviding(String infrastructure) {
