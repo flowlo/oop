@@ -10,6 +10,7 @@ import dao.UserDao;
 import entity.Member;
 import entity.User;
 
+//---
 public class Manager {
 	private UserDao userDao = new TestUserDao();
 	private HashMap<String, BandManager> bands = new HashMap<String, BandManager>();
