@@ -46,7 +46,7 @@ public class Manager {
 			return null;
 		}
 
-		BandManager result = new BandManager();
+		BandManager result = new BandManager(name);
 		bands.put(name, result);
 		return result;
 	}
@@ -84,6 +84,11 @@ public class Manager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public String getCurrentUser()
+	{
+		return Session.getLoginName();
 	}
 
 	public boolean login(String user, String pwd)

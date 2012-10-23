@@ -35,17 +35,12 @@ public class BandManager {
 	private TreeSet<Event> practices = new TreeSet<Event>();
 	private TestUserDao users = new TestUserDao();
 
-	/*public BandManager()
+	private String bandName;
+
+	public BandManager(String bandName)
 	{
-		User user = new User("admin", "password");
-		user.setRights(rights.admin);
-		try {
-			userDao.createUser(user);
-		} catch (DaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
+		this.bandName = bandName;
+	}
 
 	/**
 	 * Erzeugt eine neue Menge, die alle Elemente der gegebenen menge enthaelt,
@@ -471,6 +466,14 @@ public class BandManager {
 
 	public boolean removeLocation(String name) {
 		return removeLocation(getLocation(name));
+	}
+
+	public String getBandName() {
+		return bandName;
+	}
+
+	public void setBandName(String bandName) {
+		this.bandName = bandName;
 	}
 
 }

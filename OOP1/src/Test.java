@@ -34,12 +34,23 @@ public class Test {
 		System.out.println("Starte Tests (" + start + ")");
 
 		//-----------------------------------------------------------------
+		System.out.print("Als Administrator anmelden...");
 		manager.login("admin", "password");
+
+		System.out.println(" angemeldet als: " + manager.getCurrentUser());
+		System.out.println("Erzeuge neue Band 'LOL'");
 		try {
 			bandmanager = manager.createBand("LOL");
 		} catch (ServiceException e1) {
+			result = false;
 			e1.printStackTrace();
 		}
+		if (bandmanager == null)
+		{
+			System.out.println("TESTS FAILED (Band wurde nicht angelegt)");
+			return;
+		}
+
 		//-----------------------------------------------------------------
 
 		try {
