@@ -128,6 +128,16 @@ public class Test {
 	{
 		boolean result = true;
 
+		List<Member> members = bandmanager.listMembers();
+		members.get(0).getMessages(); // Clear messages
+		if (members.get(0).getMessages().size() == 0) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Mitglieder-Benachrichtigungen leeren");
+
 		System.out.println("-----------------------------------------------");
 		System.out.println("PROBEN TESTS");
 
@@ -142,6 +152,14 @@ public class Test {
 		}
 
 		System.out.println("Es wurden 3 Proben gespeichert: ");
+
+		if (members.get(0).getMessages().size() == 3) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Mitglieder benachrichtigen");
 
 		List<Event> practices = bandmanager.listPractices(new GregorianCalendar(2011, 1, 1).getTime(), new GregorianCalendar(2013, 1, 1).getTime());
 		for (Event i : practices)
@@ -165,10 +183,8 @@ public class Test {
 		System.out.println("Kosten aller Proben - soll=15 ist="
 				+ bandmanager.getPracticeCosts(new GregorianCalendar(2011, 1, 1).getTime(), new GregorianCalendar(2013, 1, 1).getTime()));
 
+		Event practice = practices.get(0);
 		try {
-			Event practice = practices.get(0);
-			List<Member> members = bandmanager.listMembers();
-
 			bandmanager.moveEvent(practice, "23.12.2012", "14:00");
 			Date date = Event.createDate("23.12.2012", "14:00");
 			if (date.equals(practice.getDateTime())) {
@@ -178,7 +194,6 @@ public class Test {
 				result = false;
 			}
 			System.out.println("Probe verschieben");
-
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			result = false;
@@ -186,6 +201,31 @@ public class Test {
 			e.printStackTrace();
 			result = false;
 		}
+
+		if (members.get(0).getMessages().size() > 0) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Mitglieder benachrichtigen");
+
+		bandmanager.cancelEvent(practice);
+		if (practice.isCanceled()) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Probe absagen");
+
+		if (members.get(0).getMessages().size() > 0) {
+			System.out.print("PASSED - ");
+		} else {
+			System.out.print("FAILED - ");
+			result = false;
+		}
+		System.out.println("Mitglieder benachrichtigen");
 
 		System.out.println("PROBEN TESTS ENDE");
 		System.out.println("-----------------------------------------------");
