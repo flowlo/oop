@@ -2,6 +2,7 @@ package service;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 import service.Session.rights;
 import dao.DaoException;
@@ -51,6 +52,14 @@ public class Manager {
 		return result;
 	}
 
+	public Set<String> getAllBands()
+	{
+		if (Session.getRights() == rights.none) {
+			return null;
+		}
+		return bands.keySet();
+	}
+
 	public BandManager getBand(String name) throws ServiceException
 	{
 		BandManager band = bands.get(name);
@@ -94,5 +103,10 @@ public class Manager {
 	public boolean login(String user, String pwd)
 	{
 		return Session.login(user, pwd);
+	}
+
+	public void logout()
+	{
+		Session.logout();
 	}
 }

@@ -2,6 +2,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
 
 import service.BandManager;
 import service.Manager;
@@ -39,8 +40,12 @@ public class Test {
 
 		System.out.println(" angemeldet als: " + manager.getCurrentUser());
 		System.out.println("Erzeuge neue Band 'LOL'");
+		System.out.println("Erzeuge neue Band 'COOL'");
+		System.out.println("Erzeuge neue Band 'band of skulls'");
 		try {
 			bandmanager = manager.createBand("LOL");
+			manager.createBand("COOL");
+			manager.createBand("band of skulls");
 		} catch (ServiceException e1) {
 			result = false;
 			e1.printStackTrace();
@@ -50,7 +55,13 @@ public class Test {
 			System.out.println("TESTS FAILED (Band wurde nicht angelegt)");
 			return;
 		}
-
+		System.out.println("Liste alle Bands auf: ");
+		Set<String> bands = manager.getAllBands();
+		for (String it : bands)
+		{
+			System.out.println(it);
+		}
+		System.out.println("Aktive Band: " + bandmanager.getBandName());
 		//-----------------------------------------------------------------
 
 		try {
@@ -74,12 +85,32 @@ public class Test {
 			result = false;
 		}
 
+		if (!testLoginAsUser()) {
+			result = false;
+		}
+
 		if (result) {
 			System.out.println("SUCCESS - ALL TESTS PASSED");
 		}
 		else {
 			System.out.println("ERROR - TEST(S) FAILED");
 		}
+	}
+
+	public static boolean testLoginAsUser()
+	{
+		boolean result = true;
+		System.out.println("-----------------------------------------------");
+		System.out.println("TESTE LOGIN EINES USERS");
+		System.out.println("Admin abmelden");
+		bandmanager = null;
+		manager.logout();
+		System.out.println("Anmelden als User Simon mit Passwor 'falsches Passwort'");
+		manager.login("Simon", "falsches Passwor");
+
+		System.out.println("-----------------------------------------------");
+
+		return result;
 	}
 
 	public static boolean testVerdienst()
@@ -268,8 +299,8 @@ public class Test {
 		{
 
 			bandmanager.addMember("Simon", "Simon", "Osim", "geheim", "0900 666 666", "Gitarre");
-			bandmanager.addMember("John Wayne", "John", "Wayne", "geheim", "01/41414141", "Maultrommel");
-			bandmanager.addMember("Hansy", "Hans", "Wurst", "geheim", "123456789", "Triangel");
+			bandmanager.addMember("John Wayne", "John", "Wayne", "asdf", "01/41414141", "Maultrommel");
+			bandmanager.addMember("Hansy", "Hans", "Wurst", "bla", "123456789", "Triangel");
 		} catch (ServiceException e)
 		{
 			System.out.println(e.getMessage());
