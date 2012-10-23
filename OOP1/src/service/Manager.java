@@ -76,6 +76,16 @@ public class Manager {
 		return band;
 	}
 
+	public void deleteUser(String loginName)
+	{
+		try {
+			new TestUserDao().deleteUser(loginName);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public boolean login(String user, String pwd)
 	{
 		return Session.login(user, pwd);

@@ -10,6 +10,8 @@ import java.util.NavigableSet;
 import java.util.TreeSet;
 
 import service.Session.rights;
+import dao.DaoException;
+import dao.TestUserDao;
 import entity.BandObject;
 import entity.Event;
 import entity.Event.EventType;
@@ -32,6 +34,7 @@ public class BandManager {
 	private List<Location> locations = new LinkedList<Location>();
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
+	private TestUserDao users = new TestUserDao();
 
 	/*public BandManager()
 	{
@@ -160,8 +163,8 @@ public class BandManager {
 	/**
 	 * Fuegt ein Mitglied mit angegebenen Eigenschaften zur Band als aktiv hinzu.
 	 * 
-	 * @param name
-	 *            der Name des neuen Mitglieds
+	 * @param loginName
+	 *            der Login-Name des neuen Mitglieds
 	 * @param phoneNumber
 	 *            die Telefonnummer des neuen Mitglieds
 	 * @param instrument
@@ -170,11 +173,25 @@ public class BandManager {
 	 * @see #getMembers(Date)
 	 * @see #getCurrentMembers()
 	 */
-	public void addMember(String name, String firstName, String lastName, String pwd, String phoneNumber, String instrument) throws ServiceException {
+	public void addMember(String loginName, String firstName, String lastName, String pwd, String phoneNumber, String instrument)
+			throws ServiceException {
 		if (Session.getRights() != rights.admin) {
 			throw new ServiceException("PERMISSION DENIED - required rights: admin");
 		}
-		members.add(new Member(name, firstName, lastName, pwd, phoneNumber, instrument));
+		try {
+			if (users.getUser(loginName) != null) {
+				throw new ServiceException("ERROR - LoginName already in use.");
+			}
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		Member member = new Member(loginName, firstName, lastName, pwd, phoneNumber, instrument);
+		try {
+			users.createUser(member);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		members.add(member);
 	}
 
 	/**
@@ -194,6 +211,11 @@ public class BandManager {
 				item.deactivate();
 				return;
 			}
+		}
+		try {
+			users.deleteUser(loginName);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
 		}
 	}
 
