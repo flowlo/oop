@@ -6,6 +6,7 @@ import java.util.List;
 import service.Manager;
 import service.ServiceException;
 import entity.Event;
+import entity.Location;
 import entity.Member;
 import entity.Song;
 
@@ -46,13 +47,7 @@ public class Test {
 			return;
 		}
 
-		if (!testProben()) {
-			result = false;
-		}
-		if (!testAuftritte()) {
-			result = false;
-		}
-		if (!testVerdienst()) {
+		if (!(testProben() && testAuftritte() && testVerdienst() && testLocations())) {
 			result = false;
 		}
 
@@ -287,4 +282,48 @@ public class Test {
 		return result;
 	}
 
+	public static boolean testLocations() {
+		boolean result = true;
+		System.out.println("Teste Locations ...");
+		manager.addLocation(new Location("Wiener Musikverein", "Musikvereinsplatz 1, 1010 Wien", "Garderobe", "Sitzplaetze", "Catering"));
+		manager.addLocation(new Location("Staatsoper", "Opernring 2, 1010 Wien", "Garderobe", "Sitzplaetze", "Stehplaetze", "Catering"));
+		manager.addLocation(new Location("Badeschiff", "Donaukanal", "Garderobe", "Sitzplaetze", "Stehplaetze", "Restaurant"));
+		manager.addLocation(new Location("Bach", "Bachgasse, 1160 Wien", "Garderobe", "Sitzplaetze", "Stehplaetze", "Bar"));
+
+		if (manager.getLocationsProviding("Catering").size() != 2) {
+			System.out.println("Test 1 (Catering) fehlgeschlagen!");
+			result = false;
+		} else {
+			System.out.println("Test 1 (Catering) erfolgreich!");
+		}
+		List<Location> tmp;
+		tmp = manager.getLocationsProviding("Bar");
+		if (tmp.size() != 1) {
+			System.out.println("Test 2 (Bar) fehlgeschlagen!");
+		}
+		else {
+			if (tmp.get(0).getName().equals("Bach")) {
+				System.out.println("Test 2 (Bar) erfolgreich!");
+			}
+			else {
+				System.out.println("Test 2 (Bar) fehlgeschlagen!");
+				result = false;
+			}
+		}
+		tmp = manager.getLocationsProviding("Restaurant");
+		if (tmp.size() != 1) {
+			System.out.println("Test 2 (Restaurant) fehlgeschlagen!");
+		}
+		else {
+			if (tmp.get(0).getName().equals("Badeschiff")) {
+				System.out.println("Test 2 (Restaurant) erfolgreich!");
+			}
+			else {
+				System.out.println("Test 2 (Restaurant) fehlgeschlagen!");
+				result = false;
+			}
+		}
+
+		return result;
+	}
 }

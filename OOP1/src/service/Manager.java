@@ -34,7 +34,7 @@ public class Manager {
 	private UserDao userDao = new TestUserDao();
 	private Collection<Member> members = new LinkedList<Member>();
 	private Collection<Song> songs = new LinkedList<Song>();
-	private Collection<Location> locations = new LinkedList<Location>();
+	private List<Location> locations = new LinkedList<Location>();
 	private TreeSet<Event> performances = new TreeSet<Event>();
 	private TreeSet<Event> practices = new TreeSet<Event>();
 
@@ -381,7 +381,7 @@ public class Manager {
 		return Session.login(user, pwd);
 	}
 
-	public Collection<Location> getLocationsProviding(String infrastructure) {
+	public List<Location> getLocationsProviding(String infrastructure) {
 		List<Location> result = new LinkedList<Location>();
 
 		for (Location item : locations) {
@@ -393,7 +393,7 @@ public class Manager {
 		return result;
 	}
 
-	public Collection<Location> getLocations() {
+	public List<Location> getLocations() {
 		return locations;
 	}
 
@@ -404,5 +404,17 @@ public class Manager {
 			}
 		}
 		return null;
+	}
+
+	public boolean addLocation(Location location) {
+		return this.locations.add(location);
+	}
+
+	public boolean removeLocation(Location location) {
+		return this.locations.remove(location);
+	}
+
+	public boolean removeLocation(String name) {
+		return removeLocation(getLocation(name));
 	}
 }
