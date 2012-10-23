@@ -223,7 +223,11 @@ public class BandManager {
 
 		int cent = (int) (100.0f * money);
 		try {
-			performances.add(Event.toEvent(place, date, time, duration, cent, EventType.Performance));
+			Event event = Event.toEvent(place, date, time, duration, cent, EventType.Performance);
+			performances.add(event);
+			for (Member member : listMembers()) {
+				member.addMessage("Neuer Auftritt: " + event.toString());
+			}
 		} catch (ParseException e) {
 			throw new ServiceException("ERROR - Fehler beim Speichern eines Auftritts - ungueltiges Datum/Format!");
 		}
@@ -251,11 +255,41 @@ public class BandManager {
 	public void addPracticeAtLocation(Location place, String date, String time, int duration, float money) throws ServiceException {
 		int cent = (int) (100.0f * money);
 		try {
-			if (!practices.add(Event.toEvent(place, date, time, duration, cent, EventType.Practice))) {
+			Event event = Event.toEvent(place, date, time, duration, cent, EventType.Practice);
+			if (!practices.add(event)) {
 				throw new ServiceException("Probe bereits gespeichert");
+			}
+			for (Member member : listMembers()) {
+				member.addMessage("Neue Probe: " + event.toString());
 			}
 		} catch (ParseException e) {
 			throw new ServiceException("ERROR - Fehler beim Speichern der Bandprobe - ungueltiges Datum/Format!");
+		}
+	}
+
+	public void cancelEvent(Event event) {
+		event.setCanceled(true);
+		String type = "";
+		if (event.getType().equals(EventType.Performance)) {
+			type = "Auftritt";
+		} else if (event.getType().equals(EventType.Practice)) {
+			type = "Probe";
+		}
+		for (Member member : listMembers()) {
+			member.addMessage(type + " abgesagt: " + event.toString());
+		}
+	}
+
+	public void moveEvent(Event event, Date date) {
+		event.edit(null, date, null, null, null, null, null, null);
+		String type = "";
+		if (event.getType().equals(EventType.Performance)) {
+			type = "Auftritt";
+		} else if (event.getType().equals(EventType.Practice)) {
+			type = "Probe";
+		}
+		for (Member member : listMembers()) {
+			member.addMessage(type + " verschoben: " + event.toString());
 		}
 	}
 
