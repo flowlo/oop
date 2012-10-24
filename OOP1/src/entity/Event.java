@@ -33,7 +33,12 @@ public class Event extends Item implements Comparable<Event> {
 	private boolean canceled = false;
 
 	/**
-	 * Speichert die �nderungen in einer History
+	 * Event ist bestätigt
+	 */
+	private boolean confirmed = false;
+
+	/**
+	 * Speichert die Änderungen in einer History
 	 */
 	private List<Event> history = new ArrayList<Event>();
 
@@ -115,6 +120,14 @@ public class Event extends Item implements Comparable<Event> {
 	public void setCanceled(boolean canceled) {
 		save();
 		this.canceled = canceled;
+	}
+
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
 	}
 
 	@Override
@@ -206,8 +219,15 @@ public class Event extends Item implements Comparable<Event> {
 			moneyString = "Miete";
 		}
 
+		String dateInfo = "";
+		if (dateTime.compareTo(new Date()) > 0) {
+			dateInfo = " (ausstehend)";
+		} else if (confirmed) {
+			dateInfo = "(bestätigt)";
+		}
+
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		return typeString + " - Datum: " + df.format(dateTime) + " - Dauer: "
+		return typeString + " - Datum: " + df.format(dateTime) + dateInfo + " - Dauer: "
 				+ duration + " Minuten - " + moneyString + ": " + money;
 	}
 

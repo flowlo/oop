@@ -209,7 +209,7 @@ public class Test {
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println("Es wurden 2 Auftritte gepseichert: ");
+		System.out.println("Es wurden 2 Auftritte gespeichert: ");
 		List<Event> performances = bandmanager.listPerformances(new GregorianCalendar(2011, 1, 1).getTime(),
 				new GregorianCalendar(2013, 1, 1).getTime());
 		for (Event i : performances)
@@ -255,7 +255,7 @@ public class Test {
 		try {
 			bandmanager.addPractice("Garage von Jonny", "Johnnyplatz", "22.12.2012", "13:45", 90, 0);
 			bandmanager.addPractice("Keller von Jimmy", "Jimmystrasse", "11.11.2011", "11:11", 120, 3);
-			bandmanager.addPractice("Proberaum", "im 20.", "21.12.2012", "13:45", 90, 12);
+			bandmanager.addPractice("Proberaum", "im 20.", "21.05.2012", "13:45", 90, 12);
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			result = false;
