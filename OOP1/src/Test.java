@@ -166,6 +166,16 @@ public class Test {
 		} else {
 			System.out.println("SUCCESS - Zugriff erhalten");
 		}
+		System.out.println("Versuche Mitglied anzulegen: ");
+		try {
+			bandmanager.addMember("", "", "", "", "", "");
+			System.out.println("FAILED- Trotz falschen Rechten möglich");
+			result = false;
+		} catch (ServiceException e) {
+			System.out.print("SUCCESS -");
+			System.out.println(e.getMessage());
+		}
+		System.out.println("USER TEST ENDE");
 		System.out.println("-----------------------------------------------");
 
 		return result;
