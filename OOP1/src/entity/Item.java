@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Oberklasse für alles was mit Geld zu tun hat =)
+ * Oberklasse fuer alles was mit Geld zu tun hat =)
  * 
  * @author Simon
  * @author Dominik
@@ -27,7 +27,7 @@ public abstract class Item {
 	protected Date dateTime;
 
 	/**
-	 * Datensatz ist zum L�schen markiert
+	 * Datensatz ist zum Loeschen markiert
 	 */
 	boolean deleted;
 
@@ -81,7 +81,7 @@ public abstract class Item {
 	public abstract Item getHistoryItem(int version);
 
 	/**
-	 * Gibt die History des Datensatzes zur�ck
+	 * Gibt die History des Datensatzes zurueck
 	 * 
 	 * @return alle Versionen des Datensatzes
 	 */

@@ -13,7 +13,7 @@ import entity.Member;
 import entity.Song;
 
 /**
- * Fuehrt sämtliche Tests aus. Darf nur auf den bandmanager zugreifen.
+ * Fuehrt saemtliche Tests aus. Darf nur auf den bandmanager zugreifen.
  * 
  * @author Simon
  * @author Lorenz
@@ -169,7 +169,7 @@ public class Test {
 		System.out.println("Versuche Mitglied anzulegen: ");
 		try {
 			bandmanager.addMember("", "", "", "", "", "");
-			System.out.println("FAILED- Trotz falschen Rechten möglich");
+			System.out.println("FAILED- Trotz falschen Rechten moeglich");
 			result = false;
 		} catch (ServiceException e) {
 			System.out.print("SUCCESS -");

@@ -24,7 +24,7 @@ public class Member extends User {
 	private String instrument;
 
 	/**
-	 * Speichert die Nachrichten für das Mitglied
+	 * Speichert die Nachrichten fuer das Mitglied
 	 */
 	private List<String> messages = new ArrayList<String>();
 

@@ -7,7 +7,7 @@ import entity.User;
 
 /**
  * Login des Users und Verwalten der Rechte.
- * für Allgemeine Rechte gibt es enum rights; für User-spezifische Rechte den login-Namen
+ * fuer Allgemeine Rechte gibt es enum rights; fuer User-spezifische Rechte den login-Namen
  * 
  * @author Simon
  * 

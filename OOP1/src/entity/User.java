@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import service.Session;
 
 /**
- * Basisklasse für alle Nutzer
+ * Basisklasse fuer alle Nutzer
  * 
  * @author Simon
  * 
@@ -54,7 +54,6 @@ public class User {
 			pwd = new String(md.digest(pwd.getBytes()));
 
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return this.pwd.equals(pwd);
@@ -65,7 +64,7 @@ public class User {
 	 * @param pwd
 	 *            Passwort
 	 * @param isHash
-	 *            true, wenn das Passwort bereits verschlüsselt ist, false wenn es verschlüsselt werden soll
+	 *            true, wenn das Passwort bereits verschluesselt ist, false wenn es verschluesselt werden soll
 	 */
 	public void setPwd(String pwd, boolean isHash) {
 		if (!isHash)
@@ -75,7 +74,6 @@ public class User {
 				pwd = new String(md.digest(pwd.getBytes()));
 
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -33,17 +33,17 @@ public class Event extends Item implements Comparable<Event> {
 	private boolean canceled = false;
 
 	/**
-	 * Event ist bestätigt
+	 * Event ist bestaetigt
 	 */
 	private boolean confirmed = false;
 
 	/**
-	 * Speichert die Änderungen in einer History
+	 * Speichert die Aenderungen in einer History
 	 */
 	private List<Event> history = new ArrayList<Event>();
 
 	/**
-	 * Blockiert das Sepichern, um nicht f�r jedes Feld ein neues History-Element anzulegen
+	 * Blockiert das Sepichern, um nicht fuer jedes Feld ein neues History-Element anzulegen
 	 */
 	private boolean blockSave = false;
 
@@ -59,7 +59,7 @@ public class Event extends Item implements Comparable<Event> {
 	 * @param money
 	 *            Kosten/Gage in Euro
 	 * @param type
-	 *            typ des Events
+	 *            Typ des Events
 	 */
 	public Event(Location location, Date dateTime, int duration, int money, EventType type) {
 		this.location = location;
@@ -223,7 +223,7 @@ public class Event extends Item implements Comparable<Event> {
 		if (dateTime.compareTo(new Date()) > 0) {
 			dateInfo = " (ausstehend)";
 		} else if (confirmed) {
-			dateInfo = "(bestätigt)";
+			dateInfo = "(bestaetigt)";
 		}
 
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");

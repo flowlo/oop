@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Stellt einen Ort dar, an dem Proben oder Auftritte stattfinden können.
+ * Stellt einen Ort dar, an dem Proben oder Auftritte stattfinden koennen.
  * 
  * @author Lorenz
  */
@@ -45,7 +45,7 @@ public class Location {
 	}
 
 	/**
-	 * Wird verwendet um festzustellen ob dieser Ort über bestimmte Infrastruktur verfuegt.
+	 * Wird verwendet um festzustellen ob dieser Ort ueber bestimmte Infrastruktur verfuegt.
 	 * 
 	 * @param infrastructure
 	 *            Umschreibung der Infrastruktur, in der Form in der sie initialisiert oder hinzugefuegt wurde.
@@ -80,7 +80,7 @@ public class Location {
 	/**
 	 * Um die Liste der Infrastruktur zu erhalten.
 	 * 
-	 * @return Eine Liste der an diesem Ort verfügbaren Infrastruktur.
+	 * @return Eine Liste der an diesem Ort verfuegbaren Infrastruktur.
 	 */
 	public List<String> getInfrastructure() {
 		return this.infrastructure;

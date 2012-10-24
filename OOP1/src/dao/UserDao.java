@@ -25,10 +25,10 @@ public interface UserDao {
 	public void createUser(User user) throws DaoException;
 
 	/**
-	 * Löscht den User
+	 * Loescht den User
 	 * 
 	 * @param loginName
-	 *            des zu löschenden Users
+	 *            des zu loeschenden Users
 	 * @throws DaoException
 	 *             Exception wenn zb keine Verbindung zur Datenbank hergestellt werden kann
 	 */
