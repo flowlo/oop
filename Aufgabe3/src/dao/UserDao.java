@@ -11,7 +11,7 @@ public interface UserDao {
 	public User getUser(String loginName) throws DaoException;
 
 	/*
-	 * Vorbedingung: User ist nicht angelegt
+	 * Vorbedingung: keine
 	 * Nachbedingung: User ist angelegt und kann gefunden werden
 	 * Fehlerfall: Exception wird geworden, wenn user schon existiert
 	 */

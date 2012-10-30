@@ -58,7 +58,7 @@ public class Manager {
 	}
 
 	/*
-	 * Vorbedingung: Band existiert, Benutzer hat Rechte
+	 * Vorbedingung: Benutzer hat Rechte
 	 * "SCHLECHT": getAllBands() kann hier durch Brute-Force erhalten werden
 	 */
 	public BandManager getBand(String name) throws ServiceException {
