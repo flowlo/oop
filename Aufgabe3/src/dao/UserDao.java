@@ -3,34 +3,25 @@ package dao;
 import entity.User;
 
 public interface UserDao {
-	/**
-	 * Einen User aus der Datenbank auslesen
-	 * 
-	 * @param loginName
-	 *            = key
-	 * @return User mit loginName; null wenn nicht gefunden
-	 * @throws DaoException
-	 *             Exception wenn zb keine Verbindung zur Datenbank hergestellt werden kann
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Keine
+	 * Verhalten: Gibt null zurueck, wenn user nicht gefunden 
 	 */
 	public User getUser(String loginName) throws DaoException;
 
-	/**
-	 * Speichert den User in die Datenbank
-	 * 
-	 * @param user
-	 *            zu speichernder User
-	 * @throws DaoException
-	 *             Exception wenn zb keine Verbindung zur Datenbank hergestellt werden kann
+	/*
+	 * Vorbedingung: User ist nicht angelegt
+	 * Nachbedingung: User ist angelegt und kann gefunden werden
+	 * Fehlerfall: Exception wird geworden, wenn user schon existiert
 	 */
 	public void createUser(User user) throws DaoException;
 
-	/**
-	 * Loescht den User
-	 * 
-	 * @param loginName
-	 *            des zu loeschenden Users
-	 * @throws DaoException
-	 *             Exception wenn zb keine Verbindung zur Datenbank hergestellt werden kann
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: User ist nicht in Datenbank zu finden
+	 * BAD: (Anmerkung Dominik) Sollte Exception werfen, wenn User nicht vorhanden. Vorschlag Vorbedingung: User ist in Datenbank
+	 * (Anmerkung Simon) Es sollte keine Exception geworfen werden, Nachbedingung ist erfüllt 
 	 */
 	public void deleteUser(String loginName) throws DaoException;
 }
