@@ -3,8 +3,6 @@ package entity;
 import java.util.Date;
 
 /**
- * Basisklasse fuer Member und Titel.
- * 
  * @author Lorenz
  */
 public abstract class BandObject {
@@ -12,15 +10,9 @@ public abstract class BandObject {
 	protected Date start;
 	protected Date end;
 
-	/**
-	 * Initialisiert ein Objekt mit angegebenem Namen sowie Gueltigkeitszeitraum.
-	 * 
-	 * @param name
-	 *            Name des Objekts
-	 * @param start
-	 *            Beginn der Gueltigkeit
-	 * @param end
-	 *            Ende der Gueltigkeit
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Alle werte des Objekts sind gefuellt
 	 */
 	protected BandObject(String name, Date start, Date end) {
 		this.name = name;
@@ -28,13 +20,6 @@ public abstract class BandObject {
 		this.end = end;
 	}
 
-	/**
-	 * Initialisiert ein neues Objekt mit unbeschraenkter Gueltigkeit ab dem Zeitpunkt des Aufrufs.
-	 * 
-	 * @param name
-	 *            Name des Objekts
-	 * @see #BandObject(String, Date, Date)
-	 */
 	protected BandObject(String name) {
 		this(name, new Date(), null);
 	}
@@ -44,19 +29,15 @@ public abstract class BandObject {
 		return name;
 	}
 
-	/**
-	 * Das Mitglied/das Stueck wird mit dem aktuellen Datum als geloescht/inaktiv markiert
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: BandObject ist nciht mehr aktiv
 	 */
 	public void deactivate()
 	{
 		end = new Date();
 	}
 
-	/**
-	 * Prueft, ob das Mitglied/das Stueck zum gegebenen Zeitpunkt aktiv war.
-	 * 
-	 * @return {@code true} wenn {@code start < date < end}
-	 */
 	public boolean isActive(Date date)
 	{
 		if (date.before(start)) {
