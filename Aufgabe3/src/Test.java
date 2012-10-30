@@ -13,20 +13,24 @@ import entity.Member;
 import entity.Song;
 
 /**
- * Fuehrt saemtliche Tests aus. Darf nur auf den bandmanager zugreifen.
- * 
  * @author Simon
  * @author Lorenz
  * @author Dominik
+ */
+/*
+ * Anmerkungen:
+ * 
+ * Unser Programm ist sehr unsauber programmiert, da wir es aus Zeitgruenden am Tag vor der Abgabe entwickelt haben.
+ * Es liessen sich viele Punkte verbessern: Z.B. Exception-Handling, DTO-Pattern, etc.
+ * Weiters sind in vielen Klassen (vor allem im entity-package) weder gut noch schlecht aus Sicht von Klassenzusammenhalt
+ * und Objektkopplung. Sie liessen sich durch diverse design-Patterns weit verbessern.
+ * Ergibt es Sinn, das Programm noch neu zu struturieren oder wird es nicht mehr weiterentwickelt? 
  */
 public class Test {
 
 	private static Manager manager;
 	private static BandManager bandmanager;
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 
 		manager = new Manager();
@@ -35,7 +39,6 @@ public class Test {
 		boolean result = true;
 		System.out.println("Starte Tests (" + start + ")");
 
-		//-----------------------------------------------------------------
 		System.out.print("Als Administrator anmelden...");
 		manager.login("admin", "password");
 
@@ -63,7 +66,6 @@ public class Test {
 			System.out.println(it);
 		}
 		System.out.println("Aktive Band: " + bandmanager.getBandName());
-		//-----------------------------------------------------------------
 
 		try {
 			if (!testMitglieder()) {
@@ -380,7 +382,6 @@ public class Test {
 		}
 		System.out.println("Abfragen aktiver Mitglieder - soll=3 ist=" + bandmanager.listMembers().size());
 
-		//----------------------------------------------------------------------------------
 		System.out.println("....... Warte 1 Sekunde...");
 
 		Thread.sleep(1000);
@@ -389,7 +390,6 @@ public class Test {
 		zwischenzeit = new Date();
 		System.out.println("....... Warte 1 Sekunde...");
 		Thread.sleep(1000);
-		//----------------------------------------------------------------------------------
 		System.out.println("....... Loesche Mitglied 'John Wayne'");
 
 		try {
@@ -443,7 +443,6 @@ public class Test {
 		}
 		System.out.println("Abfragen aktueller Songs - soll=3 ist=" + bandmanager.listSongs().size());
 
-		//----------------------------------------------------------------------------------
 		System.out.println("....... Warte 1 Sekunde...");
 
 		Thread.sleep(1000);
@@ -452,7 +451,6 @@ public class Test {
 		zwischenzeit = new Date();
 		System.out.println("....... Warte 1 Sekunde...");
 		Thread.sleep(1000);
-		//----------------------------------------------------------------------------------
 		System.out.println("....... Loesche Song 'Affekt'");
 
 		bandmanager.removeSong("Affekt");
