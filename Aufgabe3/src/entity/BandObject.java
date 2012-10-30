@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * @author Lorenz
  */
+// SCHLECHT: Sollte geloescht werden, da nur noch Song davon erbt. Frueher hat auch Member geerbt, was aber entfernt wurde
 public abstract class BandObject {
 	protected String name;
 	protected Date start;
@@ -20,6 +21,10 @@ public abstract class BandObject {
 		this.end = end;
 	}
 
+	/*
+	 * Vorbedingung:
+	 * Nachbedingung: BandObject hat kein Enddatum, Name ist übernommen
+	 */
 	protected BandObject(String name) {
 		this(name, new Date(), null);
 	}
