@@ -19,15 +19,11 @@ import entity.Member;
 import entity.Song;
 
 /**
- * Diese Klasse fuehrt alle Operationen aus.
- * Die Klasse Test (mit main) darf nur auf den Manager zugreifen!
- * 
  * @author Simon
  * @author Lorenz
  * @author Dominik
  */
 public class BandManager {
-	//----
 	private List<Member> members = new LinkedList<Member>();
 	private List<Song> songs = new LinkedList<Song>();
 	private List<Location> locations = new LinkedList<Location>();
@@ -42,16 +38,6 @@ public class BandManager {
 		this.bandName = bandName;
 	}
 
-	/**
-	 * Erzeugt eine neue Menge, die alle Elemente der gegebenen menge enthaelt,
-	 * die zum gegebenen Zeitpunkt als aktiv gekennzeichnet sind.
-	 * 
-	 * @param date
-	 *            Stichdatum
-	 * @param collection
-	 *            Menge der zu betrachtenden Objekte
-	 * @return Teilmenge
-	 */
 	private <T extends BandObject> List<T> listBandObjects(Date date, List<T> collection) {
 		List<T> result = new LinkedList<T>();
 
@@ -64,13 +50,11 @@ public class BandManager {
 		return result;
 	}
 
-	/**
-	 * Entfernt das {@link entitiy.BandObject} mit dem gegebenen namen aus der gegebenen {@link java.util.List}.
-	 * 
-	 * @param name
-	 *            Name/Bezeichnung des BandObjects
-	 * @param collection
-	 *            Menge aus der das Element geloescht werden soll.
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: BandObject ist nicht mehr vorhanden
+	 * SCHLECHT: BandObject kann nur noch ein Song sein. Die Methode kann in removeSong implementiert werden. 
+	 * FEHLER: Rechte werden nicht ueberprueft
 	 */
 	private <T extends BandObject> void removeBandObject(String name, List<T> collection) {
 		for (T item : collection) {
@@ -81,56 +65,32 @@ public class BandManager {
 		}
 	}
 
-	/**
-	 * Listet alle aktuellen Songs der Band auf.
-	 * 
-	 * @return eine Liste der aktuell im Repertoire befindlichen Songs
-	 */
 	public List<Song> listSongs() {
 		return listSongs(new Date());
 	}
 
-	/**
-	 * Listet alle Songs die zu einem bestimmten Zeitpunkt im Repertoire der Band waren/sind.
-	 * 
-	 * @param date
-	 *            Zeitpunkt, zu dem das Repertoire betrachtet werden soll
-	 * @return eine Liste aller Songs
-	 */
 	public List<Song> listSongs(Date date) {
 		return listBandObjects(date, songs);
 	}
 
-	/**
-	 * Fuegt einen Song mit aktuellem Datum dem Repertoire der Band hinzu
-	 * 
-	 * @param name
-	 *            die Bezeichnung/der Titel des Songs
-	 * @param duration
-	 *            die Abspieldauer des Songs
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Song ist angelegt
+	 * FEHLER: Rechte werden nicht ueberprueft
 	 */
 	public void addSong(String name, int duration) {
 		songs.add(new Song(name, duration));
 	}
 
-	/**
-	 * Entfernt einen Song mit gegebenem Namen mit dem aktuellem Datum
-	 * aus dem Repertoire, bzw. markiert ihn als veraltet
-	 * 
-	 * @param name
-	 *            die Bezeichnung des zu entfernenden Songs
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Song ist nicht mehr vorhanden
+	 * FEHLER: Rechte werden nicht ueberprueft
 	 */
 	public void removeSong(String name) {
 		removeBandObject(name, songs);
 	}
 
-	/**
-	 * Listet alle Mitglieder zum angegebenen Zeitpunkt auf.
-	 * 
-	 * @param date
-	 *            der relevante Zeitpunkt
-	 * @return eine Liste der Mitglieder
-	 */
 	public List<Member> listMembers(Date date) {
 		//return listBandObjects(date, members);
 		List<Member> result = new LinkedList<Member>();
@@ -144,28 +104,13 @@ public class BandManager {
 		return result;
 	}
 
-	/**
-	 * Listet alle aktuellen Mitglieder auf.
-	 * 
-	 * @return eine Liste der Mitglieder
-	 * @see #getMembers(Date)
-	 */
 	public List<Member> listMembers() {
 		return listMembers(new Date());
 	}
 
-	/**
-	 * Fuegt ein Mitglied mit angegebenen Eigenschaften zur Band als aktiv hinzu.
-	 * 
-	 * @param loginName
-	 *            der Login-Name des neuen Mitglieds
-	 * @param phoneNumber
-	 *            die Telefonnummer des neuen Mitglieds
-	 * @param instrument
-	 *            das Instrument, dass das neue Mitglied in der Band spielt
-	 * @throws ServiceException
-	 * @see #getMembers(Date)
-	 * @see #getCurrentMembers()
+	/*
+	 * Vorbedingung: Benutzer hat die notwendigen Rechte
+	 * Nachbedingung: Mitglied ist angelegt
 	 */
 	public void addMember(String loginName, String firstName, String lastName, String pwd, String phoneNumber, String instrument)
 			throws ServiceException {
@@ -188,12 +133,9 @@ public class BandManager {
 		members.add(member);
 	}
 
-	/**
-	 * Scheidet ein Mitglied aus der Band aus.
-	 * 
-	 * @param loginName
-	 *            der Login-Name des Mitglieds
-	 * @throws ServiceException
+	/*
+	 * Vorbedingung: Benutzer hat die notwendigen Rechte
+	 * Nachbedingung: Miglied wurde geloescht
 	 */
 	public void removeMember(String loginName) throws ServiceException {
 		//removeBandObject(name, members);
@@ -213,25 +155,21 @@ public class BandManager {
 		}
 	}
 
-	/**
-	 * Hinzufuegen eines Auftritts
-	 * 
-	 * @param place
-	 *            Der Ort
-	 * @param date
-	 *            Das Datum. Format: d.M.yyyy
-	 * @param time
-	 *            Die Start-Uhrzeit. Format: H:m
-	 * @param duration
-	 *            Die Dauer in Minuten
-	 * @param money
-	 *            Die Gage
-	 * @throws ServiceException
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Performance wurde angelegt
+	 * SCHLECHT: Unnoetig. Zwei Parameter werden zu einem gemacht und weitergeleitet
+	 * FEHLER: Rechte werden nicht ueberprueft
 	 */
 	public void addPerformance(String place, String address, String date, String time, int duration, float money) throws ServiceException {
 		addPerformanceAtLocation(new Location(place, address), date, time, duration, money);
 	}
 
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Performance ist angelegt
+	 * FEHLER: Rechte werden nicht ueberprueft
+	 */
 	public void addPerformanceAtLocation(Location place, String date, String time, int duration, float money) throws ServiceException {
 		if (!locations.contains(place)) {
 			locations.add(place);
@@ -249,25 +187,22 @@ public class BandManager {
 		}
 	}
 
-	/**
-	 * Hinzufuegen einer Bandprobe
-	 * 
-	 * @param place
-	 *            Der Ort
-	 * @param date
-	 *            Das Datum. Format: d.M.yyyy
-	 * @param time
-	 *            Die Start-Uhrzeit. Format: H:m
-	 * @param duration
-	 *            Die Dauer in Minuten
-	 * @param money
-	 *            Die Raummiete
-	 * @throws ServiceException
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Probe wurde angelegt
+	 * SCHLECHT: Unnoetig. Zwei Parameter werden zu einem gemacht und weitergeleitet
+	 * FEHLER: Rechte werden nicht ueberprueft
 	 */
 	public void addPractice(String place, String address, String date, String time, int duration, float money) throws ServiceException {
 		addPracticeAtLocation(new Location(place, address), date, time, duration, money);
 	}
 
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Probe wurde angelegt
+	 * FEHLER: Rechte werden nicht ueberprueft
+	 * FEHLER: Location wird nicht gespeichert
+	 */
 	public void addPracticeAtLocation(Location place, String date, String time, int duration, float money) throws ServiceException {
 		int cent = (int) (100.0f * money);
 		try {
@@ -283,11 +218,11 @@ public class BandManager {
 		}
 	}
 
-	/**
-	 * Sagt das gegebene Event ab
-	 * 
-	 * @param event
-	 *            das Events
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Event wurde abgesagt
+	 * FEHLER: Rechte werden nicht ueberprueft
+	 * FEHLER: Es wird nicht ueberprueft, ob Event in der Liste ist
 	 */
 	public void cancelEvent(Event event) {
 		event.setCanceled(true);
@@ -302,16 +237,11 @@ public class BandManager {
 		}
 	}
 
-	/**
-	 * Verschiebt ein Event
-	 * 
-	 * @param event
-	 *            das Event
-	 * @param date
-	 *            das Datum - Format: d.M.yyyy
-	 * @param time
-	 *            die Uhrzeit - Format: H:m
-	 * @throws ServiceException
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Event wurde verschoben
+	 * FEHLER: Rechte werden nicht ueberprueft
+	 * FEHLER: Es wird nicht ueberprueft, ob Event in der Liste ist
 	 */
 	public void moveEvent(Event event, String date, String time) throws ServiceException {
 		String type = "";
@@ -332,43 +262,16 @@ public class BandManager {
 		}
 	}
 
-	/**
-	 * Listet alle Auftritte in einem gegebenen Zeitraum
-	 * 
-	 * @param start
-	 *            Startzeitpunkt
-	 * @param end
-	 *            Endzeitpunkt
-	 * @return Alle Auftritte in dem gegeben Zeitraum
-	 */
 	public List<Event> listPerformances(Date start, Date end) {
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Performance);
 		return new ArrayList<Event>(events);
 	}
 
-	/**
-	 * Listet alle Bandproben in einem gegebenen Zeitraum
-	 * 
-	 * @param start
-	 *            Startzeitpunkt
-	 * @param end
-	 *            Endzeitpunkt
-	 * @return Alle Bandproben in dem gegeben Zeitraum
-	 */
 	public List<Event> listPractices(Date start, Date end) {
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Practice);
 		return new ArrayList<Event>(events);
 	}
 
-	/**
-	 * Listet alle Termine in einem gegebenen Zeitraum
-	 * 
-	 * @param start
-	 *            Startzeitpunkt
-	 * @param end
-	 *            Endzeitpunkt
-	 * @return Alle Termine in dem gegeben Zeitraum
-	 */
 	public List<Event> listEvents(Date start, Date end) {
 		TreeSet<Event> set = new TreeSet<Event>();
 		set.addAll(getEventsInTime(start, end, EventType.Performance));
@@ -376,15 +279,7 @@ public class BandManager {
 		return new ArrayList<Event>(set);
 	}
 
-	/**
-	 * Berechnet die Gesamtgage aller Auftritte in einem gegeben Zeitraum
-	 * 
-	 * @param start
-	 *            Startzeitpunkt
-	 * @param end
-	 *            Endzeitpunkt
-	 * @return Die Gesamtgage des gegebenen Zeitraums
-	 */
+	// FEHLER: Rechte werden nicht ueberprueft
 	public float getPerformanceSalary(Date start, Date end) {
 		int salary = 0;
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Performance);
@@ -394,15 +289,7 @@ public class BandManager {
 		return salary / 100.0f;
 	}
 
-	/**
-	 * Berechnet die Gesamtkosten aller Bandproben in einem gegeben Zeitraum, die durch die Raummiete entstehen
-	 * 
-	 * @param start
-	 *            Startzeitpunkt
-	 * @param end
-	 *            Endzeitpunkt
-	 * @return Die Gesamtkosten des gegebenen Zeitraums
-	 */
+	// FEHLER: Rechte werden nicht ueberprueft
 	public float getPracticeCosts(Date start, Date end) {
 		int costs = 0;
 		NavigableSet<Event> events = getEventsInTime(start, end, EventType.Practice);
@@ -412,30 +299,11 @@ public class BandManager {
 		return costs / 100.0f;
 	}
 
-	/**
-	 * Berechnet den Ertrag (Gagen - Kosten) aller Termine in einem gegeben Zeitraum
-	 * 
-	 * @param start
-	 *            Startzeitpunkt
-	 * @param end
-	 *            Endzeitpunkt
-	 * @return Der Ertrag des gegebenen Zeitraums
-	 */
+	// FEHLER: Rechte werden nicht ueberprueft
 	public float getEarnings(Date start, Date end) {
 		return getPerformanceSalary(start, end) - getPracticeCosts(start, end);
 	}
 
-	/**
-	 * Sucht alle Termine eines bestimmten Typs innerhalb eines Zeitraums
-	 * 
-	 * @param start
-	 *            Der Startzeitpunkt
-	 * @param end
-	 *            Der Endzeitpunkt
-	 * @param type
-	 *            Der Termintyp
-	 * @return Alle Termine des gegeben Typs in dem gegebenen Zeitraum
-	 */
 	private NavigableSet<Event> getEventsInTime(Date start, Date end, EventType type) {
 		Event startDate = Event.fromDate(start);
 		Event endDate = Event.fromDate(end);
@@ -473,14 +341,32 @@ public class BandManager {
 		return null;
 	}
 
+	/*
+	 * Vorbedingung: 
+	 * Nachbedingung: Location wurde hinzugefuegt
+	 * FEHLER: Rechte werden nicht ueberprueft
+	 * FEHLER: Es wird nicht ueberprueft, ob die Location schon existiert. Dadurch entstehen inkonsistenzen,
+	 *         da Elemente mehrfach hinzugefuegt werden koennen. Funktion liefert immer true zurueck.
+	 * SCHLECHT: Wird nie verwendet, sondern eigens implementiert
+	 */
 	public boolean addLocation(Location location) {
 		return this.locations.add(location);
 	}
 
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Location existiert nicht mehr
+	 * FEHLER: Rechte werden nicht ueberprueft
+	 */
 	public boolean removeLocation(Location location) {
 		return this.locations.remove(location);
 	}
 
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Location existiert nicht mehr
+	 * FEHLER: Rechte werden nicht ueberprueft
+	 */
 	public boolean removeLocation(String name) {
 		return removeLocation(getLocation(name));
 	}
