@@ -23,7 +23,7 @@ public abstract class BandObject {
 
 	/*
 	 * Vorbedingung:
-	 * Nachbedingung: BandObject hat kein Enddatum, Name ist übernommen
+	 * Nachbedingung: BandObject hat kein Enddatum, Name ist uebernommen
 	 */
 	protected BandObject(String name) {
 		this(name, new Date(), null);
