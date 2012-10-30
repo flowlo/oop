@@ -6,23 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Stellt einen Ort dar, an dem Proben oder Auftritte stattfinden koennen.
- * 
  * @author Lorenz
  */
 public class Location {
 	private String name, address;
 	private List<String> infrastructure;
 
-	/**
-	 * Initialisiert einen neuen Ort.
-	 * 
-	 * @param name
-	 *            Der Name des Orts, wie z.B. eines Clubs
-	 * @param address
-	 *            Physische Adresse des Orts (Strasze und Hausnummer)
-	 * @param infrastructure
-	 *            Merkmale der Ausstattung des Orts
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Alle Werte wurden uebernommen 
 	 */
 	public Location(String name, String address, Collection<String> infrastructure) {
 		this.name = name;
@@ -30,58 +22,36 @@ public class Location {
 		this.infrastructure = new LinkedList<String>(infrastructure);
 	}
 
-	/**
-	 * Initialisiert einen neuen Ort.
-	 * 
-	 * @param name
-	 *            Der Name des Orts, wie z.B. eines Clubs
-	 * @param address
-	 *            Physische Adresse des Orts (Strasze und Hausnummer)
-	 * @param infrastructure
-	 *            Merkmale der Ausstattung des Orts
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Alle Werte wurden uebernommen
+	 * SCHLECHT: You ain't gonna need it! Der Konstruktor wird nie gebraucht. Besser: Ein Konstruktor mit zwei Parametern
 	 */
 	public Location(String name, String address, String... infrastructure) {
 		this(name, address, Arrays.asList(infrastructure));
 	}
 
-	/**
-	 * Wird verwendet um festzustellen ob dieser Ort ueber bestimmte Infrastruktur verfuegt.
-	 * 
-	 * @param infrastructure
-	 *            Umschreibung der Infrastruktur, in der Form in der sie initialisiert oder hinzugefuegt wurde.
-	 * @return wahr, falls der Ort ueber die Infrastruktur verfuegt, anderfalls falsch.
-	 */
 	public boolean providesInfrastructure(String infrastructure) {
 		return this.infrastructure.contains(infrastructure);
 	}
 
-	/**
-	 * Vermerkt bestimmte Infrastruktur bei diesem Ort.
-	 * 
-	 * @param infrastructure
-	 *            Umschreibung der vorhandenen Infrastruktur.
-	 * @return wahr, wenn die Infrastruktur hinzugefuegt wurde, andernfalls falsch
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Intrastruktur ist gespeichert und kann hinzugefuegt werden
 	 */
 	public boolean addInfrastructure(String infrastructure) {
 		return this.infrastructure.add(infrastructure);
 	}
 
-	/**
-	 * Entfernt den Vermerk einer bestimmten Infrastruktur bei diesem Ort.
-	 * 
-	 * @param infrastructure
-	 *            Umschreibung der vorhandenen Infrastruktur.
-	 * @return wahr, wenn die Infrastruktur entfernt wurde, andernfalls falsch
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Infrastruktur ist nicht mehr vorhanden
+	 * FEHLER: Wenn zwei mal die Infrastruktur 'Sessel' hinzugefuegt wird, ist nicht klar, welche geloescht werden soll, wenn 'Sessel' uebergeben wird.
 	 */
 	public boolean removeInfrastructure(String infrastructure) {
 		return this.infrastructure.remove(infrastructure);
 	}
 
-	/**
-	 * Um die Liste der Infrastruktur zu erhalten.
-	 * 
-	 * @return Eine Liste der an diesem Ort verfuegbaren Infrastruktur.
-	 */
 	public List<String> getInfrastructure() {
 		return this.infrastructure;
 	}
