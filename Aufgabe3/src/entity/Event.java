@@ -7,59 +7,20 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Repraesentiert sowohl eine Probe, als auch einen Auftritt
- * 
  * @author Dominik
  */
 public class Event extends Item implements Comparable<Event> {
-	/**
-	 * Ort der Veranstaltung (Probe/Auftritt).
-	 */
 	private Location location;
-
-	/**
-	 * Dauer dieses Events in Sekunden.
-	 */
 	private int duration;
-
-	/**
-	 * Typ dieses Events, um zwischen Probe und Auftritt zu unterscheiden.
-	 */
 	private EventType type;
-
-	/**
-	 * Event ist abgesagt
-	 */
 	private boolean canceled = false;
-
-	/**
-	 * Event ist bestaetigt
-	 */
 	private boolean confirmed = false;
-
-	/**
-	 * Speichert die Aenderungen in einer History
-	 */
 	private List<Event> history = new ArrayList<Event>();
-
-	/**
-	 * Blockiert das Sepichern, um nicht fuer jedes Feld ein neues History-Element anzulegen
-	 */
 	private boolean blockSave = false;
 
-	/**
-	 * Neues Event erstellen
-	 * 
-	 * @param place
-	 *            Ort der Veranstaltung
-	 * @param date
-	 *            Datum und Uhrzeit
-	 * @param duration
-	 *            Dauer in Minuten
-	 * @param money
-	 *            Kosten/Gage in Euro
-	 * @param type
-	 *            Typ des Events
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Objekt wurde erstellt
 	 */
 	public Event(Location location, Date dateTime, int duration, int money, EventType type) {
 		this.location = location;
@@ -69,11 +30,9 @@ public class Event extends Item implements Comparable<Event> {
 		this.type = type;
 	}
 
-	/**
-	 * Deep-Copy-Constructor
-	 * 
-	 * @param event
-	 *            das Event, von dem eine tiefe Kopie erstellt werden soll
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Objekt wurde erstellt
 	 */
 	public Event(Event event) {
 		this.location = event.getLocation();
@@ -130,6 +89,9 @@ public class Event extends Item implements Comparable<Event> {
 		this.confirmed = confirmed;
 	}
 
+	/*
+	 * Bedingungen erfuellt
+	 */
 	@Override
 	public void save() {
 		if (!blockSave) {
@@ -137,6 +99,9 @@ public class Event extends Item implements Comparable<Event> {
 		}
 	}
 
+	/*
+	 * Bedingungen erfuellt
+	 */
 	@Override
 	public Event getHistoryItem(int version) {
 		if (history.size() > version) {
@@ -151,11 +116,17 @@ public class Event extends Item implements Comparable<Event> {
 		return history;
 	}
 
+	/*
+	 * Bedingungen erfuellt
+	 */
 	@Override
 	public void revert(int version) {
 		revert(getHistoryItem(version));
 	}
 
+	/*
+	 * Bedingungen erfuellt
+	 */
 	@Override
 	public void revert(Item version) {
 		if (version != null) {
@@ -166,11 +137,20 @@ public class Event extends Item implements Comparable<Event> {
 		}
 	}
 
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Objekt wurde geaendert
+	 */
 	public void edit(Event event) {
 		edit(event.getLocation(), event.getDateTime(), event.getDuration(), event.getMoney(), event.getType(), event.getComment(), event.isDeleted(),
 				event.isCanceled());
 	}
 
+	/*
+	 * Vorbedingung: Keine 
+	 * Nachbedingung: Objekt wurde geaendert
+	 * SCHLECHT: Hohe Objekt-Kopplung - viele Parameter. Man koennte Event als DTO verwenden
+	 */
 	public void edit(Location location, Date dateTime, Integer duration, Integer money, EventType type, String comment, Boolean deleted,
 			Boolean canceled) {
 		save();
@@ -246,51 +226,16 @@ public class Event extends Item implements Comparable<Event> {
 		}
 	}
 
-	/**
-	 * Erstellt einen Termin aus den gegeben Daten
-	 * 
-	 * @param place
-	 *            Der Ort
-	 * @param date
-	 *            Das Datum. Format: d.M.yyyy
-	 * @param time
-	 *            Die Start-Uhrzeit. Format: H:m
-	 * @param duration
-	 *            Die Dauer in Minuten
-	 * @param money
-	 *            Die Raummiete
-	 * @param type
-	 *            Der Typ des Termins
-	 * @return Der Termin
-	 * @throws ParseException
-	 */
 	public static Event toEvent(Location location, String date, String time, int duration, int money, EventType type) throws ParseException {
 		return new Event(location, createDate(date, time), duration, money, type);
 	}
 
-	/**
-	 * Erzeugt ein Date zu einem gegeben Datum und einer gegebenen Uhrzeit
-	 * 
-	 * @param date
-	 *            Datum
-	 * @param time
-	 *            Uhzeit
-	 * @return Date-Entity
-	 * @throws ParseException
-	 */
 	public static Date createDate(String date, String time) throws ParseException {
 		SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy-H:m");
 		df.setLenient(false);
 		return df.parse(date + "-" + time);
 	}
 
-	/**
-	 * Erzeugt ein Dummy-Event aus einem Datum
-	 * 
-	 * @param date
-	 *            das Datum des Dummy-Events
-	 * @return das Dummy-Event
-	 */
 	public static Event fromDate(Date date) {
 		return new Event(new Location("", ""), date, 1, 0, EventType.Dummy);
 	}

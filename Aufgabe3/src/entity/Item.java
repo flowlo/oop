@@ -70,7 +70,7 @@ public abstract class Item {
 
 	/*
 	 * Vorbedingung: Version ist in der History zu finden
-	 * Nachbedingung: Keine
+	 * Nachbedingung: Objekt entspricht der eingegebenen Version
 	 * SCHLECHT: Sollte eine Exception werfen, wenn Version nicht vorhanden.
 	 */
 	public abstract void revert(int version);
