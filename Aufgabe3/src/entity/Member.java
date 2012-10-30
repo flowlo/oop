@@ -6,26 +6,12 @@ import java.util.List;
 
 import service.Session;
 
-/**
- * Ein Bandmitglied.
- * 
- * @author Lorenz
- * @author Dominik
- */
 public class Member extends User {
-	/**
-	 * Telefonnummer des Bandmitglieds.
-	 */
+
 	private String phoneNumber;
 
-	/**
-	 * Instrument, dass das Mitglied in der Band spielt.
-	 */
 	private String instrument;
 
-	/**
-	 * Speichert die Nachrichten fuer das Mitglied
-	 */
 	private List<String> messages = new ArrayList<String>();
 
 	private Date start;
@@ -33,15 +19,8 @@ public class Member extends User {
 
 	private String band;
 
-	/**
-	 * Erzeugt ein neues Mitglied einer Band mit angegebenen Eigenschaften.
-	 * 
-	 * @param name
-	 *            Name des Mitglieds
-	 * @param phoneNumber
-	 *            Telefonnummer des Mitglieds.
-	 * @param instrument
-	 *            Instrument, dass das Mitglied in der Band spielt.
+	/*
+	 * Nachbedingung: legt ein Mitglied mit gueltigen Attributen an 
 	 */
 	public Member(String loginName, String firstName, String lastName, String pwd, String phoneNumber, String instrument) {
 		super(loginName, pwd);
@@ -58,20 +37,10 @@ public class Member extends User {
 		this.band = band;
 	}
 
-	/**
-	 * Gibt die Telefonnummer des Bandmitglieds zurueck.
-	 * 
-	 * @return die Telefonnummer des Bandmitglieds
-	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	/**
-	 * Gibt den Namen des Instruments zurueck, dass das Mitglied spielt.
-	 * 
-	 * @return den Namen des Instruments
-	 */
 	public String getInstrument() {
 		return instrument;
 	}
@@ -82,6 +51,12 @@ public class Member extends User {
 				+ (end != null ? end : "jetzt") + " " + instrument + ".";
 	}
 
+	/*
+	 * Vorbedingung: keine
+	 * Nachbedingung: keine
+	 * Verhalten: gibt an, ob das Mitglied zum gegebenen Datum aktiv war/ist
+	 * FEHLER: date wir nicht geprueft
+	 */
 	public boolean isActive(Date date) {
 		if (date.before(start)) {
 			return false;
@@ -93,14 +68,17 @@ public class Member extends User {
 		return false;
 	}
 
+	//Nachbedingung: Mitglied ist mit aktuellem Datum nicht mehr aktiv
 	public void deactivate() {
 		end = new Date();
 	}
 
+	//Nachbedingung: Nachricht wird gespeichert
 	public void addMessage(String message) {
 		messages.add(message);
 	}
 
+	//Nachbedingung: Alle Nachrichten sind geloescht
 	public List<String> getMessages() {
 		List<String> tempMessages = new ArrayList<String>(messages);
 		messages = new ArrayList<String>();

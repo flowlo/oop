@@ -6,17 +6,18 @@ import java.security.NoSuchAlgorithmException;
 import service.Session;
 
 /**
- * Basisklasse fuer alle Nutzer
- * 
  * @author Simon
- * 
  */
 public class User {
 
 	protected String loginName, firstName, lastName, pwd;
 	protected Session.rights rights;
 
-	//TODO: implementierung
+	/*
+	 * Vorbedingung: keine
+	 * Nachbedingung: Gueltiger User erstellt
+	 * FEHLER: firstName, lastName nicht gesetzt.. get-Methoden liefern null zurueck (war nicht so geplant)
+	 */
 	public User(String loginName, String pwd)
 	{
 		this.setPwd(pwd, false);
@@ -48,6 +49,10 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	/*
+	 * Vorbedingung: keine
+	 * Verhalten: vergleicht das uebergebene Passwort mit dem Passwort des Useres
+	 */
 	public boolean checkPwd(String pwd) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA");
@@ -59,12 +64,10 @@ public class User {
 		return this.pwd.equals(pwd);
 	}
 
-	/**
-	 * 
-	 * @param pwd
-	 *            Passwort
-	 * @param isHash
-	 *            true, wenn das Passwort bereits verschluesselt ist, false wenn es verschluesselt werden soll
+	/*
+	 * Vorbedingung: keine
+	 * Nachbedingung: Passwor fuer User gesetzt
+	 * Verhalten: speichert ein verschluesseltes Passwort
 	 */
 	public void setPwd(String pwd, boolean isHash) {
 		if (!isHash)
@@ -81,17 +84,10 @@ public class User {
 
 	}
 
-	/**
-	 * @return the rights
-	 */
 	public Session.rights getRights() {
 		return rights;
 	}
 
-	/**
-	 * @param rights
-	 *            the rights to set
-	 */
 	public void setRights(Session.rights rights) {
 		this.rights = rights;
 	}
