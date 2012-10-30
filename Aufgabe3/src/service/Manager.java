@@ -15,6 +15,9 @@ public class Manager {
 	private UserDao userDao = new TestUserDao();
 	private HashMap<String, BandManager> bands = new HashMap<String, BandManager>();
 
+	/*
+	 * Nachbedingung: Standard-User angelegt (testzwecke da keine feste Datenbank)
+	 */
 	public Manager() {
 		User user = new User("admin", "password");
 		user.setRights(rights.admin);
@@ -25,14 +28,9 @@ public class Manager {
 		}
 	}
 
-	/**
-	 * Legt eine neue Band mit dem Namen an
-	 * 
-	 * @param name
-	 *            der Band
-	 * @return BandManger zum Verwalten der Band
-	 * @throws ServiceException
-	 *             wirft Exception, wenn nicht als Admin angemeldet
+	/*
+	 * Vorbedingung: Benutzer hat notwendige Rechte
+	 * Nachbedingung: Band ist gespeichert
 	 */
 	public BandManager createBand(String name) throws ServiceException {
 		if (Session.getRights() != rights.admin) {
@@ -48,6 +46,10 @@ public class Manager {
 		return result;
 	}
 
+	/*
+	 * Vorbedingung: Benutzer hat notwendige Rechte
+	 * SCHLECHT: Inkonsistente Rechte-Behandlung (create Band wirft exception - hier wird null zurueck gegeben)
+	 */
 	public Set<String> getAllBands() {
 		if (Session.getRights() == rights.none) {
 			return null;
@@ -55,6 +57,10 @@ public class Manager {
 		return bands.keySet();
 	}
 
+	/*
+	 * Vorbedingung: Band existiert, Benutzer hat Rechte
+	 * "SCHLECHT": getAllBands() kann hier durch Brute-Force erhalten werden
+	 */
 	public BandManager getBand(String name) throws ServiceException {
 		BandManager band = bands.get(name);
 		if (band == null) {
@@ -79,6 +85,10 @@ public class Manager {
 		return band;
 	}
 
+	/*
+	 * Vorbedingung: Benutzer hat notwendige Rechte
+	 * FEHLER: Rechtepruefung wurde nicht implementiert
+	 */
 	public void deleteUser(String loginName) {
 		try {
 			new TestUserDao().deleteUser(loginName);
@@ -91,6 +101,10 @@ public class Manager {
 		return Session.getLoginName();
 	}
 
+	/*
+	 * Vorbedingung: keine
+	 * Nachbedingung: User ist angemeldet (oder nicht bei falschen login-Daten)
+	 */
 	public boolean login(String user, String pwd) {
 		return Session.login(user, pwd);
 	}

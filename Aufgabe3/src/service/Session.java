@@ -6,20 +6,11 @@ import dao.UserDao;
 import entity.User;
 
 /**
- * Login des Users und Verwalten der Rechte.
- * fuer Allgemeine Rechte gibt es enum rights; fuer User-spezifische Rechte den login-Namen
- * 
  * @author Simon
  * 
  */
 public class Session {
 
-	/**
-	 * allgemeine Rechte (Admin, Musiker, Buchhaltung)
-	 * 
-	 * @author Simon
-	 * 
-	 */
 	public enum rights {
 		admin, member, staff, none
 	};
@@ -33,14 +24,9 @@ public class Session {
 	private static rights userRights = rights.none;
 	private static String loginName = null;
 
-	/**
-	 * Einloggen eines Nutzers
-	 * 
-	 * @param loginName
-	 *            des Nutzers (key)
-	 * @param pwd
-	 *            Passwort
-	 * @return true wenn erfolgreich; null sonst
+	/*
+	 * Vorbedingung: keine
+	 * Nachbedingung: User ist angemeldet (oder nicht bei falschen login-Daten)
 	 */
 	public static boolean login(String loginName, String pwd)
 	{
@@ -63,8 +49,8 @@ public class Session {
 
 	}
 
-	/**
-	 * Abmelden
+	/*
+	 * Nachbedingung: es ist kein User mehr angemeldet und keine Rechte mehr vorhanden	 * 
 	 */
 	public static void logout()
 	{
@@ -72,21 +58,11 @@ public class Session {
 		loginName = null;
 	}
 
-	/**
-	 * to validate public rights
-	 * 
-	 * @return rights of the user
-	 */
 	public static rights getRights()
 	{
 		return userRights;
 	}
 
-	/**
-	 * To validate private rights
-	 * 
-	 * @return login name of the user
-	 */
 	public static String getLoginName()
 	{
 		return loginName;
