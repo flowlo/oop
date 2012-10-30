@@ -23,6 +23,9 @@ import entity.Song;
  * @author Lorenz
  * @author Dominik
  */
+
+// GOOD: Hoher Klassenzusammenhalt. Alle Variablen und Methoden spielen eng zusammen
+// Die Location koennte direkt in den Performances und Practices abgelegt werden. Ohne zentrales Register, ohne Ueberpruefung.
 public class BandManager {
 	private List<Member> members = new LinkedList<Member>();
 	private List<Song> songs = new LinkedList<Song>();
