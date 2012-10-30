@@ -4,31 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Oberklasse fuer alles was mit Geld zu tun hat =)
- * 
  * @author Simon
  * @author Dominik
- * 
  */
+// SCHLECHT: Diese Klasse wurde fuer die History mirrbaucht, obwohl sie nie dafuer gedacht war. Die Vererbung hat halt gestimmt.
+// Besser ein neues History-Interface definieren
 public abstract class Item {
-	/**
-	 * Rechnungsbetrag in Cent
-	 */
 	protected int money = 0;
-
-	/**
-	 * Name/Beschreibung der Dienstleistung
-	 */
 	protected String comment = "";
-
-	/**
-	 * Rechnungszeitpunkt
-	 */
 	protected Date dateTime;
-
-	/**
-	 * Datensatz ist zum Loeschen markiert
-	 */
 	boolean deleted;
 
 	public int getMoney() {
@@ -70,34 +54,31 @@ public abstract class Item {
 		return deleted;
 	}
 
-	/**
-	 * Speichert den aktuellen Zustand in der History
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Objekt ist in der History zu finden
 	 */
 	protected abstract void save();
 
-	/**
-	 * Liefert ein bestimmtes History-Element
+	/*
+	 * Vorbedingung: Version ist in der History zu finden
+	 * Nachbedingung: Keine
 	 */
 	public abstract Item getHistoryItem(int version);
 
-	/**
-	 * Gibt die History des Datensatzes zurueck
-	 * 
-	 * @return alle Versionen des Datensatzes
-	 */
 	public abstract List<?> getHistory();
 
-	/**
-	 * Reversiert den Datensatz zur angegebenen Version
-	 * 
-	 * @param version
+	/*
+	 * Vorbedingung: Version ist in der History zu finden
+	 * Nachbedingung: Keine
+	 * SCHLECHT: Sollte eine Exception werfen, wenn Version nicht vorhanden.
 	 */
 	public abstract void revert(int version);
 
-	/**
-	 * Reversiert den Datensatz zum angegebenen Item
-	 * 
-	 * @param version
+	/*
+	 * Vorbedingung: Keine
+	 * Nachbedingung: Objekt entspricht der eingegebenen Version
+	 * SCHLECHT: revert ist der falsche Name. Es kann auch ein neues Objekt uebergeben werden.
 	 */
 	public abstract void revert(Item version);
 }
