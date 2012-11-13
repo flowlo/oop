@@ -1,12 +1,17 @@
+// Zusicherung "Die Raender des Rechtecks koennen aus anderen Zeichen bestehen als der Inhalt."
+// Zusicherung "Die beiden zu verwendenden Zeichen werden im Konstruktor gesetzt und bleiben danach unveraendert.
+
 public class Box extends AbstractBox {
-	protected char inner, outer;
+	protected final char inner, outer;
 	
 	public Box(int height, int width) {
 		this(height, width, '.', 'o');
 	}
 	
-	protected Box(int height, int width, char inner, char outer) {
+	protected Box(double height, double width, char inner, char outer) {
 		super(height, width);
+		
+		assert outer != ' ';
 		
 		this.inner = inner;
 		this.outer = outer;
@@ -14,6 +19,7 @@ public class Box extends AbstractBox {
 
 	@Override
 	public String toString() {
+		int height = (int)Math.ceil(this.height * this.factor), width = (int)Math.ceil(this.width * this.factor);
 		StringBuilder sb = new StringBuilder();
 		
 		for (int i = 0; i < height; i++) {

@@ -1,3 +1,27 @@
+/*
+	ClearBox ist ein Untertyp von Box
+		* Zeichen fuer den Rand von ClearBox ist nicht ' '
+		* Zeichen bleiben unveraendert
+
+	Box ist kein Untertyp von ClearBox, da das Seitenverhaeltnis nicht abgefragt werden kann.
+	
+	DarkBox ist kein Untertyp von Box, da das Zeichen nachtraeglich geeandert werden kann.
+	
+	Box ist kein Untertyp von DarkBox, da das Zeichen nachtraeglich geeandert werden kann.
+	
+	FreeBox ist kein Untertyp von Box, da hier nicht zwei Zeichen fuer den Inhalt bzw. Rahmen verwendet werden.
+	
+	Box ist kein Untertyp von FreeBox, da es anders skaliert.
+	
+	Repeated<P> für unbekannte P ist kein Untertyp von Box, da nicht genau zwei Zeichen für Rand und Inneres verwendet werden.
+	
+	Box ist kein Untertyp von Repeated<P> für unbekannte P, da es anders skaliert.
+	
+	Repeated<P> für jeden einzelnen Untertyp P von Pict ist kein Untertyp von Box, da nicht genau zwei Zeichen für Rand und Inneres verwendet werden.
+	
+	Box ist kein Untertyp von Repeated<P> für jeden einzelnen Untertyp P von Pict, da es anders skaliert.
+*/
+
 public class Test {
 	public static void main(String[] args) {
 		Pict[][] picts = new Pict[][] {

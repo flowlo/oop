@@ -1,9 +1,9 @@
 public class ClearBox extends Box {
-	public ClearBox(int height, int width) {
+	public ClearBox(double height, double width) {
 		super(height, width, ' ', '*');
 	}
 	
 	public double getAspectRatio() {
-		return (double)width / height;
+		return width / height;
 	}
 }

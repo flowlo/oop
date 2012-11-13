@@ -2,6 +2,7 @@ public class FreeBox extends AbstractBox {
 
 	protected String[] text;
 
+	// Annahme: text ist "rechteckig"
 	public FreeBox(String text) {
 		// super(text.length() - text.replace("\n", "").length(), text.indexOf("\n"));
 
@@ -9,9 +10,13 @@ public class FreeBox extends AbstractBox {
 		this.height = this.text.length;
 		this.width = this.text[0].length();
 	}
+	
+	protected FreeBox() {
+	}
 
 	@Override
 	public String toString() {
+		int height = (int)Math.ceil(this.height * this.factor), width = (int)Math.ceil(this.width * this.factor);
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < height; i++) {

@@ -1,8 +1,8 @@
 public abstract class AbstractBox implements Pict {
 
-	protected int height, width;
+	protected double factor = 1.0, height, width;
 
-	public AbstractBox(int height, int width) {
+	public AbstractBox(double height, double width) {
 		this.height = height;
 		this.width = width;
 	}
@@ -11,10 +11,7 @@ public abstract class AbstractBox implements Pict {
 	}
 
 	public void scale(double factor) {
-		this.height = (int)Math.ceil(height * factor);
-		this.width = (int)Math.ceil(width * factor);
+		assert factor >= 0.1 && factor <= 10.0;
+		this.factor = factor;
 	}
-
-	@Override
-	public abstract String toString();
 }
