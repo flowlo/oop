@@ -1,6 +1,6 @@
-public class ClearBox extends FramedBox {
+public class ClearBox extends Box {
 	public ClearBox(int height, int width) {
-		super(height, width, '*', ' ');
+		super(height, width, ' ', '*');
 	}
 	
 	public double getAspectRatio() {

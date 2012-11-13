@@ -1,4 +1,4 @@
-public class DarkBox extends FramedBox {
+public class DarkBox extends Box {
 	public DarkBox(int height, int width, char character) {
 		super(height, width, character, character);
 	}
