@@ -1,32 +1,36 @@
-// Zusicherung "Die Raender des Rechtecks koennen aus anderen Zeichen bestehen als der Inhalt."
-// Zusicherung "Die beiden zu verwendenden Zeichen werden im Konstruktor gesetzt und bleiben danach unveraendert.
-
+/*
+ * Die Zeichen bleiben unveraendert.
+ * Der Rand darf nicht aus Leerzeichen bestehen.
+ * Wenn hoehe oder breite <=2 wird nur der Rand ausgegeben.
+ * Der Rand darf anders sein als der Inhalt.
+ * 
+ */
 public class Box extends AbstractBox {
-	protected final char inner, outer;
+	protected char inner, outer;
 	
-	public Box(int height, int width) {
-		this(height, width, '.', 'o');
-	}
+
 	
-	protected Box(double height, double width, char inner, char outer) {
-		super(height, width);
-		
-		assert outer != ' ';
-		
+	public Box(double height, double width, char inner, char outer) {
+		if(outer==' ')throw new IllegalArgumentException("Rand darf nicht ' ' sein");
+		this.height=height;
+		this.width=width;		
 		this.inner = inner;
 		this.outer = outer;
 	}
 
 	@Override
 	public String toString() {
-		int height = (int)Math.ceil(this.height * this.factor), width = (int)Math.ceil(this.width * this.factor);
+		
+		int cHeight=(int) Math.ceil(height);
+		int cWidth=(int) Math.ceil(width);		
+		
 		StringBuilder sb = new StringBuilder();
 		
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++)
-				sb.append((i == 0 || i == height - 1 || j == 0 || j == width - 1) ? outer : inner);
+		for (int i = 0; i < cHeight; i++) {
+			for (int j = 0; j < cWidth; j++)
+				sb.append((i == 0 || i == cHeight - 1 || j == 0 || j == cWidth - 1) ? outer : inner);
 
-			sb.append('\n');
+			sb.append(NL);
 		}
 		
 		return sb.toString();

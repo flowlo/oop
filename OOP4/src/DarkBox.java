@@ -1,9 +1,15 @@
+/*
+ * Zeichen fuer Inhalt = Zeichen fuer Rand
+ */
 public class DarkBox extends AbstractBox {
-	protected char character;
 	
-	public DarkBox(double height, double width, char character) {
-		super(height, width);
-		this.character = character;
+	private char character;
+	
+	public DarkBox(int height, int width, char character) {
+		if(character==' ')throw new IllegalArgumentException("Rand darf nicht ' ' sein");
+		this.height=height;
+		this.width=width;
+		this.character=character;
 	}
 	
 	public void setCharacter(char character) {
@@ -12,16 +18,17 @@ public class DarkBox extends AbstractBox {
 
 	@Override
 	public String toString() {
-		int height = (int)Math.ceil(this.height * this.factor), width = (int)Math.ceil(this.width * this.factor);
-		StringBuilder line = new StringBuilder();
-		for (int i = 0; i < width; i++)
-			line.append(character);
-		
-		line.append("\n");
+		int cHeight=(int) Math.ceil(height);
+		int cWidth=(int) Math.ceil(width);		
 		
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < height; i++)
-			sb.append(line);
+		
+		for (int i = 0; i < cHeight; i++) {
+			for (int j = 0; j < cWidth; j++)
+				sb.append(character);
+
+			sb.append(NL);
+		}
 		
 		return sb.toString();
 	}
