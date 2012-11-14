@@ -13,16 +13,16 @@
 	
 	Box ist kein Untertyp von FreeBox, da es anders skaliert.
 	
-	Repeated<P> für unbekannte P ist kein Untertyp von Box, da nicht genau zwei Zeichen für Rand und Inneres verwendet werden.
+	Repeated<P> fuer unbekannte P ist kein Untertyp von Box, da nicht genau zwei Zeichen fuer Rand und Inneres verwendet werden.
 	
-	Box ist kein Untertyp von Repeated<P> für unbekannte P, da es anders skaliert.
+	Box ist kein Untertyp von Repeated<P> fuer unbekannte P, da es anders skaliert.
 	
-	Repeated<P> für jeden einzelnen Untertyp P von Pict ist kein Untertyp von Box, da nicht genau zwei Zeichen für Rand und Inneres verwendet werden.
+	Repeated<P> fuer jeden einzelnen Untertyp P von Pict ist kein Untertyp von Box, da nicht genau zwei Zeichen fuer Rand und Inneres verwendet werden.
 	
-	Box ist kein Untertyp von Repeated<P> für jeden einzelnen Untertyp P von Pict, da es anders skaliert.
+	Box ist kein Untertyp von Repeated<P> fuer jeden einzelnen Untertyp P von Pict, da es anders skaliert.
 	
 	Repeated und Scaled sind keine Boxen weil es Container sind.
-	Verändert man eine Box die in dem Container gespeichert ist verändert sich auch die Ausgabe des Containers.
+	Veraendert man eine Box die in dem Container gespeichert ist veraendert sich auch die Ausgabe des Containers.
 	Die Ausgabe einer Box kann sich aber nur durch box.scale() aendern
 */
 
