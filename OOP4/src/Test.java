@@ -30,12 +30,12 @@ public class Test {
 	public static void main(String[] args) {
 
 		System.out.println("Erstellen von Boxen: ");
-				
-		Box b1=new Box(3,5,'o','*');
-		ClearBox cb=new ClearBox(4,4);
-		DarkBox db=new DarkBox(6,3,'o');
-		FreeBox fb=new FreeBox(new String("12345\n12345\n12345"));
-		
+
+		Box b1 = new Box(3, 5, 'o', '*');
+		ClearBox cb = new ClearBox(4, 4);
+		DarkBox db = new DarkBox(6, 3, 'o');
+		FreeBox fb = new FreeBox(new String("12345\n12345\n12345"));
+
 		System.out.println("Box: 3x5");
 		System.out.println(b1);
 		System.out.println("ClearBox: 4x4");
@@ -44,8 +44,7 @@ public class Test {
 		System.out.println(db);
 		System.out.println("FreeBox: 3x5");
 		System.out.println(fb);
-		
-		
+
 		System.out.println("Erstelle ein AbstractBox[][] aus den Boxen + 2 neuen (die neuen sind links)");
 		AbstractBox[][] boxes = new AbstractBox[][] {
 				new AbstractBox[] { new ClearBox(1, 1), b1, cb },
@@ -61,46 +60,43 @@ public class Test {
 		System.out.println("rufe scaled.scale(0.5) auf");
 		s.scale(0.5);
 		System.out.println(s);
-		
-		System.out.println("Die groesse eines Scaled kann sich aendern obwohl nicht scaled.scale aufgerufen wird: (durch Aufruf von scale eines Objekts im Container)");
-		System.out.println("Wir sehen es als zusicherung einer Box, dass sich die groesse nur durch scale() aendern kann. Daher ist scaled keine Box");
+
+		System.out
+				.println("Die groesse eines Scaled kann sich aendern obwohl nicht scaled.scale aufgerufen wird: (durch Aufruf von scale eines Objekts im Container)");
+		System.out
+				.println("Wir sehen es als zusicherung einer Box, dass sich die groesse nur durch scale() aendern kann. Daher ist scaled keine Box");
 		db.scale(0.5);
 		System.out.println(s);
-		
-		
+
 		System.out.println("Erzeuge ein Repeated<Object> aus einem String, dem Scaled und weiteren Boxen: ");
-		Object[][] array=new Object[][]
-			{
-				new Object[]{new String("Ein String"),s,new DarkBox(7,2,'+')},
-				new Object[]{b1,cb,new String("Ein String")},
-			};
-		Repeated<Object> r=new Repeated<Object>(array);
+		Object[][] array = new Object[][]
+		{
+				new Object[] { new String("Ein String"), s, new DarkBox(7, 2, '+') },
+				new Object[] { b1, cb, new String("Ein String") },
+		};
+		Repeated<Object> r = new Repeated<Object>(array);
 		System.out.println(r);
-		
+
 		System.out.println("Deklariere ein Pict");
 		Pict pict;
 		System.out.println("Initialisiere pict mit DarkBox 2x2");
-		pict=new DarkBox(4,4,'O');
-		System.out.println("Ueber pict koennen jetzt nur scale und toString aufgerufen werden - nicht setCharacter der DarkBox (rufe scale(1,8) auf und toString)");
+		pict = new DarkBox(4, 4, 'O');
+		System.out
+				.println("Ueber pict koennen jetzt nur scale und toString aufgerufen werden - nicht setCharacter der DarkBox (rufe scale(1,8) auf und toString)");
 		pict.scale(1.8);
 		System.out.println(pict);
 		System.out.println("Nach Cast zu DarkBox kann der Character geandert werden:");
 		((DarkBox) pict).setCharacter('X');
 		System.out.println(pict);
-		
+
 		try
 		{
 			((ClearBox) pict).getAspectRatio();
-		}
-		catch(ClassCastException e)
+		} catch (ClassCastException e)
 		{
-			System.out.println("Ein Cast zu (zB) ClearBox wirft aber eine ClassCastException: "+e.getMessage());
+			System.out.println("Ein Cast zu (zB) ClearBox wirft aber eine ClassCastException: " + e.getMessage());
 		}
-		
+
 		System.out.println("Andere Boxen verhalten sich analog.");
-		
-		
-		
-		
 	}
 }
