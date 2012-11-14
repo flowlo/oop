@@ -9,7 +9,7 @@ public class FreeBox extends AbstractBox {
 		this.text = text.split("\n");
 		
 		int l=this.text[0].length();
-		for(int x=1;x<text.length();x++)
+		for(int x=0;x<this.text.length;x++)
 		{
 			if(this.text[x].length()!=l) throw new IllegalArgumentException("Text muss rechteckig sein!"); 
 		}		
