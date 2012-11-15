@@ -1,4 +1,4 @@
-public class OrderedSet<T extends Shorter> extends Set<T> {
+public class OrderedSet<T extends Shorter<T>> extends Set<T> {
 	public void insert(T value) {
 		if (contains(value))
 			return;
@@ -15,9 +15,9 @@ public class OrderedSet<T extends Shorter> extends Set<T> {
 				current.setNext(new Item<T>(value, null));
 				return;
 			}
-			
-			if (!current.getNext().getValue().shorter(value)) {
-				
+			else if (!current.getNext().getValue().shorter(value)) {
+				current.setNext(new Item<T>(value, current.getNext()));
+				return;
 			}
 		}
 	}

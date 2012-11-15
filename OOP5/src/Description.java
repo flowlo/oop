@@ -1,7 +1,9 @@
 public class Description implements Shorter<Description> {
 
+	private String text;
+	
 	public Description(String text) {
-
+		this.text = text;
 	}
 
 	@Override
@@ -12,10 +14,16 @@ public class Description implements Shorter<Description> {
 
 	@Override
 	public String toString() {
-		return "";
+		return text;
 	}
 
 	public int getLines() {
-		return 0;
+		int lines = 1;
+		
+		for (char item : text.toCharArray())
+			if (item == '\n')
+				lines++;
+		
+		return lines;
 	}
 }

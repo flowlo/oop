@@ -3,7 +3,7 @@ public class CompositeTime implements ElapsedTime {
 	private Double[] measurements;
 
 	public CompositeTime(Double[] measurements) {
-
+		this.measurements = measurements;
 	}
 
 	@Override
@@ -14,11 +14,16 @@ public class CompositeTime implements ElapsedTime {
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return measurements.length;
 	}
 
-	public Double getShortestTime() {
-		return 0d;
+	public Double getMin() {
+		double min = Double.POSITIVE_INFINITY;
+		
+		for (double item : measurements)
+			if (item < min)
+				min = item;
+		
+		return min;
 	}
 }

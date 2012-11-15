@@ -10,16 +10,26 @@ public class MeanElapsedTime implements ElapsedTime {
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = 0;
+
+		for (Double item : measurements)
+			count++;
+		
+		return count;
 	}
 
-	public void add(Double m) {
-
+	public void add(double value) {
+		measurements.insert(value);
 	}
 
-	public Double getMax() {
-		return 0d;
+	public double getMax() {
+		double max = Double.NEGATIVE_INFINITY;
+		
+		for (Double item : measurements)
+			if (item > max)
+				max = item;
+		
+		return max;
 	}
 
 }

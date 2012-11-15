@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class OrderedMap<K extends Shorter, V> extends OrderedSet<K> {
+public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 	public void insert(K key, V value) {
 	}
 	
