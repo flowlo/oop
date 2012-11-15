@@ -1,2 +1,2 @@
-public class OrderedSet extends Set {
+public class OrderedSet<T> extends Set<T> {
 }

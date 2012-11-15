@@ -1,2 +1,2 @@
-public class OrderedMap extends OrderedSet {
+public class OrderedMap<K, V> extends OrderedSet {
 }
