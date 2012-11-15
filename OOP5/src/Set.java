@@ -9,7 +9,7 @@ public class Set<T> implements Iterable<T> {
 	}
 
 	public Iterator<T> iterator() {
-		return new ItemIterator<T>(head);
+		return new ItemIterator<T>(this);
 	}
 
 	private static class Item<T> {
@@ -36,11 +36,12 @@ public class Set<T> implements Iterable<T> {
 
 	private static class ItemIterator<T> implements Iterator<T> {
 		private Item<T> current;
-		private Item<T> previous;
+		private Item<T> previous = null;;
+		private Set<T> set;
 
-		public ItemIterator(Item<T> current) {
-			this.current = current;
-			this.previous = null;
+		public ItemIterator(Set<T> set) {
+			this.set = set;
+			this.current = set.head;
 		}
 
 		@Override
@@ -52,17 +53,21 @@ public class Set<T> implements Iterable<T> {
 		public T next() {
 			if (current == null)
 				throw new NoSuchElementException();
-			
+
 			T result = current.getValue();
 			previous = current;
 			current = current.getNext();
-			
+
 			return result;
 		}
 
 		@Override
 		public void remove() {
-			previous.setNext(current.getNext());
+			if (current != null)
+				if (previous == null)
+					set.head = current.getNext();
+				else
+					previous.setNext(current.getNext());
 		}
 	}
 }
