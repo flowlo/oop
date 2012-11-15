@@ -5,6 +5,10 @@ public class Set<T> implements Iterable<T> {
 	private Item<T> head = null;
 
 	public void insert(T value) {
+		for (T item : this)
+			if (item == value)
+				return;
+		
 		head = new Item<T>(value, head);
 	}
 
@@ -35,30 +39,28 @@ public class Set<T> implements Iterable<T> {
 	}
 
 	private static class ItemIterator<T> implements Iterator<T> {
-		private Item<T> current;
-		private Item<T> previous = null;;
-		private Set<T> set;
+		private Item<T> current = null;
+		private Item<T> previous = null;
+		private final Set<T> set;
 
 		public ItemIterator(Set<T> set) {
 			this.set = set;
-			this.current = set.head;
 		}
 
 		@Override
 		public boolean hasNext() {
-			return current != null;
+			return current == null ? set.head != null : current.getNext() != null;
 		}
 
 		@Override
 		public T next() {
+			previous = current;
+			current = current == null ? set.head : current.getNext();
+			
 			if (current == null)
 				throw new NoSuchElementException();
-
-			T result = current.getValue();
-			previous = current;
-			current = current.getNext();
-
-			return result;
+			
+			return current.getValue();
 		}
 
 		@Override
