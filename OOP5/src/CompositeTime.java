@@ -8,8 +8,7 @@ public class CompositeTime implements ElapsedTime {
 
 	@Override
 	public boolean shorter(ElapsedTime elapsedTime) {
-		// TODO Auto-generated method stub
-		return false;
+		return getTime() < elapsedTime.getTime();
 	}
 
 	@Override
@@ -25,5 +24,15 @@ public class CompositeTime implements ElapsedTime {
 				min = item;
 		
 		return min;
+	}
+
+	@Override
+	public double getTime() {
+		double total = 0.0;
+		
+		for (double item : measurements)
+			total += item;
+		
+		return total;
 	}
 }

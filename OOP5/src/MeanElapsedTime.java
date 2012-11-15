@@ -4,8 +4,7 @@ public class MeanElapsedTime implements ElapsedTime {
 
 	@Override
 	public boolean shorter(ElapsedTime elapsedTime) {
-		// TODO Auto-generated method stub
-		return false;
+		return getTime() < elapsedTime.getTime();
 	}
 
 	@Override
@@ -32,4 +31,16 @@ public class MeanElapsedTime implements ElapsedTime {
 		return max;
 	}
 
+	@Override
+	public double getTime() {
+		double total = 0.0;
+		int count = 0;
+		
+		for (Double item : measurements) {
+			count++;
+			total += item;
+		}
+		
+		return total / count;
+	}
 }

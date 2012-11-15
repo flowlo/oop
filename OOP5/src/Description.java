@@ -8,8 +8,7 @@ public class Description implements Shorter<Description> {
 
 	@Override
 	public boolean shorter(Description compare) {
-		// TODO Auto-generated method stub
-		return false;
+		return toString().length() < compare.toString().length();
 	}
 
 	@Override

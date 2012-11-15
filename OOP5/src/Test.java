@@ -2,30 +2,15 @@ import java.util.Iterator;
 
 public class Test {
 	public static void main(String[] args) {
-		Set<Integer> set = new Set<Integer>();
-		set.insert(1);
-		set.insert(2);
-		set.insert(3);
+		OrderedSet<Description> set = new OrderedSet<Description>();
+		set.insert(new Description("12345"));
+		set.insert(new Description("12"));
+		set.insert(new Description("1"));
+		set.insert(new Description("1234"));
+		set.insert(new Description("123"));
 		
-		for (Iterator<Integer> iter = set.iterator(); iter.hasNext();) {
-			Integer item = iter.next();
+		for (Description item : set)
 			System.out.println(item);
-		}
-		
-		for (Iterator<Integer> iter = set.iterator(); iter.hasNext();) {
-			Integer item = iter.next();
-			if (item == 3) {
-				
-				iter.remove();
-			}
-		}
-		
-		System.out.println("\n");
-		
-		for (Iterator<Integer> iter = set.iterator(); iter.hasNext();) {
-			Integer item = iter.next();
-			System.out.println(item);
-		}
 	}
 	
 	private static boolean test1() {
@@ -48,7 +33,7 @@ public class Test {
 	}
 	
 	private static boolean test2() {
-		OrderedMap<MeanElapsedTime, CompositeTime> map = new OrderedMap<MeanElapsedTime, CompositeTime>();
+		//OrderedMap<MeanElapsedTime, CompositeTime> map = new OrderedMap<MeanElapsedTime, CompositeTime>();
 		//map.insert(new MeanElapsedTime(), new CompositeTime());
 		//map.insert(new MeanElapsedTime(), new CompositeTime());
 		//map.insert(new MeanElapsedTime(), new CompositeTime());
