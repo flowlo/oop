@@ -11,9 +11,10 @@ public class MeanElapsedTime implements ElapsedTime {
 	public int count() {
 		int count = 0;
 
-		for (Double item : measurements)
+		for (Double item : measurements) {
 			count++;
-		
+		}
+
 		return count;
 	}
 
@@ -23,11 +24,11 @@ public class MeanElapsedTime implements ElapsedTime {
 
 	public double getMax() {
 		double max = Double.NEGATIVE_INFINITY;
-		
+
 		for (Double item : measurements)
 			if (item > max)
 				max = item;
-		
+
 		return max;
 	}
 
@@ -35,12 +36,12 @@ public class MeanElapsedTime implements ElapsedTime {
 	public double getTime() {
 		double total = 0.0;
 		int count = 0;
-		
+
 		for (Double item : measurements) {
 			count++;
 			total += item;
 		}
-		
+
 		return total / count;
 	}
 }

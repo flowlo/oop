@@ -3,24 +3,34 @@ import java.util.NoSuchElementException;
 
 public class Set<T> implements Iterable<T> {
 	protected Item<T> head = null;
+	protected Item<T> tail = null;
 
 	public void insert(T value) {
-		if (!contains(value))
-			head = new Item<T>(value, head);
+		if (!contains(value)) {
+			if (isEmpty()) {
+				head = new Item<T>(value);
+				tail = head;
+			} else {
+				Item<T> item = new Item<T>(value);
+				tail.setNext(item);
+				tail = item;
+			}
+		}
 	}
 
+	@Override
 	public Iterator<T> iterator() {
 		return new ItemIterator<T>(this);
 	}
-	
+
 	protected boolean contains(T value) {
 		for (T item : this)
 			if (item == value)
 				return true;
-		
+
 		return false;
 	}
-	
+
 	protected boolean isEmpty() {
 		return head == null;
 	}
@@ -29,9 +39,8 @@ public class Set<T> implements Iterable<T> {
 		private Item<T> next = null;
 		private T value = null;
 
-		public Item(T value, Item<T> next) {
+		public Item(T value) {
 			this.value = value;
-			this.next = next;
 		}
 
 		public T getValue() {
@@ -41,7 +50,7 @@ public class Set<T> implements Iterable<T> {
 		public Item<T> getNext() {
 			return next;
 		}
-		
+
 		public void setNext(Item<T> value) {
 			next = value;
 		}
@@ -66,12 +75,12 @@ public class Set<T> implements Iterable<T> {
 		public T next() {
 			previous = current;
 			current = current == null ? set.head : current.getNext();
-			
+
 			if (current == null)
 				throw new NoSuchElementException();
-			
+
 			removed = false;
-			
+
 			return current.getValue();
 		}
 
@@ -79,12 +88,12 @@ public class Set<T> implements Iterable<T> {
 		public void remove() {
 			if (current == null || removed)
 				throw new IllegalStateException();
-			
+
 			if (previous == null)
 				set.head = current.getNext();
 			else
 				previous.setNext(current.getNext());
-			
+
 			removed = true;
 		}
 	}
