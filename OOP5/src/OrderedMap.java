@@ -1,9 +1,7 @@
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 	private Entry<K, V> entryHead = null;
-	private Entry<K, V> entryTail = null;
 
 	@Override
 	public void insert(K key) {
@@ -12,7 +10,6 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 
 		if (isEmpty()) {
 			entryHead = new Entry<K, V>(key);
-			entryTail = entryHead;
 			return;
 		}
 
@@ -38,11 +35,10 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 
 		Entry<K, V> item = new Entry<K, V>(key);
 		current.setNext(item);
-		entryTail = item;
 	}
 
 	@Override
-	public Iterator<K> iterator() {
+	public EntryIterator<K, V> iterator() {
 		return new EntryIterator<K, V>(this);
 	}
 
@@ -82,7 +78,7 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 		}
 	}
 
-	private static class EntryIterator<K extends Shorter<K>, V> extends ItemIterator<K> implements Iterable<V> {
+	public static class EntryIterator<K extends Shorter<K>, V> extends ItemIterator<K> implements Iterable<V> {
 		protected Entry<K, V> current = null;
 		protected Entry<K, V> previous = null;
 		protected boolean removed = false;
@@ -125,12 +121,12 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 		}
 
 		@Override
-		public Iterator<V> iterator() {
+		public EntrySetIterator<V> iterator() {
 			return new EntrySetIterator<V>(current.getValue());
 		}
 	}
 
-	private static class EntrySetIterator<V> extends ItemIterator<V> {
+	public static class EntrySetIterator<V> extends ItemIterator<V> {
 
 		public EntrySetIterator(Set<V> set) {
 			super(set);

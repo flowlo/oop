@@ -1,4 +1,3 @@
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Test {
@@ -7,6 +6,7 @@ public class Test {
 		boolean[] testCorrect = new boolean[4];
 		test1(testCorrect);
 		test2(testCorrect);
+		// Test3 wird int test2() getestet
 	}
 
 	private static void test1(boolean[] testCorrect) {
@@ -105,21 +105,25 @@ public class Test {
 		timeMap.insert(met2);
 		timeMap.insert(met3);
 
-		Iterator<MeanElapsedTime> it = timeMap.iterator();
+		OrderedMap.EntryIterator<MeanElapsedTime, CompositeTime> it = timeMap.iterator();
 		try {
-			if (it.next().getMax() != 4.5) {
+			MeanElapsedTime met = it.next();
+			if (met.getMax() != 4.5) {
 				testCorrect[1] = false;
 				System.out.println("  WRONG: Max should be 4.5");
 			} else {
 				System.out.println("  Correct: Max is 4.5");
 			}
-			if (it.next().getMax() != 5.5) {
+			OrderedMap.EntrySetIterator<CompositeTime> innerit = it.iterator();
+			innerit.add(new CompositTime(new Double[] { 1.0, 2.0, 3.0 })); // Unfinished
+			if (met.getMax() != 5.5) {
 				testCorrect[1] = false;
 				System.out.println("  WRONG: Max should be 5.5");
 			} else {
 				System.out.println("  Correct: Max is 5.5");
 			}
-			if (it.next().getMax() != 6.5) {
+			met = it.next();
+			if (met.getMax() != 6.5) {
 				testCorrect[1] = false;
 				System.out.println("  WRONG: Max should be 6.5");
 			} else {
