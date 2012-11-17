@@ -106,26 +106,30 @@ public class Test {
 		timeMap.insert(met3);
 
 		OrderedMap.EntryIterator<MeanElapsedTime, CompositeTime> it = timeMap.iterator();
+		Double time;
 		try {
-			MeanElapsedTime met = it.next();
-			if (met.getMax() != 4.5) {
+			if ((time = it.next().getMax()) != 4.5) {
 				testCorrect[1] = false;
-				System.out.println("  WRONG: Max should be 4.5");
+				System.out.println("  WRONG: Max should be 4.5, but is " + time);
 			} else {
 				System.out.println("  Correct: Max is 4.5");
 			}
 			OrderedMap.EntrySetIterator<CompositeTime> innerit = it.iterator();
-			innerit.add(new CompositTime(new Double[] { 1.0, 2.0, 3.0 })); // Unfinished
-			if (met.getMax() != 5.5) {
+			innerit.add(new CompositeTime(new Double[] { 2.0, 1.0, 3.0 }));
+			innerit.add(new CompositeTime(new Double[] { 5.4, 7.3, 2.8, 7.5 }));
+			if ((time = it.next().getMax()) != 5.5) {
 				testCorrect[1] = false;
-				System.out.println("  WRONG: Max should be 5.5");
+				System.out.println("  WRONG: Max should be 5.5, but is " + time);
 			} else {
 				System.out.println("  Correct: Max is 5.5");
 			}
-			met = it.next();
-			if (met.getMax() != 6.5) {
+			innerit = it.iterator();
+			innerit.add(new CompositeTime(new Double[] { 1.8, 3.4, 9.4, 2.8 }));
+			innerit.add(new CompositeTime(new Double[] { 6.4, 0.3, -0.5, 1.3 }));
+			innerit.add(new CompositeTime(new Double[] { 6.9, 4.0, 1.3, 5.2 }));
+			if ((time = it.next().getMax()) != 6.5) {
 				testCorrect[1] = false;
-				System.out.println("  WRONG: Max should be 6.5");
+				System.out.println("  WRONG: Max should be 6.5, but is " + time);
 			} else {
 				System.out.println("  Correct: Max is 6.5");
 			}
@@ -148,27 +152,83 @@ public class Test {
 
 		it = timeMap.iterator();
 		try {
-			if (it.next().getMax() != 4.5) {
+			if ((time = it.next().getMax()) != 4.5) {
 				testCorrect[1] = false;
-				System.out.println("  WRONG: Max should be 4.5");
+				System.out.println("  WRONG: Max should be 4.5, but is " + time);
 			} else {
 				System.out.println("  Correct: Max is 4.5");
 			}
-			if (it.next().getMax() != 5.5) {
+			OrderedMap.EntrySetIterator<CompositeTime> innerit = it.iterator();
+			try {
+				if ((time = innerit.next().getMin()) != 1.0) {
+					testCorrect[1] = false;
+					System.out.println("    WRONG: Min should be 1.0, but is " + time);
+				} else {
+					System.out.println("    Correct: Min is 1.0");
+				}
+				if ((time = innerit.next().getMin()) != 2.8) {
+					testCorrect[1] = false;
+					System.out.println("    WRONG: Min should be 2.8, but is " + time);
+				} else {
+					System.out.println("    Correct: Min is 2.8");
+				}
+				try {
+					innerit.next();
+					testCorrect[1] = false;
+					System.out.println("    WRONG: Too much elements in second iterator of OrderedMap");
+				} catch (NoSuchElementException e) {
+					System.out.println("    Correct: Two elements in second iterator of OrderedMap");
+				}
+			} catch (NoSuchElementException e) {
 				testCorrect[1] = false;
-				System.out.println("  WRONG: Max should be 5.5");
+				System.out.println("    WRONG: Too less elements in second iterator of OrderedMap");
+			}
+			if ((time = it.next().getMax()) != 5.5) {
+				testCorrect[1] = false;
+				System.out.println("  WRONG: Max should be 5.5, but is " + time);
 			} else {
 				System.out.println("  Correct: Max is 5.5");
 			}
-			if (it.next().getMax() != 5.4) {
+			innerit = it.iterator();
+			try {
+				if ((time = innerit.next().getMin()) != 1.8) {
+					testCorrect[1] = false;
+					System.out.println("    WRONG: Min should be 1.8, but is " + time);
+				} else {
+					System.out.println("    Correct: Min is 1.8");
+				}
+				if ((time = innerit.next().getMin()) != -0.5) {
+					testCorrect[1] = false;
+					System.out.println("    WRONG: Min should be -0.5, but is " + time);
+				} else {
+					System.out.println("    Correct: Min is -0.5");
+				}
+				if ((time = innerit.next().getMin()) != 1.3) {
+					testCorrect[1] = false;
+					System.out.println("    WRONG: Min should be 1.3, but is " + time);
+				} else {
+					System.out.println("    Correct: Min is 1.3");
+				}
+				try {
+					innerit.next();
+					testCorrect[1] = false;
+					System.out.println("    WRONG: Too much elements in second iterator of OrderedMap");
+				} catch (NoSuchElementException e) {
+					System.out.println("    Correct: Three elements in second iterator of OrderedMap");
+				}
+			} catch (NoSuchElementException e) {
 				testCorrect[1] = false;
-				System.out.println("  WRONG: Max should be 5.4");
+				System.out.println("    WRONG: Too less elements in second iterator of OrderedMap");
+			}
+			if ((time = it.next().getMax()) != 5.4) {
+				testCorrect[1] = false;
+				System.out.println("  WRONG: Max should be 5.4, but is " + time);
 			} else {
 				System.out.println("  Correct: Max is 5.4");
 			}
-			if (it.next().getMax() != 6.5) {
+			if ((time = it.next().getMax()) != 6.5) {
 				testCorrect[1] = false;
-				System.out.println("  WRONG: Max should be 6.5");
+				System.out.println("  WRONG: Max should be 6.5, but is " + time);
 			} else {
 				System.out.println("  Correct: Max is 6.5");
 			}

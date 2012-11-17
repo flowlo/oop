@@ -140,6 +140,7 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 			} else {
 				set.setHead(item);
 			}
+			previous = item;
 		}
 
 		@Override
