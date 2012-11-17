@@ -83,18 +83,27 @@ public class Test {
 		System.out.println("Test2 started");
 		testCorrect[1] = true;
 
+		OrderedMap<MeanElapsedTime, CompositeTime> timeMap = new OrderedMap<MeanElapsedTime, CompositeTime>();
+		MeanElapsedTime met1 = new MeanElapsedTime();
+		met1.add(2.5);
+		met1.add(4.5);
+		met1.add(3.5);
+		MeanElapsedTime met2 = new MeanElapsedTime();
+		met2.add(4.5);
+		met2.add(6.5);
+		met2.add(5.5);
+		MeanElapsedTime met3 = new MeanElapsedTime();
+		met3.add(3.5);
+		met3.add(5.5);
+		met3.add(4.5);
+		timeMap.insert(met1);
+		timeMap.insert(met2);
+		timeMap.insert(met3);
+
 		if (testCorrect[1]) {
 			System.out.println("Test2 correct");
 		} else {
 			System.out.println("Test2 FAILED");
 		}
-	}
-
-	private static boolean test2() {
-		//OrderedMap<MeanElapsedTime, CompositeTime> map = new OrderedMap<MeanElapsedTime, CompositeTime>();
-		//map.insert(new MeanElapsedTime(), new CompositeTime());
-		//map.insert(new MeanElapsedTime(), new CompositeTime());
-		//map.insert(new MeanElapsedTime(), new CompositeTime());
-		return false;
 	}
 }

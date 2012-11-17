@@ -1,4 +1,4 @@
-public class CompositeTime implements ElapsedTime {
+public class CompositeTime implements ElapsedTime<CompositeTime> {
 
 	private Double[] measurements;
 
@@ -7,7 +7,7 @@ public class CompositeTime implements ElapsedTime {
 	}
 
 	@Override
-	public boolean shorter(ElapsedTime elapsedTime) {
+	public boolean shorter(CompositeTime elapsedTime) {
 		return getTime() < elapsedTime.getTime();
 	}
 
@@ -18,21 +18,21 @@ public class CompositeTime implements ElapsedTime {
 
 	public Double getMin() {
 		double min = Double.POSITIVE_INFINITY;
-		
+
 		for (double item : measurements)
 			if (item < min)
 				min = item;
-		
+
 		return min;
 	}
 
 	@Override
 	public double getTime() {
 		double total = 0.0;
-		
+
 		for (double item : measurements)
 			total += item;
-		
+
 		return total;
 	}
 }

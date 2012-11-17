@@ -18,6 +18,15 @@ public class Set<T> implements Iterable<T> {
 		}
 	}
 
+	public void setHead(Item<T> newHead) {
+		this.head = newHead;
+		Item<T> current = head;
+		while (current.getNext() != null) {
+			current = current.getNext();
+		}
+		tail = current;
+	}
+
 	@Override
 	public Iterator<T> iterator() {
 		return new ItemIterator<T>(this);
@@ -57,10 +66,10 @@ public class Set<T> implements Iterable<T> {
 	}
 
 	protected static class ItemIterator<T> implements Iterator<T> {
-		private Item<T> current = null;
-		private Item<T> previous = null;
-		private boolean removed = false;
-		private final Set<T> set;
+		protected Item<T> current = null;
+		protected Item<T> previous = null;
+		protected boolean removed = false;
+		protected final Set<T> set;
 
 		public ItemIterator(Set<T> set) {
 			this.set = set;
