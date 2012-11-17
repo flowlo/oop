@@ -2,8 +2,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
-	protected Entry<K, V> head = null;
-	protected Entry<K, V> tail = null;
+	private Entry<K, V> entryHead = null;
+	private Entry<K, V> entryTail = null;
 
 	@Override
 	public void insert(K key) {
@@ -11,19 +11,19 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 			return;
 
 		if (isEmpty()) {
-			head = new Entry<K, V>(key);
-			tail = head;
+			entryHead = new Entry<K, V>(key);
+			entryTail = entryHead;
 			return;
 		}
 
-		if (!head.getKey().shorter(key)) {
+		if (!entryHead.getKey().shorter(key)) {
 			Entry<K, V> item = new Entry<K, V>(key);
-			item.setNext(head);
-			head = item;
+			item.setNext(entryHead);
+			entryHead = item;
 			return;
 		}
 
-		Entry<K, V> current = this.head;
+		Entry<K, V> current = this.entryHead;
 
 		while (current.getNext() != null) {
 			if (!current.getNext().getKey().shorter(key)) {
@@ -38,7 +38,7 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 
 		Entry<K, V> item = new Entry<K, V>(key);
 		current.setNext(item);
-		tail = item;
+		entryTail = item;
 	}
 
 	@Override
@@ -95,13 +95,13 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 
 		@Override
 		public boolean hasNext() {
-			return current == null ? set.head != null : current.getNext() != null;
+			return current == null ? set.entryHead != null : current.getNext() != null;
 		}
 
 		@Override
 		public K next() {
 			previous = current;
-			current = current == null ? set.head : current.getNext();
+			current = current == null ? set.entryHead : current.getNext();
 
 			if (current == null)
 				throw new NoSuchElementException();
@@ -117,7 +117,7 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 				throw new IllegalStateException();
 
 			if (previous == null)
-				set.head = current.getNext();
+				set.entryHead = current.getNext();
 			else
 				previous.setNext(current.getNext());
 
@@ -154,5 +154,10 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 				set.setHead(current.getNext());
 			}
 		}
+	}
+
+	@Override
+	protected boolean isEmpty() {
+		return entryHead == null;
 	}
 }
