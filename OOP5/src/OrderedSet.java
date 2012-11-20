@@ -1,4 +1,4 @@
-public class OrderedSet<T extends Shorter<T>> extends Set<T> {
+public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	@Override
 	public void insert(T value) {
 		if (contains(value))

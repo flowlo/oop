@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
+public class OrderedMap<K extends Shorter<? super K>, V> extends OrderedSet<K> {
 	private Entry<K, V> entryHead = null;
 
 	@Override
@@ -78,7 +78,7 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> {
 		}
 	}
 
-	public static class EntryIterator<K extends Shorter<K>, V> extends ItemIterator<K> implements Iterable<V> {
+	public static class EntryIterator<K extends Shorter<? super K>, V> extends ItemIterator<K> implements Iterable<V> {
 		protected Entry<K, V> current = null;
 		protected Entry<K, V> previous = null;
 		protected boolean removed = false;

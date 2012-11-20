@@ -7,6 +7,7 @@ public class Test {
 		test1(testCorrect);
 		test2(testCorrect);
 		// Test3 wird int test2() getestet
+		OrderedSet<ElapsedTime> oSet = new OrderedSet<ElapsedTime>();
 	}
 
 	private static void test1(boolean[] testCorrect) {

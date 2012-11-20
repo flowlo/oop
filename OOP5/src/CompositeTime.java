@@ -1,4 +1,4 @@
-public class CompositeTime implements ElapsedTime<CompositeTime> {
+public class CompositeTime implements ElapsedTime {
 
 	private Double[] measurements;
 
@@ -7,7 +7,7 @@ public class CompositeTime implements ElapsedTime<CompositeTime> {
 	}
 
 	@Override
-	public boolean shorter(CompositeTime elapsedTime) {
+	public boolean shorter(ElapsedTime elapsedTime) {
 		return getTime() < elapsedTime.getTime();
 	}
 

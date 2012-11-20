@@ -1,6 +1,6 @@
-public interface ElapsedTime<K> extends Shorter<K> {
+public interface ElapsedTime extends Shorter<ElapsedTime> {
 	@Override
-	public boolean shorter(K elapsedTime);
+	public boolean shorter(ElapsedTime elapsedTime);
 
 	public double getTime();
 

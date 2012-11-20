@@ -1,9 +1,9 @@
-public class MeanElapsedTime implements ElapsedTime<MeanElapsedTime> {
+public class MeanElapsedTime implements ElapsedTime {
 
 	private Set<Double> measurements = new Set<Double>();
 
 	@Override
-	public boolean shorter(MeanElapsedTime elapsedTime) {
+	public boolean shorter(ElapsedTime elapsedTime) {
 		return getTime() < elapsedTime.getTime();
 	}
 
