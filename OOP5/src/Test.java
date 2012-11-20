@@ -6,9 +6,18 @@ public class Test {
 		boolean[] testCorrect = new boolean[4];
 		test1(testCorrect);
 		test2(testCorrect);
+		
+		
 		// Test3 wird int test2() getestet
 		OrderedSet<ElapsedTime> oSet = new OrderedSet<ElapsedTime>();
 	}
+	
+	private static void test4(boolean[] testCorrect)
+	{
+		
+		
+	}
+	
 
 	private static void test1(boolean[] testCorrect) {
 		System.out.println("Test1 started");
