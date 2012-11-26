@@ -1,8 +1,10 @@
 
-public class SensitiveSkin extends Skin {
-	public void vonBedienerGetragen(Bediener b)
-	{
-		System.out.println("OK - skin");
+public class GepanzerterSkin extends Skin {
+
+	@Override
+	public void vonBedienerGetragen(Bediener b) {
+		System.out.println("! Nur Beschuetzer duerfen einen gepanzerten Skin haben. (setze ID auf null)");
+		b.setUnvalid();		
 	}
 
 	@Override
@@ -16,4 +18,5 @@ public class SensitiveSkin extends Skin {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
