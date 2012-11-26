@@ -3,4 +3,10 @@ public class ServiceTechniker extends Schwerarbeiter {
 		super(skin);
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public void checkSkin() {
+		// TODO Auto-generated method stub
+		
+	}
 }

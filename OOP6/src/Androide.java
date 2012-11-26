@@ -4,6 +4,11 @@ public abstract class Androide {
 	protected String software;
 	protected Integer ID;
 	
+	public void setSkin(Skin skin)
+	{
+		this.skin=skin;
+	}
+	
 	public void setUnvalid()
 	{
 		this.ID=null;
