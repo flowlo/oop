@@ -2,7 +2,7 @@
 public class HochfesterSkin extends Skin {
 	public void vonBedienerGetragen(Bediener b)
 	{
-		System.out.println("! Bediener brauchen eine beruerungssensitive Skin. (setze ID auf null)");
+		System.out.println("! Bediener brauchen eine beruehrungssensitive Skin. (setze ID auf null)");
 		b.setUnvalid();
 	}
 }

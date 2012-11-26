@@ -9,4 +9,8 @@ public abstract class Androide {
 		this.ID=null;
 	}
 	
+	/**
+	 * prüft, ob der angelegte Skin der Androiden-Verordnung entspricht
+	 */
+	public abstract void checkSkin();
 }

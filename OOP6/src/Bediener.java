@@ -11,4 +11,9 @@ public abstract class Bediener extends Androide{
 	{
 		this.skin=skin;
 	}
+	
+	public void checkSkin()
+	{
+		skin.vonBedienerGetragen(this);
+	}
 }
