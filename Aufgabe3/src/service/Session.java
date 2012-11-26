@@ -9,6 +9,7 @@ import entity.User;
  * @author Simon
  * 
  */
+//GUT: Sehr starke "Objekt-Kopplung" (da alle Services darauf zugreifen), aber gewollt
 public class Session {
 
 	public enum rights {
