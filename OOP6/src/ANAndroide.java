@@ -1,19 +1,18 @@
-
-public abstract class Androide {
-	protected Skin skin;
-	protected String software;
+public abstract class ANAndroide {
+	protected SKSkin skin;
+	protected SWSoftware software;
 	protected Integer ID;
-	
-	public void setSkin(Skin skin)
+
+	public void setSkin(SKSkin skin)
 	{
 		this.skin=skin;
 	}
 	
 	public void setUnvalid()
 	{
-		this.ID=null;
+		this.ID = null;
 	}
-	
+
 	/**
 	 * prüft, ob der angelegte Skin der Androiden-Verordnung entspricht
 	 */

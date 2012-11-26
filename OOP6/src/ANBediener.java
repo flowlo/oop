@@ -1,8 +1,8 @@
 
-public abstract class Bediener extends Androide{
+public abstract class ANBediener extends ANAndroide{
 
 		
-	public void setSkin(Skin skin)
+	public void setSkin(SKSkin skin)
 	{
 		this.skin=skin;
 	}

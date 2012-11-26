@@ -1,24 +1,24 @@
 
-public class HochfesterSkin extends Skin {
-	public void vonBedienerGetragen(Bediener b)
+public class SKHochfesterSkin extends SKSkin {
+	public void vonBedienerGetragen(ANBediener b)
 	{
 		System.out.println("! Bediener brauchen eine beruehrungssensitive Skin. (setze ID auf null)");
 		b.setUnvalid();
 	}
 	
-	public void vonSchwerarbeiterGetragen(Schwerarbeiter s)
+	public void vonSchwerarbeiterGetragen(ANSchwerarbeiter s)
 	{
 		System.out.println("OK - skin");
 	}
 
 	@Override
-	public void vonBeschuetzerGetragen(Beschuetzer b) {
+	public void vonBeschuetzerGetragen(ANBeschuetzer b) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void vonSchwerArbeiterGetragen(Schwerarbeiter s) {
+	public void vonSchwerArbeiterGetragen(ANSchwerarbeiter s) {
 		// TODO Auto-generated method stub
 		
 	}
