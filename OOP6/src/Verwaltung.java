@@ -25,11 +25,23 @@ public class Verwaltung {
 	 */
 	public void insert(ANAndroide a)
 	{
-		System.out.println("Starte checks fuer Androiden mit ID "+a.getID());
-		a.checkSkin();
 		
 		
+		ANAndroide old=map.get(a.getID());
+		if(old==null)//neuen Androiden einfuegen
+		{
+			System.out.println("Neuer Androide soll eingefuegt werden:");
+			System.out.println("Starte checks fuer Androiden mit ID "+a.getID());
+			a.checkSkin();
+			map.put(a.getID(), a);
+			return;
+		}
+		
+		//Androide soll update erhalten
+		System.out.println("Androide mit ID "+ a.getID()+" soll Update erhalten:");
+		old.checkHauptTyp(a); //checke ob sich der Haupttyp aendert
 		map.put(a.getID(), a);
+		
 	}
 	
 	

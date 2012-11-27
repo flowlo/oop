@@ -13,8 +13,11 @@ public class Test {
 		ANAndroide a = new ANHilfskraft(1);
 		a.setSkin(s);
 		list.insert(a);
-
-		ANAndroide b = new ANHilfskraft(2);
+		ANAndroide b = new ANHilfskraft(1);
+		b.setSkin(s);
+		list.insert(b);
+		/*
+		
 		b.setSkin(s);
 		b.installSoftware(new SWHilfskraftSoftware(SWSecurityLevel.LEVEL3));
 		System.out.println(b);
@@ -26,7 +29,7 @@ public class Test {
 		System.out.println(b);
 		b.installSoftware(new SWHilfskraftSoftware(SWSecurityLevel.LEVEL1));
 		System.out.println(b);
-		list.insert(b);
+		list.insert(b);*/
 
 		list.test();
 	}
