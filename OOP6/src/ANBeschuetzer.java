@@ -1,8 +1,10 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class ANBeschuetzer extends ANAndroide {
 
-	public ANBeschuetzer(Integer ID) {
-		super(ID);
-		installer.put(SWSecurityLevel.LEVEL4, new SWInstaller());
+	public ANBeschuetzer(Integer ID, SKSkin skin, SWSoftware software) {
+		super(ID, skin, software);
 	}
 
 	@Override
@@ -36,5 +38,12 @@ public abstract class ANBeschuetzer extends ANAndroide {
 	protected void checkHauptTypFromBeschuetzer()
 	{
 		System.out.println("OK - Haupttyp unveraendert");
+	}
+
+	@Override
+	protected Map<SWSecurityLevel, SWInstaller> getAllowedInstallers() {
+		Map<SWSecurityLevel, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevel, SWInstaller>();
+		allowedInstallers.put(SWSecurityLevel.LEVEL4, new SWInstaller());
+		return allowedInstallers;
 	}
 }
