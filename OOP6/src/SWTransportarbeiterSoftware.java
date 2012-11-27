@@ -5,6 +5,6 @@ public class SWTransportarbeiterSoftware extends SWSchwerarbeiterSoftware {
 
 	@Override
 	public void installedOnTransportarbeiter(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }

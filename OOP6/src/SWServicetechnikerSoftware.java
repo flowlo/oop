@@ -5,6 +5,6 @@ public class SWServicetechnikerSoftware extends SWSchwerarbeiterSoftware {
 
 	@Override
 	public void installedOnServicetechniker(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }

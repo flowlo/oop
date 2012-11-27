@@ -5,6 +5,6 @@ public class SWBauarbeiterSoftware extends SWSchwerarbeiterSoftware {
 
 	@Override
 	public void installedOnBauarbeiter(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }

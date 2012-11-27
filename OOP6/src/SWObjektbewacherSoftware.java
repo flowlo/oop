@@ -5,6 +5,6 @@ public class SWObjektbewacherSoftware extends SWSoftware {
 
 	@Override
 	public void installedOnObjektbewacher(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }

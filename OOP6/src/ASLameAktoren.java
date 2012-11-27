@@ -1,14 +1,13 @@
-public class ASLeichteAktoren extends ASAktorenSet {
+public class ASLameAktoren extends ASAktorenSet {
 
-	public ASLeichteAktoren()
+	public ASLameAktoren()
 	{
-		super(3);
+		super(0.5f);
 	}
 
 	@Override
 	public void vonBedienerVerwendet(ANAndroide a) {
-		System.out.println("! Aktoren-Set zu stark fuer diesen Androiden.");
-		a.setInvalid();
+		System.out.println("OK - Aktoren-Set");
 	}
 
 	@Override

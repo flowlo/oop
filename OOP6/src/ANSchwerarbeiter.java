@@ -3,8 +3,8 @@ import java.util.Map;
 
 public abstract class ANSchwerarbeiter extends ANAndroide {
 
-	public ANSchwerarbeiter(Integer ID, SKSkin skin, SWSoftware software) {
-		super(ID, skin, software);
+	public ANSchwerarbeiter(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren) {
+		super(ID, skin, software, aktoren);
 		typ = "Schwerarbeiter";
 	}
 
@@ -41,15 +41,17 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 	}
 
 	@Override
-	protected Map<SWSecurityLevels, SWInstaller> getAllowedInstallers() {
-		Map<SWSecurityLevels, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevels, SWInstaller>();
-		allowedInstallers.put(new SWSecurityLevel3().getLevel(), new SWInstaller());
-		allowedInstallers.put(new SWSecurityLevel4().getLevel(), new SWInstaller());
+	protected Map<SWSecurityLevels, SWValidator> getAllowedInstallers() {
+		Map<SWSecurityLevels, SWValidator> allowedInstallers = new HashMap<SWSecurityLevels, SWValidator>();
+		allowedInstallers.put(new SWSecurityLevel3().getLevel(), new SWValidator());
+		allowedInstallers.put(new SWSecurityLevel4().getLevel(), new SWValidator());
 		return allowedInstallers;
 	}
-	
+
+	@Override
 	public void checkAktorenSet()
 	{
-		System.out.println("NOCH NICHT IMPLEMENTIERT - SOFTWARE ABHAENGIG");
+		software.getSecurityLevel().vonSoftwareStufe3Verwendet(this);
+		software.getSecurityLevel().vonSoftwareStufe4Verwendet(this);
 	}
 }

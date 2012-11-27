@@ -5,6 +5,6 @@ public class SWKaempferSoftware extends SWSoftware {
 
 	@Override
 	public void installedOnKaempfer(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }

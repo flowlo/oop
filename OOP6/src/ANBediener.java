@@ -3,8 +3,8 @@ import java.util.Map;
 
 public abstract class ANBediener extends ANAndroide {
 
-	public ANBediener(Integer ID, SKSkin skin, SWSoftware software) {
-		super(ID, skin, software);
+	public ANBediener(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren) {
+		super(ID, skin, software, aktoren);
 	}
 
 	@Override
@@ -12,7 +12,8 @@ public abstract class ANBediener extends ANAndroide {
 	{
 		getSkin().vonBedienerGetragen(this);
 	}
-	
+
+	@Override
 	public void checkAktorenSet()
 	{
 		getAktoren().vonBedienerVerwendet(this);
@@ -51,10 +52,10 @@ public abstract class ANBediener extends ANAndroide {
 	}
 
 	@Override
-	protected Map<SWSecurityLevels, SWInstaller> getAllowedInstallers() {
-		Map<SWSecurityLevels, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevels, SWInstaller>();
-		allowedInstallers.put(new SWSecurityLevel1().getLevel(), new SWInstaller());
-		allowedInstallers.put(new SWSecurityLevel2().getLevel(), new SWInstaller());
+	protected Map<SWSecurityLevels, SWValidator> getAllowedInstallers() {
+		Map<SWSecurityLevels, SWValidator> allowedInstallers = new HashMap<SWSecurityLevels, SWValidator>();
+		allowedInstallers.put(new SWSecurityLevel1().getLevel(), new SWValidator());
+		allowedInstallers.put(new SWSecurityLevel2().getLevel(), new SWValidator());
 		return allowedInstallers;
 	}
 

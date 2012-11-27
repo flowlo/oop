@@ -3,8 +3,8 @@ import java.util.Map;
 
 public abstract class ANBeschuetzer extends ANAndroide {
 
-	public ANBeschuetzer(Integer ID, SKSkin skin, SWSoftware software) {
-		super(ID, skin, software);
+	public ANBeschuetzer(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren) {
+		super(ID, skin, software, aktoren);
 	}
 
 	@Override
@@ -41,9 +41,9 @@ public abstract class ANBeschuetzer extends ANAndroide {
 	}
 
 	@Override
-	protected Map<SWSecurityLevels, SWInstaller> getAllowedInstallers() {
-		Map<SWSecurityLevels, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevels, SWInstaller>();
-		allowedInstallers.put(new SWSecurityLevel4().getLevel(), new SWInstaller());
+	protected Map<SWSecurityLevels, SWValidator> getAllowedInstallers() {
+		Map<SWSecurityLevels, SWValidator> allowedInstallers = new HashMap<SWSecurityLevels, SWValidator>();
+		allowedInstallers.put(new SWSecurityLevel4().getLevel(), new SWValidator());
 		return allowedInstallers;
 	}
 }

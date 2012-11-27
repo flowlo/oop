@@ -5,6 +5,6 @@ public class SWGesellschafterSoftware extends SWBedienerSoftware {
 
 	@Override
 	public void installedOnGesellschafter(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }

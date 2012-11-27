@@ -1,13 +1,9 @@
-public class SWRejecter extends SWInstaller {
-
-	@Override
-	public void install(ANAndroide androide, SWSoftwareStorage softwareStorage, SWSoftware software, SWSecurityLevel securityLevel) {
-		androide.setInvalid();
-	}
+public class SWRejecter extends SWValidator {
 
 	@Override
 	public void validateAndroide(ANAndroide androide) {
 		androide.setInvalid();
+		System.out.println("! Keine passende Software-Sicherheitsstufe fuer diesen Androiden");
 	}
 
 }

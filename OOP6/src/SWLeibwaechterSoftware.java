@@ -5,6 +5,6 @@ public class SWLeibwaechterSoftware extends SWSoftware {
 
 	@Override
 	public void installedOnLeibwaechter(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }

@@ -7,11 +7,11 @@ public abstract class ANAndroide {
 	private ASAktorenSet aktoren;
 	protected SWSoftware software;
 	private Integer ID;
-	protected Map<SWSecurityLevels, SWInstaller> installer = new HashMap<SWSecurityLevels, SWInstaller>();
+	protected Map<SWSecurityLevels, SWValidator> installer = new HashMap<SWSecurityLevels, SWValidator>();
 	private ArrayList<String> history = new ArrayList<String>();
 	protected String typ = "Androide";
 
-	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software)
+	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren)
 	{
 		this.ID = ID;
 		installer.put(new SWSecurityLevel1().getLevel(), new SWRejecter());
@@ -22,6 +22,7 @@ public abstract class ANAndroide {
 		installer.putAll(getAllowedInstallers());
 		setSkin(skin);
 		installSoftware(software);
+		setAktoren(aktoren);
 	}
 
 	public abstract void checkAktorenSet();
@@ -38,6 +39,8 @@ public abstract class ANAndroide {
 		installer.get(securityLevel.getLevel()).validateAndroide(this);
 	}
 
+	public abstract void checkSoftware();
+
 	public void setSkin(SKSkin skin)
 	{
 		this.skin = skin;
@@ -53,6 +56,18 @@ public abstract class ANAndroide {
 		return ID;
 	}
 
+	public ASAktorenSet getAktoren() {
+		return aktoren;
+	}
+
+	public void setAktoren(ASAktorenSet aktoren) {
+		this.aktoren = aktoren;
+	}
+
+	public SWSoftware getSoftware() {
+		return software;
+	}
+
 	public void setInvalid()
 	{
 		this.ID = null;
@@ -66,7 +81,7 @@ public abstract class ANAndroide {
 	@Override
 	public String toString()
 	{
-		return new String("ID-" + ID + "; Typ-" + typ + "; Skin-" + skin.toString() + "; Software-" + software);
+		return new String("ID-" + ID + "; Typ-" + typ + "; Skin-" + skin + "; Software-" + software + "; Aktoren-" + aktoren);
 	}
 
 	public void installSoftware(SWSoftware software) {
@@ -81,7 +96,7 @@ public abstract class ANAndroide {
 		installer.put(new SWSecurityLevel4().getLevel(), new SWRejecter());
 		installer.put(new SWSecurityLevel5().getLevel(), new SWRejecter());
 
-		installer.put(securityLevel.getLevel(), new SWInstaller());
+		installer.put(securityLevel.getLevel(), new SWValidator());
 	}
 
 	public SWSecurityLevel getSecurityLevel() {
@@ -92,7 +107,7 @@ public abstract class ANAndroide {
 		}
 	}
 
-	protected abstract Map<SWSecurityLevels, SWInstaller> getAllowedInstallers();
+	protected abstract Map<SWSecurityLevels, SWValidator> getAllowedInstallers();
 
 	/**
 	 * Speichert die konfiguartion des Uebergebenen Androiden in die History.
@@ -126,14 +141,6 @@ public abstract class ANAndroide {
 			sb.append(System.getProperty("line.separator"));
 		}
 		System.out.println(sb.toString());
-	}
-
-	public ASAktorenSet getAktoren() {
-		return aktoren;
-	}
-
-	public void setAktoren(ASAktorenSet aktoren) {
-		this.aktoren = aktoren;
 	}
 
 }

@@ -5,6 +5,6 @@ public class SWHilfskraftSoftware extends SWBedienerSoftware {
 
 	@Override
 	public void installedOnHilfskraft(ANAndroide androide) {
-		// Do nothing
+		System.out.println("OK - Passende Software fuer diesen Typ");
 	}
 }
