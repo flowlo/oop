@@ -1,5 +1,5 @@
-public class SWTransportarbeiterSoftware extends SWSchwerarbeiterSoftware {
-	public SWTransportarbeiterSoftware(SWSecurityLevel securityLevel) {
+public class SWServicetechnikerSoftware extends SWSchwerarbeiterSoftware {
+	public SWServicetechnikerSoftware(SWSecurityLevel securityLevel) {
 		super(securityLevel);
 	}
 
@@ -29,10 +29,10 @@ public class SWTransportarbeiterSoftware extends SWSchwerarbeiterSoftware {
 
 	@Override
 	public void installSoftwareOnServicetechniker(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+		installer.install(androide, softwareStorage, this, softwareStorage.getSoftware().getSecurityLevel());
 	}
 
 	@Override
 	public void installSoftwareOnTransportarbeiter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, softwareStorage.getSoftware().getSecurityLevel());
 	}
 }

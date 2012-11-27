@@ -2,7 +2,11 @@ public class ANBauarbeiter extends ANSchwerarbeiter {
 
 	public ANBauarbeiter(Integer ID) {
 		super(ID);
-		// TODO Auto-generated constructor stub
 	}
-	
+
+	@Override
+	public void installSoftware(SWSoftware software) {
+		software.installSoftwareOnBauarbeiter(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+	}
+
 }

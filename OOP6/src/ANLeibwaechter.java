@@ -2,9 +2,11 @@ public class ANLeibwaechter extends ANBeschuetzer {
 
 	public ANLeibwaechter(Integer ID) {
 		super(ID);
-		// TODO Auto-generated constructor stub
 	}
 
-
+	@Override
+	public void installSoftware(SWSoftware software) {
+		software.installSoftwareOnLeibwaechter(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+	}
 
 }

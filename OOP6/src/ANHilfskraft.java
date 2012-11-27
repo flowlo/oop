@@ -2,9 +2,11 @@ public class ANHilfskraft extends ANBediener {
 
 	public ANHilfskraft(Integer ID) {
 		super(ID);
-		// TODO Auto-generated constructor stub
 	}
 
-
+	@Override
+	public void installSoftware(SWSoftware software) {
+		software.installSoftwareOnHilfskraft(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+	}
 
 }
