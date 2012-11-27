@@ -8,6 +8,7 @@ public abstract class ANAndroide {
 	private Integer ID;
 	protected Map<SWSecurityLevel, SWInstaller> installer = new HashMap<SWSecurityLevel, SWInstaller>();
 	private ArrayList<String> history=new ArrayList<String>();
+	protected String typ="Androide";
 
 	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software)
 	{
@@ -63,7 +64,7 @@ public abstract class ANAndroide {
 	@Override
 	public String toString()
 	{
-		return new String("ID-" + ID + "; Skin-" + skin.toString() + "; Software-" + softwareStorage.getSoftware());
+		return new String("ID-" + ID +"; Typ-"+typ+ "; Skin-" + skin.toString() + "; Software-" + softwareStorage.getSoftware());
 	}
 
 	public abstract void installSoftware(SWSoftware software);

@@ -2,6 +2,7 @@ public class ANHilfskraft extends ANBediener {
 
 	public ANHilfskraft(Integer ID) {
 		super(ID);
+		typ="Hilfskraft";
 	}
 
 	@Override

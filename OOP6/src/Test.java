@@ -16,6 +16,9 @@ public class Test {
 		ANAndroide b = new ANTransportarbeiter(1);
 		b.setSkin(new SKHochfesterSkin());
 		list.insert(b);
+		b=new ANServicetechniker(1);
+		b.setSkin(s);
+		list.insert(b);
 		
 		/*
 		

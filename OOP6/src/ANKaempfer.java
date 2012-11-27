@@ -4,6 +4,7 @@ public class ANKaempfer extends ANBeschuetzer {
 		super(ID);
 		installer.put(SWSecurityLevel.LEVEL4, new SWRejecter());
 		installer.put(SWSecurityLevel.LEVEL5, new SWInstaller());
+		typ="Kaempfer";
 	}
 
 	@Override

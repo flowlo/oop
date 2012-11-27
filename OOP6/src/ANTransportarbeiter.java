@@ -2,6 +2,7 @@ public class ANTransportarbeiter extends ANSchwerarbeiter {
 
 	public ANTransportarbeiter(Integer ID) {
 		super(ID);
+		typ="Transportarbeiter";
 	}
 
 	@Override

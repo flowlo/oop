@@ -7,6 +7,7 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 		super(ID, skin, software);
 		installer.put(SWSecurityLevel.LEVEL3, new SWInstaller());
 		installer.put(SWSecurityLevel.LEVEL4, new SWInstaller());
+		typ="Schwerarbeiter";
 	}
 
 	@Override

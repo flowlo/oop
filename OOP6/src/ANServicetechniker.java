@@ -2,6 +2,7 @@ public class ANServicetechniker extends ANSchwerarbeiter { //commit
 
 	public ANServicetechniker(Integer ID) {
 		super(ID);
+		typ="Servicetechniker";
 	}
 
 	@Override

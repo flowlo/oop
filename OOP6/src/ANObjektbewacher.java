@@ -2,6 +2,7 @@ public class ANObjektbewacher extends ANBeschuetzer {
 
 	public ANObjektbewacher(Integer ID) {
 		super(ID);
+		typ="Objektbewacher";
 	}
 
 	@Override
