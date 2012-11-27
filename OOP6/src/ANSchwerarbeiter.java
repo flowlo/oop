@@ -19,20 +19,20 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 	}
 
 	@Override
-	public void checkHauptTypFromBediener()
+	protected void checkHauptTypFromBediener()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();
 	}
 
 	@Override
-	public void checkHauptTypFromSchwerarbeiter()
+	protected void checkHauptTypFromSchwerarbeiter()
 	{
 		System.out.println("OK - Haupttyp unveraendert");
 	}
 
 	@Override
-	public void checkHauptTypFromBeschuetzer()
+	protected void checkHauptTypFromBeschuetzer()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();

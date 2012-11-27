@@ -1,4 +1,5 @@
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 /**
  * Die Liste aus der Angabe (zur Speicherung der Androiden)
@@ -7,12 +8,12 @@ import java.util.HashMap;
  */
 public class Verwaltung {
 	
-	private HashMap<Integer,ANAndroide> map;
+	private LinkedHashMap<Integer,ANAndroide> map;
 	
 
 	public Verwaltung()
 	{
-		map=new HashMap<Integer,ANAndroide>();
+		map=new LinkedHashMap<Integer,ANAndroide>();
 		//null ist standardmaessig drinnen... muss bei jeder Ausgabe weggenommen werden.
 		map.put(null, null);
 	}
@@ -57,5 +58,9 @@ public class Verwaltung {
 		System.out.println(map.size()-1); //-1 wegen null-entry im Konstruktor
 	}
 	
+	public Iterator<ANAndroide> iterator()
+	{
+		return map.values().iterator();		
+	}
 	
 }

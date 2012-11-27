@@ -16,6 +16,7 @@ public class Test {
 		ANAndroide b = new ANHilfskraft(1);
 		b.setSkin(s);
 		list.insert(b);
+		
 		/*
 		
 		b.setSkin(s);
