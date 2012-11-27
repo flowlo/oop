@@ -1,9 +1,10 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class ANBediener extends ANAndroide {
 
-	public ANBediener(Integer ID) {
-		super(ID);
-		installer.put(SWSecurityLevel.LEVEL1, new SWInstaller());
-		installer.put(SWSecurityLevel.LEVEL2, new SWInstaller());
+	public ANBediener(Integer ID, SKSkin skin, SWSoftware software) {
+		super(ID, skin, software);
 	}
 
 	@Override
@@ -11,33 +12,45 @@ public abstract class ANBediener extends ANAndroide {
 	{
 		getSkin().vonBedienerGetragen(this);
 	}
-	
-	
+
 	public int checkUpdateHauptTyp(ANHilfskraft old, ANHilfskraft update)
 	{
-		return old.getID();		
+		return old.getID();
 	}
-	
-	
+
+	@Override
 	public void checkHauptTyp(ANAndroide a)
 	{
 		a.checkHauptTypFromBediener();
 	}
-	
-	protected void checkHauptTypFromBediener()
+
+	@Override
+	public void checkHauptTypFromBediener()
 	{
 		System.out.println("OK - Haupttyp unveraendert");
 	}
-	protected void checkHauptTypFromSchwerarbeiter()
+
+	@Override
+	public void checkHauptTypFromSchwerarbeiter()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();
-		
+
 	}
-	protected void checkHauptTypFromBeschuetzer()
+
+	@Override
+	public void checkHauptTypFromBeschuetzer()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();
 	}
-	
+
+	@Override
+	protected Map<SWSecurityLevel, SWInstaller> getAllowedInstallers() {
+		Map<SWSecurityLevel, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevel, SWInstaller>();
+		allowedInstallers.put(SWSecurityLevel.LEVEL1, new SWInstaller());
+		allowedInstallers.put(SWSecurityLevel.LEVEL2, new SWInstaller());
+		return allowedInstallers;
+	}
+
 }
