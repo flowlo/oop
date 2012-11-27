@@ -20,11 +20,10 @@ public abstract class ANAndroide {
 
 	public abstract void checkHauptTyp(ANAndroide a);
 
-	public abstract void checkHauptTypFromBediener();
+	protected abstract void checkHauptTypFromBediener();
+	protected abstract void checkHauptTypFromSchwerarbeiter();
+	protected abstract void checkHauptTypFromBeschuetzer();
 
-	public abstract void checkHauptTypFromSchwerarbeiter();
-
-	public abstract void checkHauptTypFromBeschuetzer();
 
 	public void checkSoftwareLevel(SWSecurityLevel securityLevel) {
 		installer.get(securityLevel).validateAndroide(this);
