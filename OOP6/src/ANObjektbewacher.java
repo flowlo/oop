@@ -1,7 +1,7 @@
 public class ANObjektbewacher extends ANBeschuetzer {
 
-	public ANObjektbewacher(Integer ID) {
-		super(ID);
+	public ANObjektbewacher(Integer ID, SKSkin skin, SWSoftware software) {
+		super(ID, skin, software);
 		typ="Objektbewacher";
 	}
 

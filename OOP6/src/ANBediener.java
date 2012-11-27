@@ -25,13 +25,13 @@ public abstract class ANBediener extends ANAndroide {
 	}
 
 	@Override
-	public void checkHauptTypFromBediener()
+	protected void checkHauptTypFromBediener()
 	{
 		System.out.println("OK - Haupttyp unveraendert");
 	}
 
 	@Override
-	public void checkHauptTypFromSchwerarbeiter()
+	protected void checkHauptTypFromSchwerarbeiter()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();
@@ -39,7 +39,7 @@ public abstract class ANBediener extends ANAndroide {
 	}
 
 	@Override
-	public void checkHauptTypFromBeschuetzer()
+	protected void checkHauptTypFromBeschuetzer()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();

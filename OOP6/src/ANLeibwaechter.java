@@ -1,7 +1,7 @@
 public class ANLeibwaechter extends ANBeschuetzer {
 
-	public ANLeibwaechter(Integer ID) {
-		super(ID);
+	public ANLeibwaechter(Integer ID, SKSkin skin, SWSoftware software) {
+		super(ID, skin, software);
 		typ="Leibwaechter";
 	}
 

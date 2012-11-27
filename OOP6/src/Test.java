@@ -8,24 +8,16 @@ public class Test {
 		Verwaltung list = new Verwaltung();
 		list.test();
 
-		SKSkin s = new SKSensitiveSkin();
-		//s = new SKHochfesterSkin();
-		ANAndroide a = new ANTransportarbeiter(1);
-		a.setSkin(s);
+		SKSkin s = new SKHochfesterSkin();
+		SKSkin s2 = new SKHochfesterSkin();
+		SWSoftware software = new SWTransportarbeiterSoftware(SWSecurityLevel.LEVEL3);
+		SWSoftware software2 = new SWTransportarbeiterSoftware(SWSecurityLevel.LEVEL4);
+		ANAndroide a = new ANTransportarbeiter(1, s, software);
 		list.insert(a);
-		ANAndroide b = new ANTransportarbeiter(1);
-		b.setSkin(new SKHochfesterSkin());
+		ANAndroide b = new ANTransportarbeiter(1, s2, software);
 		list.insert(b);
-		b=new ANServicetechniker(1);
-		b.setSkin(s);
+		b = new ANServicetechniker(1, s, software2);
 		list.insert(b);
-		
-		/*
-		
-		b.setSkin(s);
-		b.installSoftware(new SWHilfskraftSoftware(SWSecurityLevel.LEVEL2));
-
-		list.insert(b);*/
 
 		list.test();
 		//System.out.println(list.find(1));

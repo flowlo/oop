@@ -16,4 +16,12 @@ public class SWSoftwareStorage {
 	public void setSoftware(SWSoftware software) {
 		this.software = software;
 	}
+
+	public SWSecurityLevel getSecurityLevel() {
+		if (software == null) {
+			return null;
+		} else {
+			return software.getSecurityLevel();
+		}
+	}
 }

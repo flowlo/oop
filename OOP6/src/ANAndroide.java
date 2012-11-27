@@ -7,7 +7,7 @@ public abstract class ANAndroide {
 	protected SWSoftwareStorage softwareStorage;
 	private Integer ID;
 	protected Map<SWSecurityLevel, SWInstaller> installer = new HashMap<SWSecurityLevel, SWInstaller>();
-	private ArrayList<String> history=new ArrayList<String>();
+	private ArrayList<String> history = new ArrayList<String>();
 	protected String typ="Androide";
 
 	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software)
@@ -26,11 +26,11 @@ public abstract class ANAndroide {
 
 	public abstract void checkHauptTyp(ANAndroide a);
 
-	public abstract void checkHauptTypFromBediener();
+	protected abstract void checkHauptTypFromBediener();
 
-	public abstract void checkHauptTypFromSchwerarbeiter();
+	protected abstract void checkHauptTypFromSchwerarbeiter();
 
-	public abstract void checkHauptTypFromBeschuetzer();
+	protected abstract void checkHauptTypFromBeschuetzer();
 
 	public void checkSoftwareSecurityLevel(SWSecurityLevel securityLevel) {
 		installer.get(securityLevel).validateAndroide(this);
@@ -84,11 +84,11 @@ public abstract class ANAndroide {
 	}
 
 	protected abstract Map<SWSecurityLevel, SWInstaller> getAllowedInstallers();
-	
-	
+
 	/**
 	 * Speichert die konfiguartion des Uebergebenen Androiden in die History.
-	 * @param a 
+	 * 
+	 * @param a
 	 */
 	protected void addToHistory(ANAndroide a)
 	{
@@ -97,18 +97,20 @@ public abstract class ANAndroide {
 
 	/**
 	 * Kopiert die History des uebergebenen Androiden und fuegt die eigene Konfiguration dazu.
-	 * @param a alte History
+	 * 
+	 * @param a
+	 *            alte History
 	 */
 	protected void copyHistory(ANAndroide a)
 	{
-		this.history=a.history;
+		this.history = a.history;
 		this.addToHistory(this);
 	}
-	
+
 	public void printHistory()
 	{
-		StringBuilder sb=new StringBuilder("History of "+ID+":"+System.getProperty("line.separator"));
-		for(String it:history)
+		StringBuilder sb = new StringBuilder("History of " + ID + ":" + System.getProperty("line.separator"));
+		for (String it : history)
 		{
 			sb.append(it);
 			sb.append(System.getProperty("line.separator"));
