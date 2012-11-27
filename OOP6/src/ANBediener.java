@@ -17,4 +17,27 @@ public abstract class ANBediener extends ANAndroide {
 	{
 		return old.getID();		
 	}
+	
+	
+	public void checkHauptTyp(ANAndroide a)
+	{
+		a.checkHauptTypFromBediener();
+	}
+	
+	public void checkHauptTypFromBediener()
+	{
+		System.out.println("OK - Haupttyp unveraendert");
+	}
+	public void checkHauptTypFromSchwerarbeiter()
+	{
+		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
+		this.setInvalid();
+		
+	}
+	public void checkHauptTypFromBeschuetzer()
+	{
+		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
+		this.setInvalid();
+	}
+	
 }

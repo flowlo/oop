@@ -3,7 +3,7 @@ public class SKHochfesterSkin extends SKSkin {
 	public void vonBedienerGetragen(ANBediener b)
 	{
 		System.out.println("! Bediener brauchen eine beruehrungssensitive Skin. (setze ID auf null)");
-		b.setUnvalid();
+		b.setInvalid();
 	}
 	
 

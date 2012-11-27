@@ -18,7 +18,10 @@ public abstract class ANAndroide {
 		installer.put(SWSecurityLevel.LEVEL5, new SWRejecter());
 	}
 	
-	
+	public abstract void checkHauptTyp(ANAndroide a);
+	public abstract void checkHauptTypFromBediener();
+	public abstract void checkHauptTypFromSchwerarbeiter();
+	public abstract void checkHauptTypFromBeschuetzer();
 
 	public void setSkin(SKSkin skin)
 	{
@@ -35,7 +38,7 @@ public abstract class ANAndroide {
 		return ID;
 	}
 
-	public void setUnvalid()
+	public void setInvalid()
 	{
 		this.ID = null;
 	}
@@ -62,4 +65,7 @@ public abstract class ANAndroide {
 
 		installer.put(securityLevel, new SWInstaller());
 	}
+	
+	
+	
 }

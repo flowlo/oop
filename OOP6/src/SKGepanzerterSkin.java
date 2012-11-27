@@ -4,7 +4,7 @@ public class SKGepanzerterSkin extends SKSkin {
 	@Override
 	public void vonBedienerGetragen(ANBediener b) {
 		System.out.println("! Nur Beschuetzer duerfen einen gepanzerten Skin haben. (setze ID auf null)");
-		b.setUnvalid();		
+		b.setInvalid();		
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class SKGepanzerterSkin extends SKSkin {
 	@Override
 	public void vonSchwerArbeiterGetragen(ANSchwerarbeiter s) {
 		System.out.println("! Nur Beschuetzer duerfen einen gepanzerten Skin haben. (setze ID auf null)");
-		s.setUnvalid();	
+		s.setInvalid();	
 	}
 
 }
