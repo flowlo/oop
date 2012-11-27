@@ -1,7 +1,10 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class ANSchwerarbeiter extends ANAndroide {
 
-	public ANSchwerarbeiter(Integer ID) {
-		super(ID);
+	public ANSchwerarbeiter(Integer ID, SKSkin skin, SWSoftware software) {
+		super(ID, skin, software);
 		installer.put(SWSecurityLevel.LEVEL3, new SWInstaller());
 		installer.put(SWSecurityLevel.LEVEL4, new SWInstaller());
 	}
@@ -36,5 +39,13 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();
+	}
+
+	@Override
+	protected Map<SWSecurityLevel, SWInstaller> getAllowedInstallers() {
+		Map<SWSecurityLevel, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevel, SWInstaller>();
+		allowedInstallers.put(SWSecurityLevel.LEVEL3, new SWInstaller());
+		allowedInstallers.put(SWSecurityLevel.LEVEL4, new SWInstaller());
+		return allowedInstallers;
 	}
 }
