@@ -34,6 +34,7 @@ public class Verwaltung {
 			System.out.println("Starte checks fuer Androiden mit ID " + a.getID());
 			a.checkSkin();
 			map.put(a.getID(), a);
+			a.addToHistory(a);
 		} else {
 			//Androide soll update erhalten
 			System.out.println("Androide mit ID " + a.getID() + " soll Update erhalten:");
