@@ -2,13 +2,15 @@
 public abstract class ANBediener extends ANAndroide{
 
 		
-	public void setSkin(SKSkin skin)
-	{
-		this.skin=skin;
-	}
+
 	
+	public ANBediener(Integer ID) {
+		super(ID);
+		// TODO Auto-generated constructor stub
+	}
+
 	public void checkSkin()
 	{
-		skin.vonBedienerGetragen(this);
+		getSkin().vonBedienerGetragen(this);
 	}
 }

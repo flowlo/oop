@@ -1,13 +1,10 @@
 public class ANKaempfer extends ANBeschuetzer {
 
-	public ANKaempfer(SWKaempferSoftware software) {
-		this.software = software;
+	public ANKaempfer(Integer ID) {
+		super(ID);
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void checkSkin() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

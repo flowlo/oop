@@ -1,13 +1,10 @@
 public class ANLeibwaechter extends ANBeschuetzer {
 
-	public ANLeibwaechter(SWLeibwaechterSoftware software) {
-		this.software = software;
+	public ANLeibwaechter(Integer ID) {
+		super(ID);
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void checkSkin() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

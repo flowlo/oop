@@ -1,12 +1,13 @@
 public abstract class ANSchwerarbeiter extends ANAndroide {
-	public ANSchwerarbeiter(SKSensitiveSkin skin, SWSchwerarbeiterSoftware software)
-	{
-		this.skin = skin;
-		this.software = software;
+
+	
+	public ANSchwerarbeiter(Integer ID) {
+		super(ID);
+		// TODO Auto-generated constructor stub
 	}
 
-	public ANSchwerarbeiter(SKHochfesterSkin skin, SWSchwerarbeiterSoftware software)
+	public void checkSkin()
 	{
-		this.skin = skin;
+		getSkin().vonSchwerArbeiterGetragen(this);
 	}
 }

@@ -1,12 +1,8 @@
 public class ANBauarbeiter extends ANSchwerarbeiter {
-	public ANBauarbeiter(SKHochfesterSkin skin, SWBauarbeiterSoftware software) {
-		super(skin, software);
+
+	public ANBauarbeiter(Integer ID) {
+		super(ID);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void checkSkin() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

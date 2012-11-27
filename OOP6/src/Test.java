@@ -7,7 +7,7 @@ public class Test {
 		// TODO Auto-generated method stub
 
 		SKSkin s = new SKSensitiveSkin();
-		ANAndroide a = new ANHilfskraft(new SWHilfskraftSoftwareLevel1());
+		ANAndroide a = new ANHilfskraft(1);
 		a.setSkin(s);
 		a.checkSkin();
 

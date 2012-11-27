@@ -1,7 +1,10 @@
 public class ANGesellschafter extends ANBediener {
 
-	public ANGesellschafter(SWGesellschafterSoftware software) {
-		this.software = software;
+	public ANGesellschafter(Integer ID) {
+		super(ID);
+		// TODO Auto-generated constructor stub
 	}
+
+
 
 }

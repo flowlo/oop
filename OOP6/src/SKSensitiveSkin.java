@@ -7,13 +7,11 @@ public class SKSensitiveSkin extends SKSkin {
 
 	@Override
 	public void vonBeschuetzerGetragen(ANBeschuetzer b) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("OK - skin");
 	}
 
 	@Override
 	public void vonSchwerArbeiterGetragen(ANSchwerarbeiter s) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("OK - skin");
 	}
 }

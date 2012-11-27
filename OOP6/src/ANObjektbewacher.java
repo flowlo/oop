@@ -1,13 +1,10 @@
 public class ANObjektbewacher extends ANBeschuetzer {
 
-	public ANObjektbewacher(SWObjektbewacherSoftware software) {
-		this.software = software;
+	public ANObjektbewacher(Integer ID) {
+		super(ID);
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void checkSkin() {
-		// TODO Auto-generated method stub
 
-	}
 
 }
