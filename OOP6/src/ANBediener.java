@@ -12,6 +12,11 @@ public abstract class ANBediener extends ANAndroide {
 	{
 		getSkin().vonBedienerGetragen(this);
 	}
+	
+	public void checkAktorenSet()
+	{
+		getAktoren().vonBedienerVerwendet(this);
+	}
 
 	public int checkUpdateHauptTyp(ANHilfskraft old, ANHilfskraft update)
 	{

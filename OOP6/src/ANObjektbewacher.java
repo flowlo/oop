@@ -10,4 +10,9 @@ public class ANObjektbewacher extends ANBeschuetzer {
 		software.installSoftwareOnObjektbewacher(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
+	@Override
+	public void checkAktorenSet() {
+		getAktoren().vonSoftwareStufe4Verwendet(this);		
+	}
+
 }

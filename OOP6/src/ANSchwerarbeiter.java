@@ -49,4 +49,9 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 		allowedInstallers.put(SWSecurityLevel.LEVEL4, new SWInstaller());
 		return allowedInstallers;
 	}
+	
+	public void checkAktorenSet()
+	{
+		System.out.println("NOCH NICHT IMPLEMENTIERT - SOFTWARE ABHAENGIG");
+	}
 }

@@ -3,9 +3,9 @@ public abstract class ASAktorenSet {
 
 	protected final float leistung;
 	
-	public ASAktorenSet()
+	public ASAktorenSet(float leistung)
 	{
-		leistung=0;
+		this.leistung=leistung;
 	}
 	
 	public String toString()

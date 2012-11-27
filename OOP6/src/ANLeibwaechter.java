@@ -10,4 +10,10 @@ public class ANLeibwaechter extends ANBeschuetzer {
 		software.installSoftwareOnLeibwaechter(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
+	@Override
+	public void checkAktorenSet() {
+		getAktoren().vonSoftwareStufe4Verwendet(this);
+		
+	}
+
 }

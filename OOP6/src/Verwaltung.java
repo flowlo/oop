@@ -33,11 +33,14 @@ public class Verwaltung {
 			System.out.println("Neuer Androide soll eingefuegt werden:");
 			System.out.println("Starte checks fuer Androiden mit ID " + a.getID());
 			a.checkSkin();
+			a.checkAktorenSet();
 			map.put(a.getID(), a);
 			a.addToHistory(a);
 		} else {
 			//Androide soll update erhalten
 			System.out.println("Androide mit ID " + a.getID() + " soll Update erhalten:");
+			a.checkSkin();
+			a.checkAktorenSet();
 			old.checkHauptTyp(a); //checke ob sich der Haupttyp aendert
 			a.checkSoftwareSecurityLevel(old.getSoftwareSecurityLevel()); // checke, ob dich das Sicherheitslevel der Software aendert
 			map.put(a.getID(), a);

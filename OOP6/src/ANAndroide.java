@@ -4,6 +4,7 @@ import java.util.Map;
 
 public abstract class ANAndroide {
 	private SKSkin skin;
+	private ASAktorenSet aktoren;
 	protected SWSoftwareStorage softwareStorage;
 	private Integer ID;
 	protected Map<SWSecurityLevel, SWInstaller> installer = new HashMap<SWSecurityLevel, SWInstaller>();
@@ -24,6 +25,8 @@ public abstract class ANAndroide {
 		installSoftware(software);
 	}
 
+	public abstract void checkAktorenSet();
+	
 	public abstract void checkHauptTyp(ANAndroide a);
 
 	protected abstract void checkHauptTypFromBediener();
@@ -116,6 +119,14 @@ public abstract class ANAndroide {
 			sb.append(System.getProperty("line.separator"));
 		}
 		System.out.println(sb.toString());
+	}
+
+	public ASAktorenSet getAktoren() {
+		return aktoren;
+	}
+
+	public void setAktoren(ASAktorenSet aktoren) {
+		this.aktoren = aktoren;
 	}
 
 }

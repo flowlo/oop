@@ -22,4 +22,9 @@ public class ANKaempfer extends ANBeschuetzer {
 		return allowedInstallers;
 	}
 
+	@Override
+	public void checkAktorenSet() {
+		System.out.println("OK - Aktoren-Set");		
+	}
+
 }
