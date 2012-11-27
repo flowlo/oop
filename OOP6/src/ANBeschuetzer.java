@@ -10,25 +10,31 @@ public abstract class ANBeschuetzer extends ANAndroide {
 	{
 		getSkin().vonBeschuetzerGetragen(this);
 	}
-	
+
+	@Override
 	public void checkHauptTyp(ANAndroide a)
 	{
-		a.checkHauptTypFromSchwerarbeiter();
+		a.checkHauptTypFromBeschuetzer();
 	}
-	
+
+	@Override
 	public void checkHauptTypFromBediener()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
 		this.setInvalid();
-		
+
 	}
+
+	@Override
 	public void checkHauptTypFromSchwerarbeiter()
 	{
 		System.out.println("! Haupttyp darf nicht veraendert werden. (setze ID auf null)");
-		this.setInvalid();		
+		this.setInvalid();
 	}
+
+	@Override
 	public void checkHauptTypFromBeschuetzer()
 	{
-		System.out.println("OK - Haupttyp unveraendert");		
+		System.out.println("OK - Haupttyp unveraendert");
 	}
 }
