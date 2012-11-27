@@ -25,7 +25,7 @@ public class SWObjektbewacherSoftware extends SWSoftware {
 
 	@Override
 	public void installSoftwareOnObjektbewacher(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, softwareStorage.getSoftware().getSecurityLevel());
+		installer.install(androide, softwareStorage, this, securityLevel);
 	}
 
 	@Override

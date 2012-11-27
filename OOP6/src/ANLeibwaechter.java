@@ -6,7 +6,7 @@ public class ANLeibwaechter extends ANBeschuetzer {
 
 	@Override
 	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnLeibwaechter(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+		software.installSoftwareOnLeibwaechter(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
 }

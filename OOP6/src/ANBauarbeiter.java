@@ -6,7 +6,7 @@ public class ANBauarbeiter extends ANSchwerarbeiter {
 
 	@Override
 	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnBauarbeiter(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+		software.installSoftwareOnBauarbeiter(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
 }

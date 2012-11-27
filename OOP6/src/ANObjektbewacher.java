@@ -6,7 +6,7 @@ public class ANObjektbewacher extends ANBeschuetzer {
 
 	@Override
 	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnObjektbewacher(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+		software.installSoftwareOnObjektbewacher(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
 }

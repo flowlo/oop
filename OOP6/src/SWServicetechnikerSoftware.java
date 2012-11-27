@@ -29,7 +29,7 @@ public class SWServicetechnikerSoftware extends SWSchwerarbeiterSoftware {
 
 	@Override
 	public void installSoftwareOnServicetechniker(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, softwareStorage.getSoftware().getSecurityLevel());
+		installer.install(androide, softwareStorage, this, securityLevel);
 	}
 
 	@Override

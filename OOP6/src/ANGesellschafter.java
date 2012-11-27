@@ -7,7 +7,7 @@ public class ANGesellschafter extends ANBediener {
 
 	@Override
 	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnGesellschafter(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+		software.installSoftwareOnGesellschafter(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
 }

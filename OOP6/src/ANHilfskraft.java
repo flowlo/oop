@@ -6,7 +6,7 @@ public class ANHilfskraft extends ANBediener {
 
 	@Override
 	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnHilfskraft(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+		software.installSoftwareOnHilfskraft(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
 }

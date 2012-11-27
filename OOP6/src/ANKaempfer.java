@@ -8,7 +8,7 @@ public class ANKaempfer extends ANBeschuetzer {
 
 	@Override
 	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnKaempfer(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+		software.installSoftwareOnKaempfer(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
 }

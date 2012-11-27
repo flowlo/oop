@@ -6,7 +6,7 @@ public class ANTransportarbeiter extends ANSchwerarbeiter {
 
 	@Override
 	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnTransportarbeiter(null, softwareStorage, installer.get(softwareStorage.getSoftware().getSecurityLevel()));
+		software.installSoftwareOnTransportarbeiter(this, softwareStorage, installer.get(software.getSecurityLevel()));
 	}
 
 }
