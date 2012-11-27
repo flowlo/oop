@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -6,6 +7,7 @@ public abstract class ANAndroide {
 	protected SWSoftwareStorage softwareStorage;
 	private Integer ID;
 	protected Map<SWSecurityLevel, SWInstaller> installer = new HashMap<SWSecurityLevel, SWInstaller>();
+	private ArrayList<String> history=new ArrayList<String>();
 
 	public ANAndroide(Integer ID)
 	{
@@ -71,5 +73,33 @@ public abstract class ANAndroide {
 
 		installer.put(securityLevel, new SWInstaller());
 	}
+	
+	
+	/**
+	 * Speichert die konfiguartion des Uebergebenen Androiden in die History.
+	 * @param a 
+	 */
+	protected void addToHistory(ANAndroide a)
+	{
+		history.add(a.toString());
+	}
 
+	/**
+	 * @param a
+	 */
+	protected void copyHistory(ANAndroide a)
+	{
+		this.history=a.history;
+	}
+	
+	public void printHistory()
+	{
+		StringBuilder sb=new StringBuilder();
+		for(String it:history)
+		{
+			sb.append(it);
+			sb.append(System.getProperty("line.separator"));
+		}
+		System.out.println(sb.toString());
+	}
 }
