@@ -19,16 +19,8 @@ public class Test {
 		/*
 		
 		b.setSkin(s);
-		b.installSoftware(new SWHilfskraftSoftware(SWSecurityLevel.LEVEL3));
-		System.out.println(b);
-		b.installSoftware(new SWGesellschafterSoftware(SWSecurityLevel.LEVEL1));
-		System.out.println(b);
-		b.installSoftware(new SWBauarbeiterSoftware(SWSecurityLevel.LEVEL2));
-		System.out.println(b);
 		b.installSoftware(new SWHilfskraftSoftware(SWSecurityLevel.LEVEL2));
-		System.out.println(b);
-		b.installSoftware(new SWHilfskraftSoftware(SWSecurityLevel.LEVEL1));
-		System.out.println(b);
+
 		list.insert(b);*/
 
 		list.test();

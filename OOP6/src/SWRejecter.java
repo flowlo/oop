@@ -5,4 +5,9 @@ public class SWRejecter extends SWInstaller {
 		// Do nothing
 	}
 
+	@Override
+	public void validateAndroide(ANAndroide androide) {
+		androide.setInvalid();
+	}
+
 }

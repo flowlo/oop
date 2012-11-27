@@ -5,4 +5,8 @@ public class SWInstaller {
 		androide.limitSecurityLevel(securityLevel);
 	}
 
+	public void validateAndroide(ANAndroide androide) {
+		// Do nothing
+	}
+
 }
