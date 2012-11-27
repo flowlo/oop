@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Kaempfers
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss 5 sein
+ * 
  * @author Dominik
  * 
  */

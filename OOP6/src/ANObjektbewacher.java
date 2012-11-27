@@ -1,6 +1,11 @@
 /**
  * Repraesentiert einen Objektbewacher
  * 
+ * Zusicherungen:
+ * * Muss eine Objektbewachersoftware installiert haben
+ * * Darf nur Software der Sicherheitsstufe 4 installiert haben
+ * * Aktoren duerfen eine Leistung von 10 kW nicht ueberschreiten
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

@@ -1,6 +1,9 @@
 /**
  * Repraesentiert einen Bauarbeiter
  * 
+ * Zusicherungen:
+ * * Muss eine Bauarbeitersoftware installiert haben
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

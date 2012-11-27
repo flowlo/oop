@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Androiden
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss zwischen 1 und 5 liegen
+ * 
  * @author Dominik
  * 
  */

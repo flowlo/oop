@@ -1,6 +1,9 @@
 /**
  * Repraesentiert einen Gesellschafter
  * 
+ * Zusicherungen:
+ * * Muss eine Hilfskraftsoftware installiert haben
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

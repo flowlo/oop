@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Leibwaechters
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss 4 sein
+ * 
  * @author Dominik
  * 
  */

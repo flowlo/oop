@@ -4,6 +4,12 @@ import java.util.Map;
 /**
  * Repraesentiert einen Bediener
  * 
+ * Zusicherungen:
+ * * Darf nur beruehrungssensitive Skins tragen
+ * * Muss eine Bedienersoftware installiert haben
+ * * Darf nur Software der Sicherheitsstufen 1 oder 2 installiert haben
+ * * Aktoren duerfen eine Leistung von 1 kW nicht ueberschreiten
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

@@ -4,6 +4,12 @@ import java.util.Map;
 /**
  * Repraesentiert einen Schwerarbeiter
  * 
+ * Zusicherungen:
+ * * Darf keine gepanzerten Skins tragen
+ * * Muss eine Schwerarbeitersoftware installiert haben
+ * * Darf nur Software der Sicherheitsstufen 3 oder 4 installiert haben
+ * * Aktoren duerfen abhaengig von der Software eine Leistung von 5 kW bzw. 10 kW nicht ueberschreiten
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

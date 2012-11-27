@@ -3,6 +3,10 @@ import java.util.Map;
 /**
  * Repraesentiert einen Kaempfer
  * 
+ * Zusicherungen:
+ * * Muss eine Kaempfersoftware installiert haben
+ * * Darf nur Software der Sicherheitsstufe 5 installiert haben
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

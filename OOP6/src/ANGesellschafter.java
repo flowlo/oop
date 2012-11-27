@@ -3,6 +3,10 @@ import java.util.Map;
 /**
  * Repraesentiert einen Gesellschafter
  * 
+ * Zusicherungen:
+ * * Muss eine Gesellschaftersoftware installiert haben
+ * * Darf nur Software der Sicherheitsstufe 1 installiert haben
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

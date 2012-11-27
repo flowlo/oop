@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Beschuetzers
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss 4 oder 5 sein (wegen Kaempfern)
+ * 
  * @author Dominik
  * 
  */

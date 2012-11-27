@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Schwerarbeiters
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss 3 oder 4 sein
+ * 
  * @author Dominik
  * 
  */

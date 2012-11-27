@@ -1,6 +1,9 @@
 /**
  * Repraesentiert einen Servicetechniker
  * 
+ * Zusicherungen:
+ * * Muss eine Servicetechnikersoftware installiert haben
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

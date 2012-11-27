@@ -1,6 +1,9 @@
 /**
  * Repraesentiert einen gepanzerten Skin eines Androiden
  * 
+ * Zusicherungen:
+ * * Darf nur von Beschuetzern getragen werden
+ * 
  * @author Simon
  * 
  */

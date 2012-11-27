@@ -5,6 +5,11 @@ import java.util.Map;
 /**
  * Repraesentiert einen Androiden
  * 
+ * Zusicherungen:
+ * * Die Seriennummer darf sich nicht aendern
+ * * Der Haupttyp darf sich bei gleichbleibender Seriennummer nicht aendern
+ * * Die Sicherheitsstufe der Software darf sich nicht aendern
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz
@@ -14,7 +19,7 @@ public abstract class ANAndroide {
 	private SKSkin skin;
 	private ASAktorenSet aktoren;
 	protected SWSoftware software;
-	private Integer ID;
+	private Integer seriennummer, checkedSeriennummer;
 	protected Map<SWSecurityLevels, SWValidator> installer = new HashMap<SWSecurityLevels, SWValidator>();
 	private ArrayList<String> history = new ArrayList<String>();
 	protected String typ = "Androide";
@@ -29,7 +34,7 @@ public abstract class ANAndroide {
 	 */
 	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren)
 	{
-		this.ID = ID;
+		this.seriennummer = ID;
 		installer.put(new SWSecurityLevel1().getLevel(), new SWRejecter());
 		installer.put(new SWSecurityLevel2().getLevel(), new SWRejecter());
 		installer.put(new SWSecurityLevel3().getLevel(), new SWRejecter());
@@ -90,9 +95,9 @@ public abstract class ANAndroide {
 	 * 
 	 * @return die ID
 	 */
-	public Integer getID()
+	public Integer getSeriennummer()
 	{
-		return ID;
+		return seriennummer;
 	}
 
 	/**
@@ -118,7 +123,7 @@ public abstract class ANAndroide {
 	 */
 	public void setInvalid()
 	{
-		this.ID = null;
+		this.checkedSeriennummer = null;
 	}
 
 	/**
@@ -129,7 +134,7 @@ public abstract class ANAndroide {
 	@Override
 	public String toString()
 	{
-		return new String("ID-" + ID + "; Typ-" + typ + "; Skin-" + skin + "; Software-" + software + "; Aktoren-" + aktoren);
+		return new String("ID-" + seriennummer + "; Typ-" + typ + "; Skin-" + skin + "; Software-" + software + "; Aktoren-" + aktoren);
 	}
 
 	/**
@@ -191,7 +196,7 @@ public abstract class ANAndroide {
 	 */
 	public void printHistory()
 	{
-		StringBuilder sb = new StringBuilder("History of " + ID + ":" + System.getProperty("line.separator"));
+		StringBuilder sb = new StringBuilder("History of " + seriennummer + ":" + System.getProperty("line.separator"));
 		for (String it : history)
 		{
 			sb.append(it);
@@ -200,4 +205,13 @@ public abstract class ANAndroide {
 		System.out.println(sb.toString());
 	}
 
+	public Integer getCheckedSeriennummer(ANAndroide androide, ANAndroide old) {
+		checkedSeriennummer = seriennummer;
+		androide.checkSkin();
+		androide.checkAktorenSet();
+		old.checkHauptTyp(androide);
+		androide.checkSoftware();
+		androide.checkSoftwareSecurityLevel(old.getSecurityLevel());
+		return checkedSeriennummer;
+	}
 }

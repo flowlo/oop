@@ -1,6 +1,9 @@
 /**
  * Repraesentiert einen Transportarbeiter
  * 
+ * Zusicherungen:
+ * * Muss eine Transportarbeitersoftware installiert haben
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

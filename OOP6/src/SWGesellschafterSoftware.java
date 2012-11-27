@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Gesellschafters
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss 1 sein
+ * 
  * @author Dominik
  * 
  */

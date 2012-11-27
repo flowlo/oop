@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Objektbewachers
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss 4 sein
+ * 
  * @author Dominik
  * 
  */

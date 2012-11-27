@@ -4,6 +4,10 @@ import java.util.Map;
 /**
  * Repraesentiert einen Beschuetzer
  * 
+ * Zusicherungen:
+ * * Muss eine Beschuetzersoftware installiert haben
+ * * Darf nur Software der Sicherheitsstufe 4 oder 5 installiert haben (wegen Kaempfern)
+ * 
  * @author Simon
  * @author Dominik
  * @author Lorenz

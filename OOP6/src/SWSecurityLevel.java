@@ -1,6 +1,8 @@
 /**
  * Repraesentiert die Sicherheitsstufen einer Software
  * 
+ * Zusicherungen:
+ * 
  * @author Dominik
  * 
  */

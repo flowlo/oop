@@ -31,25 +31,21 @@ public class Verwaltung {
 	public void insert(ANAndroide androide)
 	{
 
-		ANAndroide old = map.get(androide.getID());
-		if (old == null)//neuen Androiden einfuegen
+		ANAndroide old = map.get(androide.getSeriennummer());
+		if (old == null)
 		{
+			// neuen Androiden einfuegen
 			System.out.println("Neuer Androide soll eingefuegt werden:");
-			System.out.println("Starte checks fuer Androiden mit ID " + androide.getID());
-			androide.checkSkin();
-			androide.checkAktorenSet();
-			map.put(androide.getID(), androide);
+			System.out.println("Starte checks fuer Androiden mit ID " + androide.getSeriennummer());
+			Integer checkedSeriennummer = androide.getCheckedSeriennummer(androide, androide); // Zwei mal androide, da Haupttyp und Software hier irrelevant sind
+			map.put(checkedSeriennummer, androide);
 			androide.addToHistory(androide);
 		} else {
-			//Androide soll update erhalten
-			System.out.println("Androide mit ID " + androide.getID() + " soll Update erhalten:");
-			androide.checkSkin();
-			androide.checkAktorenSet();
-			old.checkHauptTyp(androide); //checke ob sich der Haupttyp aendert
-			androide.checkSoftware();
-			androide.checkSoftwareSecurityLevel(old.getSecurityLevel()); // checke, ob dich das Sicherheitslevel der Software aendert
-			map.put(androide.getID(), androide);
-			map.get(androide.getID()).copyHistory(old);
+			// Androide soll update erhalten
+			System.out.println("Androide mit ID " + androide.getSeriennummer() + " soll Update erhalten:");
+			Integer checkedSeriennummer = androide.getCheckedSeriennummer(androide, old);
+			map.put(checkedSeriennummer, androide);
+			map.get(checkedSeriennummer).copyHistory(old);
 		}
 
 	}

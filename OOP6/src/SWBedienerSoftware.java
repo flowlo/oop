@@ -1,6 +1,9 @@
 /**
  * Repraesentiert die Software eines Bedieners
  * 
+ * Zusicherungen:
+ * * Sicherheitsstufe muss 1 oder 2 sein
+ * 
  * @author Dominik
  * 
  */
