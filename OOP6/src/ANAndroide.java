@@ -85,11 +85,13 @@ public abstract class ANAndroide {
 	}
 
 	/**
-	 * @param a
+	 * Kopiert die History des uebergebenen Androiden und fuegt die eigene Konfiguration dazu.
+	 * @param a alte History
 	 */
 	protected void copyHistory(ANAndroide a)
 	{
 		this.history=a.history;
+		this.addToHistory(this);
 	}
 	
 	public void printHistory()

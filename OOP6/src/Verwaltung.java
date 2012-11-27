@@ -42,6 +42,7 @@ public class Verwaltung {
 		System.out.println("Androide mit ID "+ a.getID()+" soll Update erhalten:");
 		old.checkHauptTyp(a); //checke ob sich der Haupttyp aendert
 		map.put(a.getID(), a);
+		map.get(a.getID()).copyHistory(old);
 		
 	}
 	
@@ -51,6 +52,12 @@ public class Verwaltung {
 		ANAndroide a=map.get(ID);
 		if(a==null) return new String("Androide mit ID '"+ID+"' nicht vorhanden.");
 		return a.toString();
+	}
+	
+	public void printHistory(int ID)
+	{
+		ANAndroide a=map.get(ID);
+		if(a!=null) a.printHistory(); 
 	}
 	
 	public void test()
