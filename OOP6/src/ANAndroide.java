@@ -9,7 +9,7 @@ public abstract class ANAndroide {
 	protected Map<SWSecurityLevel, SWInstaller> installer = new HashMap<SWSecurityLevel, SWInstaller>();
 	private ArrayList<String> history=new ArrayList<String>();
 
-	public ANAndroide(Integer ID)
+	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software)
 	{
 		this.ID = ID;
 		softwareStorage = new SWSoftwareStorage();
@@ -18,16 +18,20 @@ public abstract class ANAndroide {
 		installer.put(SWSecurityLevel.LEVEL3, new SWRejecter());
 		installer.put(SWSecurityLevel.LEVEL4, new SWRejecter());
 		installer.put(SWSecurityLevel.LEVEL5, new SWRejecter());
+		installer.putAll(getAllowedInstallers());
+		setSkin(skin);
+		installSoftware(software);
 	}
 
 	public abstract void checkHauptTyp(ANAndroide a);
 
-	protected abstract void checkHauptTypFromBediener();
-	protected abstract void checkHauptTypFromSchwerarbeiter();
-	protected abstract void checkHauptTypFromBeschuetzer();
+	public abstract void checkHauptTypFromBediener();
 
+	public abstract void checkHauptTypFromSchwerarbeiter();
 
-	public void checkSoftwareLevel(SWSecurityLevel securityLevel) {
+	public abstract void checkHauptTypFromBeschuetzer();
+
+	public void checkSoftwareSecurityLevel(SWSecurityLevel securityLevel) {
 		installer.get(securityLevel).validateAndroide(this);
 	}
 
@@ -73,6 +77,12 @@ public abstract class ANAndroide {
 
 		installer.put(securityLevel, new SWInstaller());
 	}
+
+	public SWSecurityLevel getSoftwareSecurityLevel() {
+		return softwareStorage.getSecurityLevel();
+	}
+
+	protected abstract Map<SWSecurityLevel, SWInstaller> getAllowedInstallers();
 	
 	
 	/**
@@ -104,4 +114,5 @@ public abstract class ANAndroide {
 		}
 		System.out.println(sb.toString());
 	}
+
 }
