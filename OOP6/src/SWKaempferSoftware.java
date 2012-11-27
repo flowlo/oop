@@ -1,4 +1,16 @@
+/**
+ * Repraesentiert die Software eines Kaempfers
+ * 
+ * @author Dominik
+ * 
+ */
 public class SWKaempferSoftware extends SWSoftware {
+	/**
+	 * Konstruktor
+	 * 
+	 * @param securityLevel
+	 *            die Sicherheitsstufe der Software
+	 */
 	public SWKaempferSoftware(SWSecurityLevel securityLevel) {
 		super(securityLevel);
 	}

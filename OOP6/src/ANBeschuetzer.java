@@ -1,8 +1,24 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Repraesentiert einen Beschuetzer
+ * 
+ * @author Simon
+ * @author Dominik
+ * @author Lorenz
+ * 
+ */
 public abstract class ANBeschuetzer extends ANAndroide {
 
+	/**
+	 * Konstruktor
+	 * 
+	 * @param ID
+	 * @param skin
+	 * @param software
+	 * @param aktoren
+	 */
 	public ANBeschuetzer(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren) {
 		super(ID, skin, software, aktoren);
 	}

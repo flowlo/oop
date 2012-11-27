@@ -1,4 +1,16 @@
+/**
+ * Repraesentiert die Software einer Hilfskraft
+ * 
+ * @author Dominik
+ * 
+ */
 public class SWHilfskraftSoftware extends SWBedienerSoftware {
+	/**
+	 * Konstruktor
+	 * 
+	 * @param securityLevel
+	 *            die Sicherheitsstufe der Software
+	 */
 	public SWHilfskraftSoftware(SWSecurityLevel securityLevel) {
 		super(securityLevel);
 	}

@@ -1,3 +1,9 @@
+/**
+ * Repraesentiert eine unpassende Software eines Androiden
+ * 
+ * @author Dominik
+ * 
+ */
 public class SWRejecter extends SWValidator {
 
 	@Override

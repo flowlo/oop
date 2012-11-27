@@ -1,5 +1,15 @@
+/**
+ * Repraesentiert leichte Aktoren
+ * 
+ * @author Dominik
+ * @author Simon
+ * 
+ */
 public class ASLeichteAktoren extends ASAktorenSet {
 
+	/**
+	 * Konstruktor
+	 */
 	public ASLeichteAktoren()
 	{
 		super(3);

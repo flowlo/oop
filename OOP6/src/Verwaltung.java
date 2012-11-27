@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 /**
  * Die Liste aus der Angabe (zur Speicherung der Androiden)
  * 
+ * @author Dominik
  * @author Simon
  * 
  */
@@ -11,6 +12,9 @@ public class Verwaltung {
 
 	private LinkedHashMap<Integer, ANAndroide> map;
 
+	/**
+	 * Kontruktor
+	 */
 	public Verwaltung()
 	{
 		map = new LinkedHashMap<Integer, ANAndroide>();
@@ -22,34 +26,40 @@ public class Verwaltung {
 	 * Speichert Androiden in die Liste.
 	 * Falls ID schon vorhanden, wird statdessen ein Update vorgenommen
 	 * 
-	 * @param a
+	 * @param androide
 	 */
-	public void insert(ANAndroide a)
+	public void insert(ANAndroide androide)
 	{
 
-		ANAndroide old = map.get(a.getID());
+		ANAndroide old = map.get(androide.getID());
 		if (old == null)//neuen Androiden einfuegen
 		{
 			System.out.println("Neuer Androide soll eingefuegt werden:");
-			System.out.println("Starte checks fuer Androiden mit ID " + a.getID());
-			a.checkSkin();
-			a.checkAktorenSet();
-			map.put(a.getID(), a);
-			a.addToHistory(a);
+			System.out.println("Starte checks fuer Androiden mit ID " + androide.getID());
+			androide.checkSkin();
+			androide.checkAktorenSet();
+			map.put(androide.getID(), androide);
+			androide.addToHistory(androide);
 		} else {
 			//Androide soll update erhalten
-			System.out.println("Androide mit ID " + a.getID() + " soll Update erhalten:");
-			a.checkSkin();
-			a.checkAktorenSet();
-			old.checkHauptTyp(a); //checke ob sich der Haupttyp aendert
-			a.checkSoftware();
-			a.checkSoftwareSecurityLevel(old.getSecurityLevel()); // checke, ob dich das Sicherheitslevel der Software aendert
-			map.put(a.getID(), a);
-			map.get(a.getID()).copyHistory(old);
+			System.out.println("Androide mit ID " + androide.getID() + " soll Update erhalten:");
+			androide.checkSkin();
+			androide.checkAktorenSet();
+			old.checkHauptTyp(androide); //checke ob sich der Haupttyp aendert
+			androide.checkSoftware();
+			androide.checkSoftwareSecurityLevel(old.getSecurityLevel()); // checke, ob dich das Sicherheitslevel der Software aendert
+			map.put(androide.getID(), androide);
+			map.get(androide.getID()).copyHistory(old);
 		}
 
 	}
 
+	/**
+	 * Findet einen Androiden mit einer bestimmten ID und gibt dessen Beschreibung zurueck
+	 * 
+	 * @param ID
+	 * @return Beschreibung des Androiden
+	 */
 	public String find(int ID)
 	{
 		ANAndroide a = map.get(ID);
@@ -58,6 +68,11 @@ public class Verwaltung {
 		return a.toString();
 	}
 
+	/**
+	 * Gibt die Aenderungen eines Androiden zurueck
+	 * 
+	 * @param ID
+	 */
 	public void printHistory(int ID)
 	{
 		ANAndroide a = map.get(ID);
@@ -65,11 +80,19 @@ public class Verwaltung {
 			a.printHistory();
 	}
 
-	public void test()
+	/**
+	 * Gibt die Anzahl der Androiden aus
+	 */
+	public void size()
 	{
 		System.out.println(map.size() - 1); //-1 wegen null-entry im Konstruktor
 	}
 
+	/**
+	 * Gibt einen Iterator fuer alle Androiden aus
+	 * 
+	 * @return der Iterator
+	 */
 	public Iterator<ANAndroide> iterator()
 	{
 		return map.values().iterator();

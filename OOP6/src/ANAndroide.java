@@ -2,6 +2,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Repraesentiert einen Androiden
+ * 
+ * @author Simon
+ * @author Dominik
+ * @author Lorenz
+ * 
+ */
 public abstract class ANAndroide {
 	private SKSkin skin;
 	private ASAktorenSet aktoren;
@@ -11,6 +19,14 @@ public abstract class ANAndroide {
 	private ArrayList<String> history = new ArrayList<String>();
 	protected String typ = "Androide";
 
+	/**
+	 * Konstruktor
+	 * 
+	 * @param ID
+	 * @param skin
+	 * @param software
+	 * @param aktoren
+	 */
 	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren)
 	{
 		this.ID = ID;
@@ -20,14 +36,24 @@ public abstract class ANAndroide {
 		installer.put(new SWSecurityLevel4().getLevel(), new SWRejecter());
 		installer.put(new SWSecurityLevel5().getLevel(), new SWRejecter());
 		installer.putAll(getAllowedInstallers());
-		setSkin(skin);
-		installSoftware(software);
-		setAktoren(aktoren);
+		this.skin = skin;
+		this.software = software;
+		limitSecurityLevel(software.getSecurityLevel());
+		this.aktoren = aktoren;
 	}
 
+	/**
+	 * Prueft, ob das Aktorenset des Androiden getragen werden kann
+	 */
 	public abstract void checkAktorenSet();
 
-	public abstract void checkHauptTyp(ANAndroide a);
+	/**
+	 * Prueft, ob die Haupttypen des Androiden uebereinstimmen
+	 * 
+	 * @param androide
+	 *            Der zu vergleichende Androide
+	 */
+	public abstract void checkHauptTyp(ANAndroide androide);
 
 	protected abstract void checkHauptTypFromBediener();
 
@@ -35,39 +61,61 @@ public abstract class ANAndroide {
 
 	protected abstract void checkHauptTypFromBeschuetzer();
 
+	/**
+	 * Prueft, ob die Sicherheitsstufen der Softwares uebereinstimmen
+	 * 
+	 * @param securityLevel
+	 */
 	public void checkSoftwareSecurityLevel(SWSecurityLevel securityLevel) {
 		installer.get(securityLevel.getLevel()).validateAndroide(this);
 	}
 
+	/**
+	 * Prueft, ob die Software des Androiden zu dessen Typ passt
+	 */
 	public abstract void checkSoftware();
 
-	public void setSkin(SKSkin skin)
-	{
-		this.skin = skin;
-	}
-
+	/**
+	 * Gibt den Skin des Androiden zurueck
+	 * 
+	 * @return der Skin
+	 */
 	public SKSkin getSkin()
 	{
 		return skin;
 	}
 
+	/**
+	 * Gibt die ID des Androiden zurueck
+	 * 
+	 * @return die ID
+	 */
 	public Integer getID()
 	{
 		return ID;
 	}
 
+	/**
+	 * Gibt die Aktoren des Androiden zurueck
+	 * 
+	 * @return die Aktoren
+	 */
 	public ASAktorenSet getAktoren() {
 		return aktoren;
 	}
 
-	public void setAktoren(ASAktorenSet aktoren) {
-		this.aktoren = aktoren;
-	}
-
+	/**
+	 * Gibt die Software des Androiden zurueck
+	 * 
+	 * @return die Software
+	 */
 	public SWSoftware getSoftware() {
 		return software;
 	}
 
+	/**
+	 * Setzt die ID des Androiden auf null (invalid)
+	 */
 	public void setInvalid()
 	{
 		this.ID = null;
@@ -84,11 +132,12 @@ public abstract class ANAndroide {
 		return new String("ID-" + ID + "; Typ-" + typ + "; Skin-" + skin + "; Software-" + software + "; Aktoren-" + aktoren);
 	}
 
-	public void installSoftware(SWSoftware software) {
-		this.software = software;
-		limitSecurityLevel(software.getSecurityLevel());
-	}
-
+	/**
+	 * Limitiert die moeglichen Sicherheitsstufen der Software auf eine
+	 * 
+	 * @param securityLevel
+	 *            die neue einzige Sicherheitsstufe fuer die Software des Androiden
+	 */
 	public void limitSecurityLevel(SWSecurityLevel securityLevel) {
 		installer.put(new SWSecurityLevel1().getLevel(), new SWRejecter());
 		installer.put(new SWSecurityLevel2().getLevel(), new SWRejecter());
@@ -99,6 +148,11 @@ public abstract class ANAndroide {
 		installer.put(securityLevel.getLevel(), new SWValidator());
 	}
 
+	/**
+	 * Gibt die Sicherheitsstufe der Software zurueck
+	 * 
+	 * @return die Sicherheitsstufe der Software
+	 */
 	public SWSecurityLevel getSecurityLevel() {
 		if (software == null) {
 			return null;
@@ -112,26 +166,29 @@ public abstract class ANAndroide {
 	/**
 	 * Speichert die konfiguartion des Uebergebenen Androiden in die History.
 	 * 
-	 * @param a
+	 * @param androide
 	 */
-	protected void addToHistory(ANAndroide a)
+	protected void addToHistory(ANAndroide androide)
 	{
-		history.add(a.toString());
+		history.add(androide.toString());
 	}
 
 	/**
 	 * Kopiert die History des uebergebenen Androiden und fuegt die eigene Konfiguration dazu.
 	 * 
-	 * @param a
+	 * @param androide
 	 *            alte History
 	 */
-	protected void copyHistory(ANAndroide a)
+	protected void copyHistory(ANAndroide androide)
 	{
 		this.history = new ArrayList<String>();
-		this.history.addAll(a.history);
+		this.history.addAll(androide.history);
 		this.addToHistory(this);
 	}
 
+	/**
+	 * Gibt die Aenderungen des Androiden zurueck
+	 */
 	public void printHistory()
 	{
 		StringBuilder sb = new StringBuilder("History of " + ID + ":" + System.getProperty("line.separator"));

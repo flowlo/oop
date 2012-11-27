@@ -1,5 +1,15 @@
+/**
+ * Repraesentiert schwere Aktoren
+ * 
+ * @author Dominik
+ * @author Simon
+ * 
+ */
 public class ASSchwereAktoren extends ASAktorenSet {
 
+	/**
+	 * Konstruktor
+	 */
 	public ASSchwereAktoren()
 	{
 		super(9);

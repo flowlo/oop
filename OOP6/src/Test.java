@@ -1,12 +1,23 @@
+/**
+ * Test-Klasse
+ * 
+ * @author Simon
+ * @author Dominik
+ * @author Lorenz
+ * 
+ */
 public class Test {
 
 	/**
+	 * Test-Funktion
+	 * 
 	 * @param args
+	 *            werden ignoriert
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Verwaltung list = new Verwaltung();
-		list.test();
+		list.size();
 
 		SKSkin s = new SKHochfesterSkin();
 		SKSkin s2 = new SKHochfesterSkin();
@@ -32,7 +43,7 @@ public class Test {
 		b = new ANServicetechniker(1, s, software, aktoren2);
 		list.insert(b);
 
-		list.test();
+		list.size();
 		//System.out.println(list.find(1));
 		list.printHistory(1);
 	}

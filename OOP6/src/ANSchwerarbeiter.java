@@ -1,8 +1,24 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Repraesentiert einen Schwerarbeiter
+ * 
+ * @author Simon
+ * @author Dominik
+ * @author Lorenz
+ * 
+ */
 public abstract class ANSchwerarbeiter extends ANAndroide {
 
+	/**
+	 * Konstruktor
+	 * 
+	 * @param ID
+	 * @param skin
+	 * @param software
+	 * @param aktoren
+	 */
 	public ANSchwerarbeiter(Integer ID, SKSkin skin, SWSoftware software, ASAktorenSet aktoren) {
 		super(ID, skin, software, aktoren);
 		typ = "Schwerarbeiter";
@@ -11,7 +27,7 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 	@Override
 	public void checkSkin()
 	{
-		getSkin().vonSchwerArbeiterGetragen(this);
+		getSkin().vonSchwerarbeiterGetragen(this);
 	}
 
 	@Override

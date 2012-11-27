@@ -1,5 +1,15 @@
+/**
+ * Repraesentiert richtig awesome Aktoren
+ * 
+ * @author Dominik
+ * @author Simon
+ * 
+ */
 public class ASAwesomeAktoren extends ASAktorenSet {
 
+	/**
+	 * Konstruktor
+	 */
 	public ASAwesomeAktoren()
 	{
 		super(50);

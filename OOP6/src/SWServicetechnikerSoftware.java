@@ -1,4 +1,16 @@
+/**
+ * Repraesentiert die Software eines Servicetechnikers
+ * 
+ * @author Dominik
+ * 
+ */
 public class SWServicetechnikerSoftware extends SWSchwerarbeiterSoftware {
+	/**
+	 * Konstruktor
+	 * 
+	 * @param securityLevel
+	 *            die Sicherheitsstufe der Software
+	 */
 	public SWServicetechnikerSoftware(SWSecurityLevel securityLevel) {
 		super(securityLevel);
 	}

@@ -1,3 +1,9 @@
+/**
+ * Repraesentiert einen gepanzerten Skin eines Androiden
+ * 
+ * @author Simon
+ * 
+ */
 public class SKGepanzerterSkin extends SKSkin {
 
 	@Override
@@ -12,7 +18,7 @@ public class SKGepanzerterSkin extends SKSkin {
 	}
 
 	@Override
-	public void vonSchwerArbeiterGetragen(ANSchwerarbeiter s) {
+	public void vonSchwerarbeiterGetragen(ANSchwerarbeiter s) {
 		System.out.println("! Nur Beschuetzer duerfen einen gepanzerten Skin haben. (setze ID auf null)");
 		s.setInvalid();
 	}

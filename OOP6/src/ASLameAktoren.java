@@ -1,5 +1,15 @@
+/**
+ * Repraesentiert lame Aktoren
+ * 
+ * @author Dominik
+ * @author Simon
+ * 
+ */
 public class ASLameAktoren extends ASAktorenSet {
 
+	/**
+	 * Konstruktor
+	 */
 	public ASLameAktoren()
 	{
 		super(0.5f);

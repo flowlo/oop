@@ -1,3 +1,9 @@
+/**
+ * Repraesentiert die Sicherheitsstufe 3 einer Software
+ * 
+ * @author Dominik
+ * 
+ */
 public class SWSecurityLevel3 extends SWSecurityLevel {
 	@Override
 	public SWSecurityLevels getLevel() {
