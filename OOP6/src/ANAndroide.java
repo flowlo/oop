@@ -5,28 +5,27 @@ import java.util.Map;
 public abstract class ANAndroide {
 	private SKSkin skin;
 	private ASAktorenSet aktoren;
-	protected SWSoftwareStorage softwareStorage;
+	protected SWSoftware software;
 	private Integer ID;
-	protected Map<SWSecurityLevel, SWInstaller> installer = new HashMap<SWSecurityLevel, SWInstaller>();
+	protected Map<SWSecurityLevels, SWInstaller> installer = new HashMap<SWSecurityLevels, SWInstaller>();
 	private ArrayList<String> history = new ArrayList<String>();
-	protected String typ="Androide";
+	protected String typ = "Androide";
 
 	public ANAndroide(Integer ID, SKSkin skin, SWSoftware software)
 	{
 		this.ID = ID;
-		softwareStorage = new SWSoftwareStorage();
-		installer.put(SWSecurityLevel.LEVEL1, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL2, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL3, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL4, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL5, new SWRejecter());
+		installer.put(new SWSecurityLevel1().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel2().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel3().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel4().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel5().getLevel(), new SWRejecter());
 		installer.putAll(getAllowedInstallers());
 		setSkin(skin);
 		installSoftware(software);
 	}
 
 	public abstract void checkAktorenSet();
-	
+
 	public abstract void checkHauptTyp(ANAndroide a);
 
 	protected abstract void checkHauptTypFromBediener();
@@ -36,7 +35,7 @@ public abstract class ANAndroide {
 	protected abstract void checkHauptTypFromBeschuetzer();
 
 	public void checkSoftwareSecurityLevel(SWSecurityLevel securityLevel) {
-		installer.get(securityLevel).validateAndroide(this);
+		installer.get(securityLevel.getLevel()).validateAndroide(this);
 	}
 
 	public void setSkin(SKSkin skin)
@@ -67,26 +66,33 @@ public abstract class ANAndroide {
 	@Override
 	public String toString()
 	{
-		return new String("ID-" + ID +"; Typ-"+typ+ "; Skin-" + skin.toString() + "; Software-" + softwareStorage.getSoftware());
+		return new String("ID-" + ID + "; Typ-" + typ + "; Skin-" + skin.toString() + "; Software-" + software);
 	}
 
-	public abstract void installSoftware(SWSoftware software);
+	public void installSoftware(SWSoftware software) {
+		this.software = software;
+		limitSecurityLevel(software.getSecurityLevel());
+	}
 
 	public void limitSecurityLevel(SWSecurityLevel securityLevel) {
-		installer.put(SWSecurityLevel.LEVEL1, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL2, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL3, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL4, new SWRejecter());
-		installer.put(SWSecurityLevel.LEVEL5, new SWRejecter());
+		installer.put(new SWSecurityLevel1().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel2().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel3().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel4().getLevel(), new SWRejecter());
+		installer.put(new SWSecurityLevel5().getLevel(), new SWRejecter());
 
-		installer.put(securityLevel, new SWInstaller());
+		installer.put(securityLevel.getLevel(), new SWInstaller());
 	}
 
-	public SWSecurityLevel getSoftwareSecurityLevel() {
-		return softwareStorage.getSecurityLevel();
+	public SWSecurityLevel getSecurityLevel() {
+		if (software == null) {
+			return null;
+		} else {
+			return software.getSecurityLevel();
+		}
 	}
 
-	protected abstract Map<SWSecurityLevel, SWInstaller> getAllowedInstallers();
+	protected abstract Map<SWSecurityLevels, SWInstaller> getAllowedInstallers();
 
 	/**
 	 * Speichert die konfiguartion des Uebergebenen Androiden in die History.
