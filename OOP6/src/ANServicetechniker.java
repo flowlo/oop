@@ -1,4 +1,4 @@
-public class ANServicetechniker extends ANSchwerarbeiter {
+public class ANServicetechniker extends ANSchwerarbeiter { //commit
 
 	public ANServicetechniker(Integer ID) {
 		super(ID);

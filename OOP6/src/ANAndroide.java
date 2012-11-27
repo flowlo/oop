@@ -17,6 +17,8 @@ public abstract class ANAndroide {
 		installer.put(SWSecurityLevel.LEVEL4, new SWRejecter());
 		installer.put(SWSecurityLevel.LEVEL5, new SWRejecter());
 	}
+	
+	
 
 	public void setSkin(SKSkin skin)
 	{

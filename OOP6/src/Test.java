@@ -14,9 +14,9 @@ public class Test {
 		a.setSkin(s);
 		list.insert(a);
 
-		ANAndroide b = new ANHilfskraft(2);
-		b.setSkin(s);
-		list.insert(b);
+		//ANAndroide b = new ANHilfskraft(2);
+		a.setSkin(new SKHochfesterSkin());
+		list.insert(a);
 
 		list.test();
 	}
