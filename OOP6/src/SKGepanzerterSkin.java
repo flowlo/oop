@@ -17,5 +17,10 @@ public class SKGepanzerterSkin extends SKSkin {
 		System.out.println("! Nur Beschuetzer duerfen einen gepanzerten Skin haben. (setze ID auf null)");
 		s.setInvalid();	
 	}
+	
+	public String toString()
+	{
+		return "gepanzert";
+	}
 
 }

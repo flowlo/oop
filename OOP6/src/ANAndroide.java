@@ -59,7 +59,7 @@ public abstract class ANAndroide {
 	@Override
 	public String toString()
 	{
-		return new String("ID-" + ID + "; Skin-" + skin + "; Software-" + softwareStorage.getSoftware());
+		return new String("ID-" + ID + "; Skin-" + skin.toString() + "; Software-" + softwareStorage.getSoftware());
 	}
 
 	public abstract void installSoftware(SWSoftware software);
@@ -96,7 +96,7 @@ public abstract class ANAndroide {
 	
 	public void printHistory()
 	{
-		StringBuilder sb=new StringBuilder();
+		StringBuilder sb=new StringBuilder("History of "+ID+":"+System.getProperty("line.separator"));
 		for(String it:history)
 		{
 			sb.append(it);

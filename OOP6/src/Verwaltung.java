@@ -35,12 +35,14 @@ public class Verwaltung {
 			System.out.println("Starte checks fuer Androiden mit ID "+a.getID());
 			a.checkSkin();
 			map.put(a.getID(), a);
+			a.addToHistory(a);
 			return;
 		}
 		
 		//Androide soll update erhalten
 		System.out.println("Androide mit ID "+ a.getID()+" soll Update erhalten:");
 		old.checkHauptTyp(a); //checke ob sich der Haupttyp aendert
+		a.checkSkin();
 		map.put(a.getID(), a);
 		map.get(a.getID()).copyHistory(old);
 		

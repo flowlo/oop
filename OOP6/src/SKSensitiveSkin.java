@@ -14,4 +14,9 @@ public class SKSensitiveSkin extends SKSkin {
 	public void vonSchwerArbeiterGetragen(ANSchwerarbeiter s) {
 		System.out.println("OK - skin");
 	}
+	
+	public String toString()
+	{
+		return "sensitve";
+	}
 }

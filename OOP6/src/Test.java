@@ -10,11 +10,11 @@ public class Test {
 
 		SKSkin s = new SKSensitiveSkin();
 		//s = new SKHochfesterSkin();
-		ANAndroide a = new ANHilfskraft(1);
+		ANAndroide a = new ANTransportarbeiter(1);
 		a.setSkin(s);
 		list.insert(a);
-		ANAndroide b = new ANHilfskraft(1);
-		b.setSkin(s);
+		ANAndroide b = new ANTransportarbeiter(1);
+		b.setSkin(new SKHochfesterSkin());
 		list.insert(b);
 		
 		/*
@@ -25,6 +25,8 @@ public class Test {
 		list.insert(b);*/
 
 		list.test();
+		//System.out.println(list.find(1));
+		list.printHistory(1);
 	}
 
 }

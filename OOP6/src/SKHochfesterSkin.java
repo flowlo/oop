@@ -16,4 +16,9 @@ public class SKHochfesterSkin extends SKSkin {
 	public void vonSchwerArbeiterGetragen(ANSchwerarbeiter s) {
 		System.out.println("OK - skin");		
 	}
+	
+	public String toString()
+	{
+		return "hochfest";
+	}
 }
