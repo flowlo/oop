@@ -112,7 +112,8 @@ public abstract class ANAndroide {
 	 */
 	protected void copyHistory(ANAndroide a)
 	{
-		this.history = a.history;
+		this.history = new ArrayList<String>();
+		this.history.addAll(a.history);
 		this.addToHistory(this);
 	}
 
