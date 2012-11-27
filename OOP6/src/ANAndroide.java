@@ -205,13 +205,20 @@ public abstract class ANAndroide {
 		System.out.println(sb.toString());
 	}
 
-	public Integer getCheckedSeriennummer(ANAndroide androide, ANAndroide old) {
+	/**
+	 * Gibt die Seriennummer des validen Androiden zurueck, oder null, falls der Androide invalid ist
+	 * 
+	 * @param androide
+	 * @param comparison
+	 * @return die Seriennummer oder null
+	 */
+	public Integer getCheckedSeriennummer(ANAndroide androide, ANAndroide comparison) {
 		checkedSeriennummer = seriennummer;
 		androide.checkSkin();
 		androide.checkAktorenSet();
-		old.checkHauptTyp(androide);
+		comparison.checkHauptTyp(androide);
 		androide.checkSoftware();
-		androide.checkSoftwareSecurityLevel(old.getSecurityLevel());
+		androide.checkSoftwareSecurityLevel(comparison.getSecurityLevel());
 		return checkedSeriennummer;
 	}
 }
