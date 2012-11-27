@@ -4,7 +4,7 @@ public class SWLeibwaechterSoftware extends SWSoftware {
 	}
 
 	@Override
-	public void installSoftwareOnLeibwaechter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, securityLevel);
+	public void installedOnLeibwaechter(ANAndroide androide) {
+		// Do nothing
 	}
 }

@@ -4,7 +4,7 @@ public class SWKaempferSoftware extends SWSoftware {
 	}
 
 	@Override
-	public void installSoftwareOnKaempfer(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, securityLevel);
+	public void installedOnKaempfer(ANAndroide androide) {
+		// Do nothing
 	}
 }

@@ -41,9 +41,9 @@ public abstract class ANBeschuetzer extends ANAndroide {
 	}
 
 	@Override
-	protected Map<SWSecurityLevel, SWInstaller> getAllowedInstallers() {
-		Map<SWSecurityLevel, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevel, SWInstaller>();
-		allowedInstallers.put(SWSecurityLevel.LEVEL4, new SWInstaller());
+	protected Map<SWSecurityLevels, SWInstaller> getAllowedInstallers() {
+		Map<SWSecurityLevels, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevels, SWInstaller>();
+		allowedInstallers.put(new SWSecurityLevel4().getLevel(), new SWInstaller());
 		return allowedInstallers;
 	}
 }

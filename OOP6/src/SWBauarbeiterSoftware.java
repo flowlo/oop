@@ -4,7 +4,7 @@ public class SWBauarbeiterSoftware extends SWSchwerarbeiterSoftware {
 	}
 
 	@Override
-	public void installSoftwareOnBauarbeiter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, securityLevel);
+	public void installedOnBauarbeiter(ANAndroide androide) {
+		// Do nothing
 	}
 }

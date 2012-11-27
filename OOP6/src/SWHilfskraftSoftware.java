@@ -4,7 +4,7 @@ public class SWHilfskraftSoftware extends SWBedienerSoftware {
 	}
 
 	@Override
-	public void installSoftwareOnHilfskraft(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, securityLevel);
+	public void installedOnHilfskraft(ANAndroide androide) {
+		// Do nothing
 	}
 }

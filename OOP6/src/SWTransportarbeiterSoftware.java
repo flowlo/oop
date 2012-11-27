@@ -4,7 +4,7 @@ public class SWTransportarbeiterSoftware extends SWSchwerarbeiterSoftware {
 	}
 
 	@Override
-	public void installSoftwareOnTransportarbeiter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, securityLevel);
+	public void installedOnTransportarbeiter(ANAndroide androide) {
+		// Do nothing
 	}
 }

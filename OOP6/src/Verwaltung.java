@@ -42,7 +42,7 @@ public class Verwaltung {
 			a.checkSkin();
 			a.checkAktorenSet();
 			old.checkHauptTyp(a); //checke ob sich der Haupttyp aendert
-			a.checkSoftwareSecurityLevel(old.getSoftwareSecurityLevel()); // checke, ob dich das Sicherheitslevel der Software aendert
+			a.checkSoftwareSecurityLevel(old.getSecurityLevel()); // checke, ob dich das Sicherheitslevel der Software aendert
 			map.put(a.getID(), a);
 			map.get(a.getID()).copyHistory(old);
 		}

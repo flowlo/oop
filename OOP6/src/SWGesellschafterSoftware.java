@@ -4,7 +4,7 @@ public class SWGesellschafterSoftware extends SWBedienerSoftware {
 	}
 
 	@Override
-	public void installSoftwareOnGesellschafter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
-		installer.install(androide, softwareStorage, this, securityLevel);
+	public void installedOnGesellschafter(ANAndroide androide) {
+		// Do nothing
 	}
 }

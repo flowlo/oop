@@ -5,9 +5,7 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 
 	public ANSchwerarbeiter(Integer ID, SKSkin skin, SWSoftware software) {
 		super(ID, skin, software);
-		installer.put(SWSecurityLevel.LEVEL3, new SWInstaller());
-		installer.put(SWSecurityLevel.LEVEL4, new SWInstaller());
-		typ="Schwerarbeiter";
+		typ = "Schwerarbeiter";
 	}
 
 	@Override
@@ -43,10 +41,10 @@ public abstract class ANSchwerarbeiter extends ANAndroide {
 	}
 
 	@Override
-	protected Map<SWSecurityLevel, SWInstaller> getAllowedInstallers() {
-		Map<SWSecurityLevel, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevel, SWInstaller>();
-		allowedInstallers.put(SWSecurityLevel.LEVEL3, new SWInstaller());
-		allowedInstallers.put(SWSecurityLevel.LEVEL4, new SWInstaller());
+	protected Map<SWSecurityLevels, SWInstaller> getAllowedInstallers() {
+		Map<SWSecurityLevels, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevels, SWInstaller>();
+		allowedInstallers.put(new SWSecurityLevel3().getLevel(), new SWInstaller());
+		allowedInstallers.put(new SWSecurityLevel4().getLevel(), new SWInstaller());
 		return allowedInstallers;
 	}
 	

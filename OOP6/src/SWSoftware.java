@@ -9,35 +9,35 @@ public abstract class SWSoftware {
 		return securityLevel;
 	}
 
-	public void installSoftwareOnBauarbeiter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnBauarbeiter(ANAndroide androide) {
 		androide.setInvalid();
 	}
 
-	public void installSoftwareOnGesellschafter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnGesellschafter(ANAndroide androide) {
 		androide.setInvalid();
 	}
 
-	public void installSoftwareOnHilfskraft(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnHilfskraft(ANAndroide androide) {
 		androide.setInvalid();
 	}
 
-	public void installSoftwareOnKaempfer(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnKaempfer(ANAndroide androide) {
 		androide.setInvalid();
 	}
 
-	public void installSoftwareOnLeibwaechter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnLeibwaechter(ANAndroide androide) {
 		androide.setInvalid();
 	}
 
-	public void installSoftwareOnObjektbewacher(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnObjektbewacher(ANAndroide androide) {
 		androide.setInvalid();
 	}
 
-	public void installSoftwareOnServicetechniker(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnServicetechniker(ANAndroide androide) {
 		androide.setInvalid();
 	}
 
-	public void installSoftwareOnTransportarbeiter(ANAndroide androide, SWSoftwareStorage softwareStorage, SWInstaller installer) {
+	public void installedOnTransportarbeiter(ANAndroide androide) {
 		androide.setInvalid();
 	}
 }

@@ -1,7 +1,3 @@
-public enum SWSecurityLevel {
-	LEVEL1,
-	LEVEL2,
-	LEVEL3,
-	LEVEL4,
-	LEVEL5
+public abstract class SWSecurityLevel {
+	public abstract SWSecurityLevels getLevel();
 }

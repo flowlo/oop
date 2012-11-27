@@ -51,10 +51,10 @@ public abstract class ANBediener extends ANAndroide {
 	}
 
 	@Override
-	protected Map<SWSecurityLevel, SWInstaller> getAllowedInstallers() {
-		Map<SWSecurityLevel, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevel, SWInstaller>();
-		allowedInstallers.put(SWSecurityLevel.LEVEL1, new SWInstaller());
-		allowedInstallers.put(SWSecurityLevel.LEVEL2, new SWInstaller());
+	protected Map<SWSecurityLevels, SWInstaller> getAllowedInstallers() {
+		Map<SWSecurityLevels, SWInstaller> allowedInstallers = new HashMap<SWSecurityLevels, SWInstaller>();
+		allowedInstallers.put(new SWSecurityLevel1().getLevel(), new SWInstaller());
+		allowedInstallers.put(new SWSecurityLevel2().getLevel(), new SWInstaller());
 		return allowedInstallers;
 	}
 

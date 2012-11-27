@@ -10,8 +10,8 @@ public class Test {
 
 		SKSkin s = new SKHochfesterSkin();
 		SKSkin s2 = new SKHochfesterSkin();
-		SWSoftware software = new SWTransportarbeiterSoftware(SWSecurityLevel.LEVEL3);
-		SWSoftware software2 = new SWTransportarbeiterSoftware(SWSecurityLevel.LEVEL4);
+		SWSoftware software = new SWTransportarbeiterSoftware(new SWSecurityLevel3());
+		SWSoftware software2 = new SWTransportarbeiterSoftware(new SWSecurityLevel4());
 		ANAndroide a = new ANTransportarbeiter(1, s, software);
 		list.insert(a);
 		ANAndroide b = new ANTransportarbeiter(1, s2, software);

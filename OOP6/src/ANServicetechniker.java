@@ -5,9 +5,4 @@ public class ANServicetechniker extends ANSchwerarbeiter { //commit
 		typ = "Servicetechniker";
 	}
 
-	@Override
-	public void installSoftware(SWSoftware software) {
-		software.installSoftwareOnServicetechniker(this, softwareStorage, installer.get(software.getSecurityLevel()));
-	}
-
 }
