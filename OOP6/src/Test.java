@@ -42,7 +42,7 @@ public class Test {
 				kw9 = new ASSchwereAktoren(),
 				kw50 = new ASAwesomeAktoren(); 
 		
-		ANAndroide[] valid = new ANAndroide[] {
+		ANAndroide[] test = new ANAndroide[] {
 			new ANGesellschafter(0, skb, swg, kw05),
 			
 			new ANHilfskraft(1, skb, swh1, kw05),
@@ -115,24 +115,53 @@ public class Test {
 			new ANKaempfer(63, skb, swk, kw50)
 		};
 		
-		for (ANAndroide androide : valid)
+		for (ANAndroide androide : test)
 			list.insert(androide);
 
 		list.size();
 		
-		ANAndroide[] invalid = new ANAndroide[] {
+		test = new ANAndroide[] {
 			new ANGesellschafter(64, skg, swk, kw50),
 			new ANHilfskraft(65, skh, swh1, kw05),
 			new ANTransportarbeiter(66, skh, swt3, kw50),
 			new ANServicetechniker(67, skg, sws3, kw05),
 			new ANGesellschafter(68, skh, swg, kw05),
 			new ANObjektbewacher(69, skh, swo, kw50),
-			new ANBauarbeiter(70, skh, sws4, kw9)
+			new ANBauarbeiter(70, skh, sws4, kw9),
+			new ANGesellschafter(71, skg, swg, kw3)
 		};
 
-		for (ANAndroide androide : invalid)
+		for (ANAndroide androide : test)
 			list.insert(androide);
 
 		list.size();
+		
+		test = new ANAndroide[] {
+			// AktorenSet Upgrade (valid)
+			new ANKaempfer(60, skb, swk, kw50),
+			// AktorenSet Downgrade (valid)
+			new ANBauarbeiter(11, skb, swb4, kw3),
+			// Software überschreiben (valid)
+			new ANObjektbewacher(37, skg, new SWObjektbewacherSoftware(sec4), kw05),
+			// Skin wechseln (valid)
+			new ANObjektbewacher(37, skh, new SWObjektbewacherSoftware(sec4), kw05)
+		};
+		
+		System.out.println("Valide Aenderungen an existierenden Anroiden:");
+		for (ANAndroide androide : test)
+			list.insert(androide);
+		
+		test = new ANAndroide[] {
+			// AktorenSet Upgrade (invalid)
+			new ANGesellschafter(0, skb, swg, kw50),
+			// Software überschreiben (invalid)
+			new ANObjektbewacher(37, skg, new SWObjektbewacherSoftware(sec1), kw05),
+			// Skin wechseln (invalid)
+			new ANTransportarbeiter(29, skg, swt4, kw05)
+		};
+		
+		System.out.println("Invalide Aenderungen an existierenden Anroiden:");
+		for (ANAndroide androide : test)
+			list.insert(androide);
 	}
 }
