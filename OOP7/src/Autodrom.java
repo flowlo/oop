@@ -1,13 +1,13 @@
 
 public abstract class Autodrom extends Thread{
 	
-	protected GameField gamefield;
-	protected int posX;
+	protected GameField gamefield;	//spielfeld
+	protected int posX;				
 	protected int posY;
-	protected direction dir;
-	private final char ID;
+	protected direction dir;		//Fahrtrichtung
+	private final char ID;			//mit dieser "ID" wird es in der toString methode von GameField dargestellt. es koennen auch mehrere das gleiche Zeichen haben
 	
-	private int points;
+	private int points;				//punkte (+1 pro rammen / -1 pro gerammt werden)
 	
 	public enum direction {north, east, south, west};
 	
@@ -53,6 +53,9 @@ public abstract class Autodrom extends Thread{
 		points--;
 	}
 	
+	/**
+	 * das Fahrzeug faehrt nach vorne. Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
 	protected void moveForward()
 	{
 		switch(dir)
@@ -69,10 +72,11 @@ public abstract class Autodrom extends Thread{
 		case west:
 			this.posX--;
 		}
-		
-		//TODO: synchronized update GameField and check crash
 	}
 	
+	/**
+	 * Das Fahrzeug faehrt nach links (1 nach vorne, 1 nach links und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
 	protected void moveLeft()
 	{
 		switch (dir)
@@ -97,10 +101,13 @@ public abstract class Autodrom extends Thread{
 			this.posY++;
 			this.dir=direction.south;			
 		}
-		
-		//TODO: synchronized update GameField and check crash
+
 	}
 	
+	
+	/**
+	 * Das Fahrzeug faehrt nach rechts (1 nach vorne, 1 nach rechts und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
 	protected void moveRight()
 	{
 		switch(dir)
@@ -125,7 +132,6 @@ public abstract class Autodrom extends Thread{
 			this.posY--;
 			this.dir=direction.north;
 		}
-		//TODO: synchronized update GameField and check crash
 	}
 
 	/**
