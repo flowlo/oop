@@ -1,10 +1,12 @@
+import java.lang.reflect.Field;
+
 
 public class fastCar extends Autodrom{
 
 	public fastCar(GameField field, int startX, int startY,
-			direction startDirection) {
-		super(field, startX, startY, startDirection);
-		// TODO Auto-generated constructor stub
+			direction startDirection, char ID) {
+		super(field, startX, startY, startDirection, ID);
+		gamefield.addCar(getPosX(), getPosY(), this);
 	}
 
 	@Override
@@ -24,8 +26,11 @@ public class fastCar extends Autodrom{
 			
 			Thread.sleep(100);
 			
+			int oldPosX=this.getPosX();
+			int oldPosY=this.getPosY();
 			move();
-			System.out.println(this.getPosX()+" "+this.getPosY());
+			gamefield.moveCar(oldPosX, oldPosY,getPosX(),getPosY(), this);
+			//System.out.println(this.getPosX()+" "+this.getPosY());
 			
 		}
 		}
@@ -49,11 +54,11 @@ public class fastCar extends Autodrom{
 			else moveForward();
 			break;
 		case east:
-			if(getPosX()>=gamefield.getWidth()-1) moveLeft();
+			if(getPosX()>=gamefield.getWidth()-2) moveLeft();
 			else moveForward();
 			break;
 		case south:
-			if(getPosY()>=gamefield.getHeight()-1) moveLeft();
+			if(getPosY()>=gamefield.getHeight()-2) moveLeft();
 			else moveForward();
 			break;
 		case west:

@@ -5,6 +5,7 @@ public abstract class Autodrom extends Thread{
 	private int posX;
 	private int posY;
 	protected direction dir;
+	private final char ID;
 	
 	private int points;
 	
@@ -26,8 +27,9 @@ public abstract class Autodrom extends Thread{
 	 * @param startY Startposition des Autos
 	 * @param startDirection Richtung in welche das Auto sieht
 	 */
-	public Autodrom(GameField field, int startX, int startY, direction startDirection)
+	public Autodrom(GameField field, int startX, int startY, direction startDirection, char ID)
 	{
+		this.ID=ID;
 		this.dir=startDirection;
 		this.gamefield=field;
 		points=0;
@@ -136,6 +138,13 @@ public abstract class Autodrom extends Thread{
 	 */
 	public int getPosY() {
 		return posY;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public char getID() {
+		return ID;
 	}
 
 
