@@ -1,12 +1,14 @@
-import java.lang.reflect.Field;
+
 
 
 public class fastCar extends Autodrom{
 
+	private int speed;
 	public fastCar(GameField field, int startX, int startY,
-			direction startDirection, char ID) {
+			direction startDirection, char ID, int fieldsPerMilliSec) {
 		super(field, startX, startY, startDirection, ID);
 		gamefield.addCar(getPosX(), getPosY(), this);
+		this.speed=fieldsPerMilliSec;
 	}
 
 	@Override
@@ -24,12 +26,19 @@ public class fastCar extends Autodrom{
 				break;
 			}
 			
-			Thread.sleep(100);
+			Thread.sleep(speed);
 			
 			int oldPosX=this.getPosX();
 			int oldPosY=this.getPosY();
+			direction oldDir=this.dir;
 			move();
-			gamefield.moveCar(oldPosX, oldPosY,getPosX(),getPosY(), this);
+			if(!gamefield.moveCar(oldPosX, oldPosY,getPosX(),getPosY(), this))
+			{
+				this.posX=oldPosX;
+				this.posY=oldPosY;
+				this.dir=oldDir;
+				addPoint();
+			}
 			//System.out.println(this.getPosX()+" "+this.getPosY());
 			
 		}
@@ -38,7 +47,6 @@ public class fastCar extends Autodrom{
 		{
 			System.out.println("fastCar interrupted");
 		}
-		
 	}
 	
 	

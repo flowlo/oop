@@ -2,8 +2,8 @@
 public abstract class Autodrom extends Thread{
 	
 	protected GameField gamefield;
-	private int posX;
-	private int posY;
+	protected int posX;
+	protected int posY;
 	protected direction dir;
 	private final char ID;
 	
@@ -44,6 +44,10 @@ public abstract class Autodrom extends Thread{
 		return points;
 	}
 	
+	public void addPoint()
+	{
+		points++;
+	}
 	public void crashed()
 	{
 		points--;

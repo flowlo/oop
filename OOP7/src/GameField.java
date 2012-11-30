@@ -13,23 +13,39 @@ public class GameField {
 		this.field=new Autodrom[width][height];
 	}
 	
-	public synchronized Autodrom getField(int x, int y)
-	{
-		return field[x][y];
-	}
+	
 	
 	public synchronized void addCar(int x, int y, Autodrom car)
 	{
 		if(field[x][y]==null)field[x][y]=car;
 	}
 	
-	public synchronized void moveCar(int fromX, int fromY, int toX, int toY, Autodrom car)
+	/**
+	 * bewegt ein Auto
+	 * @param fromX Start-Position X
+	 * @param fromY Start-Position Y
+	 * @param toX	Ziel-Position X
+	 * @param toY Ziel-Position Y
+	 * @param car Auto welches bewegt werden soll
+	 * @return true wenn Ziel leer war, false wenn crash
+	 */
+	public synchronized boolean moveCar(int fromX, int fromY, int toX, int toY, Autodrom car)
 	{
-		if(field[fromX][fromY]==car&&field[toX][toY]==null)
+		if(field[fromX][fromY]==car)
 		{
-			field[fromX][fromY]=null;
-			field[toX][toY]=car;
+			if(field[toX][toY]==null)
+			{
+				field[fromX][fromY]=null;
+				field[toX][toY]=car;
+				return true;
+			}
+			else
+			{	
+				field[toX][toY].crashed();
+				return false;
+			}
 		}
+		else throw new IllegalArgumentException("You are not on field ("+fromX+"/"+fromY+")");
 	}
 
 	/**
