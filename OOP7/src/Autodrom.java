@@ -1,13 +1,13 @@
 
 public abstract class Autodrom extends Thread{
-	
+	protected int speed;
 	protected GameField gamefield;	//spielfeld
 	protected int posX;				
 	protected int posY;
 	protected direction dir;		//Fahrtrichtung
 	private final char ID;			//mit dieser "ID" wird es in der toString methode von GameField dargestellt. es koennen auch mehrere das gleiche Zeichen haben
 	
-	private int points;				//punkte (+1 pro rammen / -1 pro gerammt werden)
+	private int points;				//AUF SYNC ACHTEN punkte (+1 pro rammen / -1 pro gerammt werden)
 	
 	public enum direction {north, east, south, west};
 	
@@ -35,20 +35,22 @@ public abstract class Autodrom extends Thread{
 		points=0;
 		this.posX=startX;
 		this.posY=startY;
+		gamefield.addCar(getPosX(), getPosY(), this);
 	}
 	
 	public abstract void run();
+
 	
 	public int getPoints()
 	{
 		return points;
 	}
 	
-	public void addPoint()
+	public synchronized void addPoint()
 	{
 		points++;
 	}
-	public void crashed()
+	public synchronized void crashed()
 	{
 		points--;
 	}
@@ -158,5 +160,9 @@ public abstract class Autodrom extends Thread{
 	}
 
 
+	public String toString()
+	{
+		return new String("Car with ID '"+this.ID+"' got "+this.points+" points.");
+	}
 	
 }

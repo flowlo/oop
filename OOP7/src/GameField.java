@@ -4,6 +4,8 @@ public class GameField {
 	private final int width;
 	private final int height;
 	
+	private boolean raceStopped=false;
+	
 	private Autodrom[][] field;
 	
 	public GameField(int width, int height)
@@ -13,7 +15,21 @@ public class GameField {
 		this.field=new Autodrom[width][height];
 	}
 	
-	
+	public synchronized void stopRace()
+	{
+		raceStopped=true;
+		for(int x=0;x<width;x++)
+		{
+			for(int y=0;y<height;y++)
+			{
+				if(field[x][y]!=null)
+				{
+					System.out.println(field[x][y].toString());
+					field[x][y].interrupt();
+				}
+			}
+		}
+	}
 	
 	public synchronized void addCar(int x, int y, Autodrom car)
 	{
@@ -31,6 +47,10 @@ public class GameField {
 	 */
 	public synchronized boolean moveCar(int fromX, int fromY, int toX, int toY, Autodrom car)
 	{
+		if(raceStopped)
+		{
+			return true;
+		}
 		if(field[fromX][fromY]==car)
 		{
 			if(field[toX][toY]==null)
@@ -42,6 +62,8 @@ public class GameField {
 			else
 			{	
 				field[toX][toY].crashed();
+				System.out.println("Car "+car.getID()+" crashed into "+field[toX][toY].getID());
+				System.out.println(this.toString());
 				return false;
 			}
 		}

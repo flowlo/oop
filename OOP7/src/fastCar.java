@@ -3,11 +3,10 @@
 
 public class fastCar extends Autodrom{
 
-	private int speed;
+	
 	public fastCar(GameField field, int startX, int startY,
 			direction startDirection, char ID, int fieldsPerMilliSec) {
 		super(field, startX, startY, startDirection, ID);
-		gamefield.addCar(getPosX(), getPosY(), this);
 		this.speed=fieldsPerMilliSec;
 	}
 
@@ -19,12 +18,12 @@ public class fastCar extends Autodrom{
 		int count=0;
 		while(!this.isInterrupted())
 		{
-			count++;
+			/*count++;
 			if(count>50)
 			{
 				this.interrupt();
 				break;
-			}
+			}*/
 			
 			Thread.sleep(speed);
 			
@@ -45,7 +44,7 @@ public class fastCar extends Autodrom{
 		}
 		catch(InterruptedException e)
 		{
-			System.out.println("fastCar interrupted");
+			//System.out.println("fastCar interrupted");
 		}
 	}
 	
