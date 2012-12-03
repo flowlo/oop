@@ -1,13 +1,27 @@
 
 
 
+
+
 public class fastCar extends Autodrom{
 
 	
+	private GameField gamefield;
+	private int posX;
+	private int posY;
+	private Car.direction dir;
+	private int speed;
+	
 	public fastCar(GameField field, int startX, int startY,
 			direction startDirection, char ID, int fieldsPerMilliSec) {
-		super(field, startX, startY, startDirection, ID);
+		super(ID);
 		this.speed=fieldsPerMilliSec;
+		this.gamefield=field;
+		this.posX=startX;
+		this.posY=startY;
+		this.dir=startDirection;
+		this.speed=fieldsPerMilliSec;
+		field.addCar(startX, startY, this);
 	}
 
 	@Override
@@ -71,6 +85,99 @@ public class fastCar extends Autodrom{
 		case west:
 			if(getPosX()<=1)moveLeft();
 			else moveForward();
+		}
+	}
+
+	@Override
+	public int getPosX() {
+		return posX;
+	}
+
+	@Override
+	public int getPosY() {
+		return posY;
+	}
+	
+	
+	
+	/**
+	 * das Fahrzeug faehrt nach vorne. Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
+	private void moveForward()
+	{
+		switch(dir)
+		{
+		case north:
+			this.posY--;
+			break;
+		case east:
+			this.posX++;
+			break;
+		case south:
+			this.posY++;
+			break;
+		case west:
+			this.posX--;
+		}
+	}
+	
+	/**
+	 * Das Fahrzeug faehrt nach links (1 nach vorne, 1 nach links und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
+	private void moveLeft()
+	{
+		switch (dir)
+		{
+		case north:
+			this.posX--;
+			this.posY--;
+			this.dir=direction.west;
+			break;
+		case east:
+			this.posX++;
+			this.posY--;
+			this.dir=direction.north;
+			break;
+		case south:
+			this.posX++;
+			this.posY++;
+			this.dir=direction.east;
+			break;
+		case west:
+			this.posX--;
+			this.posY++;
+			this.dir=direction.south;			
+		}
+
+	}
+	
+	
+	/**
+	 * Das Fahrzeug faehrt nach rechts (1 nach vorne, 1 nach rechts und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
+	private void moveRight()
+	{
+		switch(dir)
+		{
+		case north:
+			this.posX++;
+			this.posY--;
+			this.dir=direction.east;
+			break;
+		case east:
+			this.posX++;
+			this.posY++;
+			this.dir=direction.south;
+			break;
+		case south:
+			this.posX--;
+			this.posY++;
+			this.dir=direction.west;
+			break;
+		case west:
+			this.posX--;
+			this.posY--;
+			this.dir=direction.north;
 		}
 	}
 

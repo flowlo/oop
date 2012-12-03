@@ -14,6 +14,7 @@ public class Test {
 		car1.start();
 		car2.start();
 		
+		
 	}
 	
 	public static class Watcher extends Thread

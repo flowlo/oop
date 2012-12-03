@@ -62,7 +62,7 @@ public class GameField {
 			else
 			{	
 				field[toX][toY].crashed();
-				System.out.println("Car "+car.getID()+" crashed into "+field[toX][toY].getID());
+				System.out.println("Car "+car.getSymbol()+" crashed into "+field[toX][toY].getSymbol());
 				System.out.println(this.toString());
 				return false;
 			}
@@ -92,7 +92,7 @@ public class GameField {
 			for(int x=0;x<width;x++)
 			{
 				if(field[x][y]==null) sb.append("O");
-				else sb.append(field[x][y].getID());
+				else sb.append(field[x][y].getSymbol());
 			}
 			sb.append("\n");
 		}
