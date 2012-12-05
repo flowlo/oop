@@ -2,24 +2,18 @@
 
 
 public class fastCar extends Autodrom{
-
-	
-
-
-	
-	
 	public fastCar(GameField field, int startX, int startY,
 			direction startDirection, int speed, int moves, char ID) {
 		super(field, startX, startY, startDirection, speed,moves, ID);
 	}
 
 	/**
-	 * carlogic (im Moment Kreise)
+	 * carlogic (random)
 	 */
 	protected void move()
 	{
 
-		if(posX<=1)
+		if(getPosX()<=1)
 		{
 			switch(dir)
 			{
@@ -33,11 +27,11 @@ public class fastCar extends Autodrom{
 				moveForward();
 				break;
 			case west:
-				if(posY<gamefield.getHeight()/2)moveLeft();
+				if(getPosY()<gamefield.getHeight()/2)moveLeft();
 				else moveRight();				
 			}
 		}
-		else if(posX>=gamefield.getWidth()-2)
+		else if(getPosX()>=gamefield.getWidth()-2)
 		{
 			switch(dir)
 			{
@@ -51,16 +45,16 @@ public class fastCar extends Autodrom{
 				moveForward();
 				break;
 			case east:
-				if(posY<gamefield.getHeight()/2)moveRight();
+				if(getPosY()<gamefield.getHeight()/2)moveRight();
 				else moveLeft();				
 			}
 		}
-		else if(posY<=1)
+		else if(getPosY()<=1)
 		{
 			switch(dir)
 			{
 			case north:
-				if(posX<gamefield.getWidth()/2)moveRight();
+				if(getPosX()<gamefield.getWidth()/2)moveRight();
 				else moveLeft();		
 				break;
 			case south: 
@@ -73,7 +67,7 @@ public class fastCar extends Autodrom{
 				moveLeft();			
 			}
 		}
-		else if(posY>=gamefield.getHeight()-2)
+		else if(getPosY()>=gamefield.getHeight()-2)
 		{
 			switch(dir)
 			{
@@ -81,7 +75,7 @@ public class fastCar extends Autodrom{
 				moveForward();		
 				break;
 			case south: 
-				if(posX<gamefield.getWidth()/2)moveLeft();
+				if(getPosX()<gamefield.getWidth()/2)moveLeft();
 				else moveRight();
 				break;
 			case east:

@@ -13,8 +13,8 @@ public abstract class Autodrom extends Thread{
 	
 	protected int tmpPosX;
 	protected int tmpPosY;
-	protected Integer posX;				
-	protected Integer posY;
+	private Integer posX;				
+	private Integer posY;
 	protected direction dir, tmpDir;		
 	private final char ID;		
 	
@@ -101,7 +101,8 @@ public abstract class Autodrom extends Thread{
 	}
 	
 	/**
-	 * Implementierung der BewegungLogik
+	 * Implementierung der BewegungsLogik. 
+	 * Nach einem Aufruf von move muessen tmpPosX und tmpPosY eine gueltige Zielposition haben.
 	 */
 	protected abstract void move();
 	

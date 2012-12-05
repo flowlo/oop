@@ -1,4 +1,4 @@
-import Autodrom.direction;
+
 
 
 
@@ -34,13 +34,13 @@ public class FlexibleCar extends Autodrom{
 	
 	//random
 	protected void move() {	;
-		if(frontalCrash||(nextX==posX&&nextY==posY))
+		if(frontalCrash||(nextX==getPosX()&&nextY==getPosY()))
 		{
 			frontalCrash=false;
 			nextX=(int)Math.floor(Math.random()*gamefield.getWidth());
 			nextY=(int)Math.floor(Math.random()*gamefield.getHeight());
 		}
-		if(posX<nextX)	//fahre zuerst in X-Richtung
+		if(getPosX()<nextX)	//fahre zuerst in X-Richtung
 		{
 			switch(dir)
 			{
@@ -52,11 +52,11 @@ public class FlexibleCar extends Autodrom{
 			case south: moveHardLeft();
 			break;
 			case west:
-				if(posY<gamefield.getWidth()/2) moveHardLeft();
+				if(getPosY()<gamefield.getWidth()/2) moveHardLeft();
 				else moveHardRight();
 			}
 		}
-		else if(posX>nextX)
+		else if(getPosX()>nextX)
 		{
 			switch(dir)
 			{
@@ -68,11 +68,11 @@ public class FlexibleCar extends Autodrom{
 			case north: moveHardLeft();
 			break;
 			case east:
-				if(posY>gamefield.getWidth()/2) moveHardLeft();
+				if(getPosY()>gamefield.getWidth()/2) moveHardLeft();
 				else moveHardRight();
 			}
 		}
-		else if(posY<nextY)		//und dann in Y Richtung
+		else if(getPosY()<nextY)		//und dann in Y Richtung
 		{
 				switch(dir)
 				{
@@ -84,12 +84,12 @@ public class FlexibleCar extends Autodrom{
 				case west: moveHardLeft();
 				break;
 				case north:
-					if(posX>gamefield.getWidth()/2) moveHardLeft();
+					if(getPosX()>gamefield.getWidth()/2) moveHardLeft();
 					else moveHardRight();
 				}
 		}
 	
-		else if(posY>nextY)
+		else if(getPosY()>nextY)
 			{
 				switch(dir)
 				{
@@ -101,7 +101,7 @@ public class FlexibleCar extends Autodrom{
 				case east: moveHardLeft();
 				break;
 				case south:
-					if(posX<gamefield.getWidth()/2) moveHardLeft();
+					if(getPosX()<gamefield.getWidth()/2) moveHardLeft();
 					else moveHardRight();
 				}
 			}
