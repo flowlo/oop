@@ -1,4 +1,10 @@
 
+/**
+ * die Methoden getPosX und getPosY muessen immer die aktuelle Position am Feld zurueck liefern um einen crash zu erkennen.
+ * zur Berechnung der Zielposition gibt es daher tmpPosX und tmpPosY
+ * @author Simon
+ *
+ */
 public abstract class Autodrom extends Thread{
 	private int speed;
 	protected GameField gamefield;
@@ -17,7 +23,17 @@ public abstract class Autodrom extends Thread{
 	
 	public enum direction {north, east, south, west};
 	
-
+/**
+ * Erzeugt ein neues Autodrom. Es wird erwartet, dass fuer startX, startY und startDirection gueltige Parameter angegeben werden (in Bezug auf field), so dass eine Bewegung in Richtung startDirection 
+ * auch eine guelitge Position ist. 
+ * @param field Spielfeld
+ * @param startX Position am Spielfeld
+ * @param startY Position am Spielfeld
+ * @param startDirection Fahrtrichtung des Autodroms
+ * @param speed Wartezeit (in ms) zwischen zwei Bewegungen (nicht negativ)
+ * @param moves Anzahl an Bewegungen (nicht negativ)
+ * @param ID Zeichen, welche in der toString verwendet werden soll.
+ */
 	public Autodrom(GameField field, int startX, int startY, direction startDirection,int speed, int moves,char ID)
 	{
 		this.moves=moves;
@@ -84,13 +100,17 @@ public abstract class Autodrom extends Thread{
 		}
 	}
 	
-
+	/**
+	 * Implementierung der BewegungLogik
+	 */
 	protected abstract void move();
+	
 	
 	public int getPoints()
 	{
 		return points;
 	}
+	
 	
 	public synchronized void addPoint()
 	{
@@ -183,56 +203,7 @@ public abstract class Autodrom extends Thread{
 	}
 	
 	
-	/**
-	 * Das Fahrzeug faehrt nach links (1 nach links und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
-	 */
-	protected void moveHardLeft()
-	{
-		switch (dir)
-		{
-		case north:
-			this.tmpPosX--;
-			this.tmpDir=direction.west;
-			break;
-		case east:
-			this.tmpPosY--;
-			this.tmpDir=direction.north;
-			break;
-		case south:
-			this.tmpPosX++;
-			this.tmpDir=direction.east;
-			break;
-		case west:
-			this.tmpPosY++;
-			this.tmpDir=direction.south;			
-		}
-
-	}
 	
-	/**
-	 * Das Fahrzeug faehrt nach rechts (1 nach rechts und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
-	 */
-	protected void moveHardRight()
-	{
-		switch(dir)
-		{
-		case north:
-			this.tmpPosX++;
-			this.tmpDir=direction.east;
-			break;
-		case east:
-			this.tmpPosY++;
-			this.tmpDir=direction.south;
-			break;
-		case south:
-			this.tmpPosX--;
-			this.tmpDir=direction.west;
-			break;
-		case west:
-			this.tmpPosY--;
-			this.tmpDir=direction.north;
-		}
-	}
 
 	/**
 	 * @return the posX
@@ -247,13 +218,10 @@ public abstract class Autodrom extends Thread{
 
 
 	/**
-	 * @return the posY
+	 * @return the posY 
 	 */
 	public int getPosY() {
-		synchronized(posY)
-		{
-			return posY;
-		}
+		return posY;
 	}
 
 	/**
@@ -265,10 +233,7 @@ public abstract class Autodrom extends Thread{
 	
 	public direction getDirection()
 	{
-		synchronized(dir)
-		{
-			return this.dir;
-		}
+		return this.dir;
 	}
 		
 	public String toString()

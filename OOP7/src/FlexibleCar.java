@@ -1,3 +1,5 @@
+import Autodrom.direction;
+
 
 
 
@@ -109,7 +111,56 @@ public class FlexibleCar extends Autodrom{
 
 
 	
+	/**
+	 * Das Fahrzeug faehrt nach links (1 nach links und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
+	private void moveHardLeft()
+	{
+		switch (dir)
+		{
+		case north:
+			this.tmpPosX--;
+			this.tmpDir=direction.west;
+			break;
+		case east:
+			this.tmpPosY--;
+			this.tmpDir=direction.north;
+			break;
+		case south:
+			this.tmpPosX++;
+			this.tmpDir=direction.east;
+			break;
+		case west:
+			this.tmpPosY++;
+			this.tmpDir=direction.south;			
+		}
+
+	}
 	
+	/**
+	 * Das Fahrzeug faehrt nach rechts (1 nach rechts und Richtungsaenderung). Diese Methode ist unabhaengig von einem Spielfeld.
+	 */
+	private void moveHardRight()
+	{
+		switch(dir)
+		{
+		case north:
+			this.tmpPosX++;
+			this.tmpDir=direction.east;
+			break;
+		case east:
+			this.tmpPosY++;
+			this.tmpDir=direction.south;
+			break;
+		case south:
+			this.tmpPosX--;
+			this.tmpDir=direction.west;
+			break;
+		case west:
+			this.tmpPosY--;
+			this.tmpDir=direction.north;
+		}
+	}
 	
 
 
