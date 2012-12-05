@@ -51,6 +51,10 @@ public abstract class Autodrom extends Thread{
 			tmpPosY=this.getPosY();
 			tmpDir=this.dir;
 			move();
+			
+			//Auch wenn laut Angabe schlecht wird gamefield hier gesperrt.
+			//die Berechnung der Bewegung wird onehin vorher in move() erledigt.
+			//gamefield bleibt also nur ueber einen minimalen Zeitraum gesperrt.
 			synchronized(gamefield)
 			{
 				int res=gamefield.moveCar(posX, posY,tmpPosX,tmpPosY,tmpDir, this);

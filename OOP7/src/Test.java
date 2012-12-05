@@ -53,10 +53,10 @@ public class Test {
 	}
 	else if(count==3)
 	{
-		System.out.println("\n\nStarte Test mit 6x6 Feld und 2 Autos.\n");
-		field=new GameField(6,6);
-		fastCar car2=new fastCar(field, 2, 3, Autodrom.direction.west, 10,100,'y');
-		FlexibleCar car3=new FlexibleCar(field, 4, 2, Autodrom.direction.east,20,100, 'i');
+		System.out.println("\n\nStarte Test mit 5x7 Feld und 2 Autos.\n");
+		field=new GameField(5,7);
+		fastCar car2=new fastCar(field, 2, 2, Autodrom.direction.east, 10,100,'y');
+		FlexibleCar car3=new FlexibleCar(field, 3, 6, Autodrom.direction.north,20,100, 'i');
 		car2.start();
 		car3.start();
 	}
