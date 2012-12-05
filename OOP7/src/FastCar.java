@@ -5,7 +5,6 @@
  *         * Das FastCar kann sich nur auf die Felder bewegen, die sich auf der Kante des umliegenden Rechtecks befinden, in welche das FastCar
  *         ausgerichtet ist.
  */
-
 public class FastCar extends Autodrom {
 	public FastCar(GameField field, int startX, int startY,
 			direction startDirection, int speed, int moves, char ID) {

@@ -85,9 +85,6 @@ public class GameField {
 			}
 			else
 			{
-
-				//	System.out.println(this.toString());
-
 				switch (newDir)
 				{
 				case north:

@@ -8,7 +8,13 @@
  *         * Ein Autodrom befindet sich auf genau einem Feld im Spielfeld
  *         * Auf diesem Feld befindet sich kein anderes
  *         * Das Autodrom ist in eine der vier Himmelsrichtungen ausgerichtet
- *         * ein Autodrom kann sich nur auf bestimmte NAchbarfelder bewegen, nie ein Feld ueberspringen
+ *         * Ein Autodrom kann sich nur auf bestimmte Nachbarfelder bewegen, nie ein Feld ueberspringen
+ *         * Bewegt es sich nach (schraeg) links/rechts, aendert sich dementsprechend die Ausrichtung
+ *         * Wuerde es sich auf ein Feld bewegen, das bereits besetzt ist, rammt es ein anderes Auto, bleibt aber auf der derzeitigen Position. Ein
+ *         Pluspunkt
+ *         * Faehrt ein anderes Auto auf die Position dieses Autos wird es gerammt. Ein Minuspunkt.
+ *         * Ein Autodrom bewegt sich nach einer bestimmten Zeit auf ein anderes Feld.
+ *         * Erreicht ein Auto 10 Punkte, hat es gewonnen und das Spiel endet.
  */
 public abstract class Autodrom extends Thread {
 	private int speed;
@@ -110,7 +116,7 @@ public abstract class Autodrom extends Thread {
 			}
 		} catch (InterruptedException e)
 		{
-			//System.out.println("car interrupted");
+			// Thread interrupted. Car stops.
 		}
 	}
 
@@ -219,10 +225,7 @@ public abstract class Autodrom extends Thread {
 	 * @return the posX
 	 */
 	public int getPosX() {
-		synchronized (posX)
-		{
-			return posX;
-		}
+		return posX;
 	}
 
 	/**
