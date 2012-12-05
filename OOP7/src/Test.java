@@ -27,7 +27,7 @@ public class Test {
 		System.out.println("Die Autos haben zufaellige bewegungen. Jeder Durchlauf hat also ein anderes Ergebnis.");
 		System.out.println("\nStarte Test mit 10x10 Feld und 3 Autos.\n");
 		field=new GameField(10,10);
-		fastCar car1=new fastCar(field, 5, 5, Autodrom.direction.west, 10,100,'x');
+		FastCar car1=new FastCar(field, 5, 5, Autodrom.direction.west, 10,100,'x');
 		FlexibleCar car2=new FlexibleCar(field, 2, 2, Autodrom.direction.east,20,100, 'i');
 		FlexibleCar car3=new FlexibleCar(field, 7,7, Autodrom.direction.north,20,100,'l');
 		car1.start();
@@ -38,8 +38,8 @@ public class Test {
 	{
 		field=new GameField(100,100);
 		System.out.println("\n\nStarte Test mit 15x15 Feld und 6 Autos.\n");
-		fastCar car1=new fastCar(field, 5, 5, Autodrom.direction.west, 10,200,'x');
-		fastCar car2=new fastCar(field, 13, 13, Autodrom.direction.west, 10,200,'y');
+		FastCar car1=new FastCar(field, 5, 5, Autodrom.direction.west, 10,200,'x');
+		FastCar car2=new FastCar(field, 13, 13, Autodrom.direction.west, 10,200,'y');
 		FlexibleCar car3=new FlexibleCar(field, 8, 8, Autodrom.direction.east,20,200, 'i');
 		FlexibleCar car4=new FlexibleCar(field, 12,3, Autodrom.direction.south,20,200,'j');
 		FlexibleCar car5=new FlexibleCar(field, 3,13, Autodrom.direction.north,20,200,'l');
@@ -55,7 +55,7 @@ public class Test {
 	{
 		System.out.println("\n\nStarte Test mit 5x7 Feld und 2 Autos.\n");
 		field=new GameField(5,7);
-		fastCar car2=new fastCar(field, 2, 2, Autodrom.direction.east, 10,100,'y');
+		FastCar car2=new FastCar(field, 2, 2, Autodrom.direction.east, 10,100,'y');
 		FlexibleCar car3=new FlexibleCar(field, 3, 6, Autodrom.direction.north,20,100, 'i');
 		car2.start();
 		car3.start();
