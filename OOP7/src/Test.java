@@ -13,10 +13,10 @@ public class Test {
 	private static int count = 0;
 	private static GameField field;
 	private static boolean stop = false;
+	private static Watcher watcher = new Watcher();
 
 	public static void main(String[] args)
 	{
-		Watcher watcher = new Watcher();
 		watcher.start();
 		nextTest();
 	}
@@ -67,6 +67,7 @@ public class Test {
 		else
 		{
 			System.out.println("ENDE");
+			watcher.interrupt();
 		}
 	}
 
@@ -79,7 +80,7 @@ public class Test {
 				Thread.sleep(8000);
 				System.out.println("\nWatcher - Beendet nach 8 sekunden");
 			} catch (InterruptedException e) {
-				System.err.println("\nWatcher wurde unterbrochen. Programm wird beendet.");
+				System.out.println("\nWatcher wurde beendet. Programm terminiert.");
 			}
 			Test.stop = true;
 			Test.field.stopRace();
