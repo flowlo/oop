@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class MeanElapsedTime implements ElapsedTime {
 
 	private Set<Double> measurements = new Set<Double>();
@@ -11,7 +13,8 @@ public class MeanElapsedTime implements ElapsedTime {
 	public int count() {
 		int count = 0;
 
-		for (Double item : measurements) {
+		Iterator<Double> it = measurements.iterator();
+		while (it.hasNext()) {
 			count++;
 		}
 
