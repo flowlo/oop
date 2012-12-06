@@ -1,10 +1,10 @@
 @Author(Authors.Dominik)
 public class Duengen extends Einsatzzweck {
-	protected Duengen(float fassungskapazitaet) {
+	protected Duengen(double fassungskapazitaet) {
 		super(fassungskapazitaet);
 	}
 
-	public Float getFassungskapazitaet() {
-		return menge.floatValue();
+	public double getFassungskapazitaet() {
+		return menge.doubleValue();
 	}
 }

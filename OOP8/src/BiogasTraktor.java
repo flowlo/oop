@@ -5,12 +5,12 @@ public class BiogasTraktor extends Traktor {
 		super(nummer, einsatzzweck);
 	}
 
-	public Float getBisherigerVerbrauch() {
-		return bisherigerVerbrauch.floatValue();
+	public double getBisherigerVerbrauch() {
+		return bisherigerVerbrauch.doubleValue();
 	}
 
-	public void erhoeheVerbrauch(float biogas) {
-		bisherigerVerbrauch = bisherigerVerbrauch.floatValue() + biogas;
+	public void erhoeheVerbrauch(double biogas) {
+		bisherigerVerbrauch = bisherigerVerbrauch.doubleValue() + biogas;
 	}
 
 }

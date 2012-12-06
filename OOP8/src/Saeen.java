@@ -4,7 +4,7 @@ public class Saeen extends Einsatzzweck {
 		super(saeSchare);
 	}
 
-	public Integer getSaeSchare() {
+	public int getSaeSchare() {
 		return menge.intValue();
 	}
 }

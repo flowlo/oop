@@ -40,7 +40,7 @@ public class Bauernhof {
 	public void setEinsatzzweck(int nummer, Einsatzzweck einsatzzweck) {
 		Traktor traktor = traktoren.get(nummer);
 		if (traktor != null) {
-			traktor.setEinsazuzweck(einsatzzweck);
+			traktor.setEinsatzzweck(einsatzzweck);
 		}
 	}
 
@@ -55,7 +55,7 @@ public class Bauernhof {
 			Traktor traktor = current.getTraktor();
 			if ((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen)) {
 				anzahl += 1;
-				summe += traktor.getBetriebsStunden();
+				summe += traktor.getBetriebsstunden();
 			}
 		} while ((current = current.getNext()) != null);
 
@@ -73,7 +73,7 @@ public class Bauernhof {
 			Traktor traktor = current.getTraktor();
 			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
 				anzahl += 1;
-				summe += traktor.getBetriebsStunden();
+				summe += traktor.getBetriebsstunden();
 			}
 		} while ((current = current.getNext()) != null);
 
