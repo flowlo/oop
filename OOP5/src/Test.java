@@ -5,105 +5,115 @@ public class Test {
 
 		boolean[] testCorrect = new boolean[4];
 		test1(testCorrect);
-		OrderedMap<MeanElapsedTime,CompositeTime> mapFromTest2=test2(testCorrect);
-		test4(testCorrect,mapFromTest2);
+		OrderedMap<MeanElapsedTime, CompositeTime> mapFromTest2 = test2(testCorrect);
+		test4(testCorrect, mapFromTest2);
 		System.out.println("-----------------------");
-		if(testCorrect[0]&&testCorrect[1]&&testCorrect[3])
+		if (testCorrect[0] && testCorrect[1] && testCorrect[3])
 		{
 			System.out.println("All tests correct! (test3 is combined with test2)");
 		}
-		else System.out.println("TESTS FAILED");
-		// Test3 wird int test2() getestet
-	
+		else
+			System.out.println("TESTS FAILED");
+		// Test3 wird in test2() getestet
+
 	}
-	
-	private static void test4(boolean[] testCorrect, OrderedMap<MeanElapsedTime,CompositeTime> inMap)
+
+	private static void test4(boolean[] testCorrect, OrderedMap<MeanElapsedTime, CompositeTime> inMap)
 	{
 		System.out.println("\nStart Test 4");
-		testCorrect[3]=true;
+		testCorrect[3] = true;
 		OrderedMap.EntryIterator<MeanElapsedTime, CompositeTime> it = inMap.iterator();
-		OrderedSet<ElapsedTime> oSet=new OrderedSet<ElapsedTime>();
-		
-		while(it.hasNext())
+		OrderedSet<ElapsedTime> oSet = new OrderedSet<ElapsedTime>();
+
+		while (it.hasNext())
 		{
-			MeanElapsedTime met=it.next();
+			MeanElapsedTime met = it.next();
 			oSet.insert(met);
-			
+
 			OrderedMap.EntrySetIterator<CompositeTime> innerit = it.iterator();
-			
-			while(innerit.hasNext())
+
+			while (innerit.hasNext())
 			{
-				CompositeTime ct=innerit.next();
+				CompositeTime ct = innerit.next();
 				oSet.insert(ct);
 			}
-			
+
 		}
-		
-		int count=0;
-		for(ElapsedTime time : oSet)
-		{	
-			if(count==0)
-			{	//Fuer korrekte Werte vergleiche mit Test2
-				if(time.getTime()==3.5&&time.count()==3)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+
+		int count = 0;
+		for (ElapsedTime time : oSet)
+		{
+			if (count == 0)
+			{ //Fuer korrekte Werte vergleiche mit Test2
+				if (time.getTime() == 3.5 && time.count() == 3)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==1)
+			else if (count == 1)
 			{
-				if(time.getTime()==4.5&&time.count()==3)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() == 4.5 && time.count() == 3)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==2)
+			else if (count == 2)
 			{
-				if(time.getTime()==5.2&&time.count()==2)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() == 5.2 && time.count() == 2)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==3)
+			else if (count == 3)
 			{
-				if(time.getTime()==5.5&&time.count()==3)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() == 5.5 && time.count() == 3)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==4)
+			else if (count == 4)
 			{
-				if(time.getTime()==6.0&&time.count()==3)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() == 6.0 && time.count() == 3)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==5)
+			else if (count == 5)
 			{
-				if(time.getTime()==7.5&&time.count()==4)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() == 7.5 && time.count() == 4)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==6)
+			else if (count == 6)
 			{
-				if(time.getTime()-17.4<0.00001&&time.count()==4) //Rundungsfehler von double
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() - 17.4 < 0.00001 && time.count() == 4) //Rundungsfehler von double
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==7)
+			else if (count == 7)
 			{
-				if(time.getTime()-17.4<0.00001&&time.count()==4)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() - 17.4 < 0.00001 && time.count() == 4)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
-			else if(count==8)
+			else if (count == 8)
 			{
-				if(time.getTime()==23.0&&time.count()==4)
-					System.out.println("Correct: count is "+time.count());
-				else testCorrect[3]=false;
+				if (time.getTime() == 23.0 && time.count() == 4)
+					System.out.println("  Correct: count is " + time.count());
+				else
+					testCorrect[3] = false;
 			}
 			count++;
-		}	
-		
-		if(testCorrect[3])
+		}
+
+		if (testCorrect[3])
 			System.out.println("Test 4 correct");
-		else System.out.println("Test 4 FAILED");
+		else
+			System.out.println("Test 4 FAILED");
 	}
-	
 
 	private static void test1(boolean[] testCorrect) {
 		System.out.println("Test1 started");
@@ -186,15 +196,15 @@ public class Test {
 
 		OrderedMap<MeanElapsedTime, CompositeTime> timeMap = new OrderedMap<MeanElapsedTime, CompositeTime>();
 		MeanElapsedTime met1 = new MeanElapsedTime();
-		met1.add(2.5);	//Schnitt 3.5
+		met1.add(2.5); //Schnitt 3.5
 		met1.add(4.5);
 		met1.add(3.5);
 		MeanElapsedTime met2 = new MeanElapsedTime();
-		met2.add(4.5);	//Schnitt 5.5
+		met2.add(4.5); //Schnitt 5.5
 		met2.add(6.5);
 		met2.add(5.5);
 		MeanElapsedTime met3 = new MeanElapsedTime();
-		met3.add(3.5);	//Schnitt 4.5
+		met3.add(3.5); //Schnitt 4.5
 		met3.add(5.5);
 		met3.add(4.5);
 		timeMap.insert(met1);
@@ -211,8 +221,8 @@ public class Test {
 				System.out.println("  Correct: Max is 4.5");
 			}
 			OrderedMap.EntrySetIterator<CompositeTime> innerit = it.iterator();
-			innerit.add(new CompositeTime(new Double[] { 2.0, 1.0, 3.0 }));	//Total = 6.0
-			innerit.add(new CompositeTime(new Double[] { 5.4, 7.3, 2.8, 7.5 }));	//Total = 23.0
+			innerit.add(new CompositeTime(new Double[] { 2.0, 1.0, 3.0 })); //Total = 6.0
+			innerit.add(new CompositeTime(new Double[] { 5.4, 7.3, 2.8, 7.5 })); //Total = 23.0
 			if ((time = it.next().getMax()) != 5.5) {
 				testCorrect[1] = false;
 				System.out.println("  WRONG: Max should be 5.5, but is " + time);
@@ -220,9 +230,9 @@ public class Test {
 				System.out.println("  Correct: Max is 5.5");
 			}
 			innerit = it.iterator();
-			innerit.add(new CompositeTime(new Double[] { 1.8, 3.4, 9.4, 2.8 }));	// Total =17.4
-			innerit.add(new CompositeTime(new Double[] { 6.4, 0.3, -0.5, 1.3 }));	// Total = 7.5
-			innerit.add(new CompositeTime(new Double[] { 6.9, 4.0, 1.3, 5.2 }));	// Total = 17.4
+			innerit.add(new CompositeTime(new Double[] { 1.8, 3.4, 9.4, 2.8 })); // Total =17.4
+			innerit.add(new CompositeTime(new Double[] { 6.4, 0.3, -0.5, 1.3 })); // Total = 7.5
+			innerit.add(new CompositeTime(new Double[] { 6.9, 4.0, 1.3, 5.2 })); // Total = 17.4
 			if ((time = it.next().getMax()) != 6.5) {
 				testCorrect[1] = false;
 				System.out.println("  WRONG: Max should be 6.5, but is " + time);
@@ -242,7 +252,7 @@ public class Test {
 		}
 
 		MeanElapsedTime met4 = new MeanElapsedTime();
-		met4.add(5.0);	//Schnitt 5.2
+		met4.add(5.0); //Schnitt 5.2
 		met4.add(5.4);
 		timeMap.insert(met4);
 
