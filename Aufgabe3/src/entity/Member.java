@@ -84,4 +84,8 @@ public class Member extends User {
 		messages = new ArrayList<String>();
 		return tempMessages;
 	}
+
+	public String getBand() {
+		return band;
+	}
 }
