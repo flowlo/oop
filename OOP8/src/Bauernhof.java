@@ -167,6 +167,8 @@ public class Bauernhof {
 	}
 
 	/**
+	 * Hier wurde das Interface Iterable nicht implementiert, da Generizitaet laut Angabe verboten ist.
+	 * 
 	 * Zusicherungen:
 	 * * Jeder Traktor darf nur einmal in der Liste vorkommen (Nummer ist eindeutig)
 	 */
