@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Zusicherungern:
  * * Der Name des Bauernhofs ist eindeutig und unveraenderlich
@@ -8,7 +5,7 @@ import java.util.Map;
 @Author(Authors.Dominik)
 public class Bauernhof {
 	private final String name;
-	private Map<Integer, Traktor> traktoren = new HashMap<Integer, Traktor>();
+	private TraktorenListe traktoren = new TraktorenListe();
 
 	public Bauernhof(String name) {
 		this.name = name;
@@ -19,11 +16,11 @@ public class Bauernhof {
 	}
 
 	public void addTraktor(Traktor traktor) {
-		traktoren.put(traktor.getNummer(), traktor);
+		traktoren.add(traktor);
 	}
 
 	public void removeTraktor(Traktor traktor) {
-		traktoren.remove(traktor.getNummer());
+		traktoren.remove(traktor);
 	}
 
 	public void erhoeheDieselVerbrauch(int nummer, Integer diesel) {
@@ -53,12 +50,14 @@ public class Bauernhof {
 		int summe = 0;
 		int anzahl = 0;
 
-		for (Traktor traktor : traktoren.values()) {
+		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
+		do {
+			Traktor traktor = current.getTraktor();
 			if ((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen)) {
 				anzahl += 1;
 				summe += traktor.getBetriebsStunden();
 			}
-		}
+		} while ((current = current.getNext()) != null);
 
 		return ((float) summe) / anzahl;
 	}
@@ -69,12 +68,14 @@ public class Bauernhof {
 		int summe = 0;
 		int anzahl = 0;
 
-		for (Traktor traktor : traktoren.values()) {
+		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
+		do {
+			Traktor traktor = current.getTraktor();
 			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
 				anzahl += 1;
 				summe += traktor.getBetriebsStunden();
 			}
-		}
+		} while ((current = current.getNext()) != null);
 
 		return ((float) summe) / anzahl;
 	}
@@ -85,12 +86,14 @@ public class Bauernhof {
 		int summe = 0;
 		int anzahl = 0;
 
-		for (Traktor traktor : traktoren.values()) {
+		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
+		do {
+			Traktor traktor = current.getTraktor();
 			if (traktor instanceof DieselTraktor && ((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen))) {
 				anzahl += 1;
 				summe += ((DieselTraktor) traktor).getBisherigerVerbrauch();
 			}
-		}
+		} while ((current = current.getNext()) != null);
 
 		return ((float) summe) / anzahl;
 	}
@@ -101,40 +104,46 @@ public class Bauernhof {
 		float summe = 0;
 		int anzahl = 0;
 
-		for (Traktor traktor : traktoren.values()) {
+		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
+		do {
+			Traktor traktor = current.getTraktor();
 			if (traktor instanceof BiogasTraktor && ((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen))) {
 				anzahl += 1;
 				summe += ((BiogasTraktor) traktor).getBisherigerVerbrauch();
 			}
-		}
+		} while ((current = current.getNext()) != null);
 
 		return summe / anzahl;
 	}
 
-	public float getMinimumSaescharen(TraktorGruppierung gruppierung) {
+	public int getMinimumSaescharen(TraktorGruppierung gruppierung) {
 		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
 		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
 		int minimum = 0;
 
-		for (Traktor traktor : traktoren.values()) {
+		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
+		do {
+			Traktor traktor = current.getTraktor();
 			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
 				minimum = Math.min(minimum, traktor.getAnzahlSaeschare());
 			}
-		}
+		} while ((current = current.getNext()) != null);
 
 		return minimum;
 	}
 
-	public float getMaximumSaescharen(TraktorGruppierung gruppierung) {
+	public int getMaximumSaescharen(TraktorGruppierung gruppierung) {
 		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
 		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
 		int maximum = 0;
 
-		for (Traktor traktor : traktoren.values()) {
+		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
+		do {
+			Traktor traktor = current.getTraktor();
 			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
 				maximum = Math.max(maximum, traktor.getAnzahlSaeschare());
 			}
-		}
+		} while ((current = current.getNext()) != null);
 
 		return maximum;
 	}
@@ -145,13 +154,108 @@ public class Bauernhof {
 		float summe = 0;
 		int anzahl = 0;
 
-		for (Traktor traktor : traktoren.values()) {
+		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
+		do {
+			Traktor traktor = current.getTraktor();
 			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
 				anzahl += 1;
 				summe += traktor.getFassungskapazitaet();
 			}
-		}
+		} while ((current = current.getNext()) != null);
 
 		return summe / anzahl;
+	}
+
+	/**
+	 * Zusicherungen:
+	 * * Jeder Traktor darf nur einmal in der Liste vorkommen (Nummer ist eindeutig)
+	 */
+	private class TraktorenListe {
+		TraktorEintrag head = null;
+
+		public Traktor get(int nummer) {
+			TraktorEintrag current = head;
+			do {
+				if (current.getTraktor().getNummer() == nummer) {
+					return current.getTraktor();
+				}
+			} while ((current = current.getNext()) != null);
+			return null;
+		}
+
+		public void add(Traktor traktor) {
+			if (head != null) {
+				if (!contains(traktor)) {
+					TraktorEintrag newHead = new TraktorEintrag(traktor);
+					newHead.add(head);
+					head = newHead;
+				}
+			} else {
+				head = new TraktorEintrag(traktor);
+			}
+		}
+
+		public void remove(Traktor traktor) {
+			if (head.getTraktor().getNummer() != traktor.getNummer()) {
+				TraktorEintrag current = head;
+				TraktorEintrag last = null;
+				while ((current = current.getNext()) != null) {
+					if (current.getTraktor().getNummer() == traktor.getNummer()) {
+						last.setNext(current.getNext());
+						return;
+					}
+					last = current;
+				}
+			} else {
+				head = head.getNext();
+			}
+		}
+
+		private boolean contains(Traktor traktor) {
+			if (head != null) {
+				TraktorEintrag current = head;
+				do {
+					if (current.getTraktor().getNummer() == traktor.getNummer()) {
+						return true;
+					}
+				} while ((current = current.getNext()) != null);
+				return false;
+			} else {
+				return false;
+			}
+		}
+
+		public TraktorEintrag getHead() {
+			return head;
+		}
+
+		private class TraktorEintrag {
+			private Traktor traktor;
+			private TraktorEintrag next = null;
+
+			public TraktorEintrag(Traktor traktor) {
+				this.traktor = traktor;
+			}
+
+			public Traktor getTraktor() {
+				return traktor;
+			}
+
+			public TraktorEintrag getNext() {
+				return next;
+			}
+
+			public void add(TraktorEintrag traktorEintrag) {
+				if (next == null) {
+					next = traktorEintrag;
+				} else {
+					next.add(traktorEintrag);
+				}
+			}
+
+			public void setNext(TraktorEintrag traktorEintrag) {
+				next = traktorEintrag;
+			}
+		}
 	}
 }
