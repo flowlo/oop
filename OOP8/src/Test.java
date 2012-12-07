@@ -1,17 +1,17 @@
 import java.lang.reflect.Method;
 
-@Authors(Author.Dominik)
+@Authors("Dominik")
 public class Test {
 
 	private static boolean failed = false;
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public static void main(String[] args) {
 		traktorTest();
 		autorenTest();
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public static void traktorTest() {
 		failed = false;
 
@@ -58,12 +58,11 @@ public class Test {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public static void autorenTest() {
 		System.out.println("\nStarte Autorentest");
 		failed = false;
 
-		printClass(Author.class);
 		printClass(Authors.class);
 		printClass(Bauernhof.class);
 		printClass(Bauernhof.TraktorenListe.class);
@@ -85,7 +84,7 @@ public class Test {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	private static void printClass(Class<?> clazz) {
 		System.out.println("  " + String.format("%-35s", clazz.getSimpleName()) + "Autoren: " + getAuthors(clazz));
 		for (Method method : clazz.getMethods()) {
@@ -93,34 +92,25 @@ public class Test {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	private static String getAuthors(Class<?> clazz) {
 		if (clazz.isAnnotationPresent(Authors.class)) {
-			return getAuthors(clazz.getAnnotation(Authors.class));
+			return clazz.getAnnotation(Authors.class).value();
 		} else {
 			return "KEINE AUTOREN";
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	private static String getAuthors(Method method) {
 		if (method.isAnnotationPresent(Authors.class)) {
-			return getAuthors(method.getAnnotation(Authors.class));
+			return method.getAnnotation(Authors.class).value();
 		} else {
 			return "KEINE AUTOREN";
 		}
 	}
 
-	@Authors(Author.Dominik)
-	private static String getAuthors(Authors authors) {
-		String autoren = "";
-		for (Author author : authors.value()) {
-			autoren += ", " + author.toString();
-		}
-		return autoren.substring(2);
-	}
-
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	private static void assertThat(String test, Object should, Object is) {
 		if (should.equals(is)) {
 			System.out.println("    PASSED: " + test + " - " + is);

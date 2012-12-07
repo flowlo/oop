@@ -1,17 +1,17 @@
-@Authors(Author.Dominik)
+@Authors("Dominik")
 public class BiogasTraktor extends Traktor {
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public BiogasTraktor(int nummer, Einsatzzweck einsatzzweck) {
 		super(nummer, einsatzzweck);
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public double getBisherigerVerbrauch() {
 		return bisherigerVerbrauch.doubleValue();
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void erhoeheVerbrauch(double biogas) {
 		bisherigerVerbrauch = bisherigerVerbrauch.doubleValue() + biogas;
 	}

@@ -2,32 +2,32 @@
  * Zusicherungern:
  * * Der Name des Bauernhofs ist eindeutig und unveraenderlich
  */
-@Authors(Author.Dominik)
+@Authors("Dominik")
 public class Bauernhof {
 	private final String name;
 	private TraktorenListe traktoren = new TraktorenListe();
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public Bauernhof(String name) {
 		this.name = name;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public String getName() {
 		return name;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void addTraktor(Traktor traktor) {
 		traktoren.add(traktor);
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void removeTraktor(Traktor traktor) {
 		traktoren.remove(traktor);
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void erhoeheDieselVerbrauch(int nummer, Integer diesel) {
 		Traktor traktor = traktoren.get(nummer);
 		if (traktor != null && traktor instanceof DieselTraktor) {
@@ -35,7 +35,7 @@ public class Bauernhof {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void erhoeheBiogasVerbrauch(int nummer, Float biogas) {
 		Traktor traktor = traktoren.get(nummer);
 		if (traktor != null && traktor instanceof BiogasTraktor) {
@@ -43,7 +43,7 @@ public class Bauernhof {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void setEinsatzzweck(int nummer, Einsatzzweck einsatzzweck) {
 		Traktor traktor = traktoren.get(nummer);
 		if (traktor != null) {
@@ -51,7 +51,7 @@ public class Bauernhof {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public float getDurchschnittBetriebsstunden(EinsatzzweckGruppierung gruppierung) {
 		boolean saeen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Saeen);
 		boolean duengen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Duengen);
@@ -70,7 +70,7 @@ public class Bauernhof {
 		return ((float) summe) / anzahl;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public float getDurchschnittBetriebsstunden(TraktorGruppierung gruppierung) {
 		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
 		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
@@ -89,7 +89,7 @@ public class Bauernhof {
 		return ((float) summe) / anzahl;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public float getDurchschnittDieselverbrauch(EinsatzzweckGruppierung gruppierung) {
 		boolean saeen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Saeen);
 		boolean duengen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Duengen);
@@ -108,7 +108,7 @@ public class Bauernhof {
 		return ((float) summe) / anzahl;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public float getDurchschnittBiogasverbrauch(EinsatzzweckGruppierung gruppierung) {
 		boolean saeen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Saeen);
 		boolean duengen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Duengen);
@@ -127,7 +127,7 @@ public class Bauernhof {
 		return summe / anzahl;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public int getMinimumSaescharen(TraktorGruppierung gruppierung) {
 		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
 		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
@@ -144,7 +144,7 @@ public class Bauernhof {
 		return minimum;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public int getMaximumSaescharen(TraktorGruppierung gruppierung) {
 		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
 		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
@@ -161,7 +161,7 @@ public class Bauernhof {
 		return maximum;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public float getDurchschnittFassungskapazitaet(TraktorGruppierung gruppierung) {
 		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
 		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
@@ -186,11 +186,11 @@ public class Bauernhof {
 	 * Zusicherungen:
 	 * * Jeder Traktor darf nur einmal in der Liste vorkommen (Nummer ist eindeutig)
 	 */
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public class TraktorenListe {
 		TraktorEintrag head = null;
 
-		@Authors(Author.Dominik)
+		@Authors("Dominik")
 		public Traktor get(int nummer) {
 			TraktorEintrag current = head;
 			do {
@@ -201,7 +201,7 @@ public class Bauernhof {
 			return null;
 		}
 
-		@Authors(Author.Dominik)
+		@Authors("Dominik")
 		public void add(Traktor traktor) {
 			if (head != null) {
 				if (!contains(traktor)) {
@@ -214,7 +214,7 @@ public class Bauernhof {
 			}
 		}
 
-		@Authors(Author.Dominik)
+		@Authors("Dominik")
 		public void remove(Traktor traktor) {
 			if (head.getTraktor().getNummer() != traktor.getNummer()) {
 				TraktorEintrag current = head;
@@ -231,7 +231,7 @@ public class Bauernhof {
 			}
 		}
 
-		@Authors(Author.Dominik)
+		@Authors("Dominik")
 		private boolean contains(Traktor traktor) {
 			if (head != null) {
 				TraktorEintrag current = head;
@@ -246,32 +246,32 @@ public class Bauernhof {
 			}
 		}
 
-		@Authors(Author.Dominik)
+		@Authors("Dominik")
 		public TraktorEintrag getHead() {
 			return head;
 		}
 
-		@Authors(Author.Dominik)
+		@Authors("Dominik")
 		public class TraktorEintrag {
 			private Traktor traktor;
 			private TraktorEintrag next = null;
 
-			@Authors(Author.Dominik)
+			@Authors("Dominik")
 			public TraktorEintrag(Traktor traktor) {
 				this.traktor = traktor;
 			}
 
-			@Authors(Author.Dominik)
+			@Authors("Dominik")
 			public Traktor getTraktor() {
 				return traktor;
 			}
 
-			@Authors(Author.Dominik)
+			@Authors("Dominik")
 			public TraktorEintrag getNext() {
 				return next;
 			}
 
-			@Authors(Author.Dominik)
+			@Authors("Dominik")
 			public void add(TraktorEintrag traktorEintrag) {
 				if (next == null) {
 					next = traktorEintrag;
@@ -280,7 +280,7 @@ public class Bauernhof {
 				}
 			}
 
-			@Authors(Author.Dominik)
+			@Authors("Dominik")
 			public void setNext(TraktorEintrag traktorEintrag) {
 				next = traktorEintrag;
 			}

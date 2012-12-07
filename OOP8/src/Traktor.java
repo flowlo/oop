@@ -4,14 +4,14 @@
  * * Traktoren haben entweder Diesel- oder Biogas-Motoren
  * * Ein Traktor kann entweder nur zum Saeen oder nur zum Duengen verwendet werden
  */
-@Authors(Author.Dominik)
+@Authors("Dominik")
 public abstract class Traktor {
 	private final int nummer;
 	private int betriebsstunden;
 	protected Number bisherigerVerbrauch;
 	private Einsatzzweck einsatzzweck;
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public Traktor(int nummer, Einsatzzweck einsatzzweck) {
 		this.nummer = nummer;
 		this.einsatzzweck = einsatzzweck;
@@ -19,27 +19,27 @@ public abstract class Traktor {
 		bisherigerVerbrauch = 0;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public int getNummer() {
 		return nummer;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void erhoeheBetriebsstunden(int stunden) {
 		this.betriebsstunden += stunden;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public int getBetriebsstunden() {
 		return betriebsstunden;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public void setEinsatzzweck(Einsatzzweck einsatzzweck) {
 		this.einsatzzweck = einsatzzweck;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public int getAnzahlSaeschare() {
 		if (einsatzzweck != null && einsatzzweck instanceof Saeen) {
 			return ((Saeen) einsatzzweck).getSaeSchare();
@@ -49,7 +49,7 @@ public abstract class Traktor {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public double getFassungskapazitaet() {
 		if (einsatzzweck != null && einsatzzweck instanceof Duengen) {
 			return ((Duengen) einsatzzweck).getFassungskapazitaet();
@@ -59,12 +59,12 @@ public abstract class Traktor {
 		}
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public boolean tutSaeen() {
 		return einsatzzweck != null && einsatzzweck instanceof Saeen;
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public boolean tutDuengen() {
 		return einsatzzweck != null && einsatzzweck instanceof Duengen;
 	}

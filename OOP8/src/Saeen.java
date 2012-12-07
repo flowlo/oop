@@ -1,12 +1,12 @@
-@Authors(Author.Dominik)
+@Authors("Dominik")
 public class Saeen extends Einsatzzweck {
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public Saeen(int saeSchare) {
 		super(saeSchare);
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public int getSaeSchare() {
 		return menge.intValue();
 	}

@@ -1,12 +1,12 @@
-@Authors(Author.Dominik)
+@Authors("Dominik")
 public class Duengen extends Einsatzzweck {
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	protected Duengen(double fassungskapazitaet) {
 		super(fassungskapazitaet);
 	}
 
-	@Authors(Author.Dominik)
+	@Authors("Dominik")
 	public double getFassungskapazitaet() {
 		return menge.doubleValue();
 	}

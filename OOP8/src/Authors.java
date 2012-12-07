@@ -2,7 +2,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Authors(Author.Dominik)
+@Authors("Dominik")
 public @interface Authors {
-	Author[] value();
+	String value();
 }
