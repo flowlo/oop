@@ -1,4 +1,4 @@
-@Author(Authors.Dominik)
+@Authors(Author.Dominik)
 public enum EinsatzzweckGruppierung {
 	Gesamt,
 	Saeen,
