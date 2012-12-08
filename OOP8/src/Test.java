@@ -16,7 +16,7 @@ public class Test {
 		failed = false;
 
 		System.out.println("Starte Traktoren-Test");
-		System.out.println("  Erzeuge Dieseltraktor zum Duengen");
+		System.out.println("  Erzeuge Dieseltraktor zum DUENGEN");
 
 		DieselTraktor diesel = new DieselTraktor(1, new Duengen(3.5));
 		diesel.erhoeheBetriebsstunden(4);
@@ -29,12 +29,12 @@ public class Test {
 		assertThat("Fassungskapazitaet", 3.5, diesel.getFassungskapazitaet());
 		assertThat("Saeschare", 0, diesel.getAnzahlSaeschare());
 
-		System.out.println("  Aendere Einsatzzweck auf Saeen");
+		System.out.println("  Aendere Einsatzzweck auf SAEEN");
 		diesel.setEinsatzzweck(new Saeen(8));
 		assertThat("Fassungskapazitaet", 0.0, diesel.getFassungskapazitaet());
 		assertThat("Saeschare", 8, diesel.getAnzahlSaeschare());
 
-		System.out.println("  Erzeuge Dieseltraktor zum Saeen");
+		System.out.println("  Erzeuge Dieseltraktor zum SAEEN");
 		BiogasTraktor biogas = new BiogasTraktor(2, new Saeen(3));
 		biogas.erhoeheBetriebsstunden(12);
 		biogas.erhoeheVerbrauch(18);
@@ -46,7 +46,7 @@ public class Test {
 		assertThat("Fassungskapazitaet", 0.0, biogas.getFassungskapazitaet());
 		assertThat("Saeschare", 3, biogas.getAnzahlSaeschare());
 
-		System.out.println("  Aendere Einsatzzweck auf Duengen");
+		System.out.println("  Aendere Einsatzzweck auf DUENGEN");
 		biogas.setEinsatzzweck(new Duengen(4.23));
 		assertThat("Fassungskapazitaet", 4.23, biogas.getFassungskapazitaet());
 		assertThat("Saeschare", 0, biogas.getAnzahlSaeschare());

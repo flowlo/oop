@@ -1,6 +1,6 @@
 @Authors("Dominik")
 public enum TraktorGruppierung {
-	Gesamt,
-	Diesel,
-	Biogas
+	GESAMT,
+	DIESEL,
+	BIOGAS
 }

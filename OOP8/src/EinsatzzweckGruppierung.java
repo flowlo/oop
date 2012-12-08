@@ -1,6 +1,6 @@
 @Authors("Dominik")
 public enum EinsatzzweckGruppierung {
-	Gesamt,
-	Saeen,
-	Duengen
+	GESAMT,
+	SAEEN,
+	DUENGEN
 }

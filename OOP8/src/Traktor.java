@@ -1,8 +1,8 @@
 /**
  * Zusicherungen:
  * * Die Nummer des Traktors ist eindeutig und unveraenderlich
- * * Traktoren haben entweder Diesel- oder Biogas-Motoren
- * * Ein Traktor kann entweder nur zum Saeen oder nur zum Duengen verwendet werden
+ * * Traktoren haben entweder DIESEL- oder BIOGAS-Motoren
+ * * Ein Traktor kann entweder nur zum SAEEN oder nur zum DUENGEN verwendet werden
  */
 @Authors("Dominik")
 public abstract class Traktor {
@@ -55,7 +55,7 @@ public abstract class Traktor {
 			return ((Duengen) einsatzzweck).getFassungskapazitaet();
 		}
 		else {
-			return 0f;
+			return 0d;
 		}
 	}
 

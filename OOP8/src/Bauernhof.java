@@ -52,132 +52,81 @@ public class Bauernhof {
 	}
 
 	@Authors("Dominik")
-	public float getDurchschnittBetriebsstunden(EinsatzzweckGruppierung gruppierung) {
-		boolean saeen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Saeen);
-		boolean duengen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Duengen);
-		int summe = 0;
-		int anzahl = 0;
-
-		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
-		do {
-			Traktor traktor = current.getTraktor();
-			if ((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen)) {
-				anzahl += 1;
-				summe += traktor.getBetriebsstunden();
-			}
-		} while ((current = current.getNext()) != null);
-
-		return ((float) summe) / anzahl;
+	public double getDurchschnittBetriebsstunden(EinsatzzweckGruppierung gruppierung) {
+		return getStatistik(gruppierung, TraktorGruppierung.GESAMT, StatistikTyp.DURCHSCHNITT_BETRIEBSSTUNDEN).doubleValue();
 	}
 
 	@Authors("Dominik")
-	public float getDurchschnittBetriebsstunden(TraktorGruppierung gruppierung) {
-		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
-		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
-		int summe = 0;
-		int anzahl = 0;
-
-		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
-		do {
-			Traktor traktor = current.getTraktor();
-			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
-				anzahl += 1;
-				summe += traktor.getBetriebsstunden();
-			}
-		} while ((current = current.getNext()) != null);
-
-		return ((float) summe) / anzahl;
+	public double getDurchschnittBetriebsstunden(TraktorGruppierung gruppierung) {
+		return getStatistik(EinsatzzweckGruppierung.GESAMT, gruppierung, StatistikTyp.DURCHSCHNITT_BETRIEBSSTUNDEN).doubleValue();
 	}
 
 	@Authors("Dominik")
-	public float getDurchschnittDieselverbrauch(EinsatzzweckGruppierung gruppierung) {
-		boolean saeen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Saeen);
-		boolean duengen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Duengen);
-		int summe = 0;
-		int anzahl = 0;
-
-		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
-		do {
-			Traktor traktor = current.getTraktor();
-			if (traktor instanceof DieselTraktor && ((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen))) {
-				anzahl += 1;
-				summe += ((DieselTraktor) traktor).getBisherigerVerbrauch();
-			}
-		} while ((current = current.getNext()) != null);
-
-		return ((float) summe) / anzahl;
+	public double getDurchschnittDieselverbrauch(EinsatzzweckGruppierung gruppierung) {
+		return getStatistik(gruppierung, TraktorGruppierung.DIESEL, StatistikTyp.DURCHSCHNITT_VERBRAUCH).doubleValue();
 	}
 
 	@Authors("Dominik")
-	public float getDurchschnittBiogasverbrauch(EinsatzzweckGruppierung gruppierung) {
-		boolean saeen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Saeen);
-		boolean duengen = gruppierung.equals(EinsatzzweckGruppierung.Gesamt) || gruppierung.equals(EinsatzzweckGruppierung.Duengen);
-		float summe = 0;
-		int anzahl = 0;
-
-		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
-		do {
-			Traktor traktor = current.getTraktor();
-			if (traktor instanceof BiogasTraktor && ((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen))) {
-				anzahl += 1;
-				summe += ((BiogasTraktor) traktor).getBisherigerVerbrauch();
-			}
-		} while ((current = current.getNext()) != null);
-
-		return summe / anzahl;
+	public double getDurchschnittBiogasverbrauch(EinsatzzweckGruppierung gruppierung) {
+		return getStatistik(gruppierung, TraktorGruppierung.BIOGAS, StatistikTyp.DURCHSCHNITT_VERBRAUCH).doubleValue();
 	}
 
 	@Authors("Dominik")
 	public int getMinimumSaescharen(TraktorGruppierung gruppierung) {
-		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
-		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
-		int minimum = 0;
-
-		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
-		do {
-			Traktor traktor = current.getTraktor();
-			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
-				minimum = Math.min(minimum, traktor.getAnzahlSaeschare());
-			}
-		} while ((current = current.getNext()) != null);
-
-		return minimum;
+		return getStatistik(EinsatzzweckGruppierung.SAEEN, gruppierung, StatistikTyp.MINIMUM_SAESCHARE).intValue();
 	}
 
 	@Authors("Dominik")
 	public int getMaximumSaescharen(TraktorGruppierung gruppierung) {
-		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
-		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
-		int maximum = 0;
-
-		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
-		do {
-			Traktor traktor = current.getTraktor();
-			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
-				maximum = Math.max(maximum, traktor.getAnzahlSaeschare());
-			}
-		} while ((current = current.getNext()) != null);
-
-		return maximum;
+		return getStatistik(EinsatzzweckGruppierung.SAEEN, gruppierung, StatistikTyp.MAXIMUM_SAESCHARE).intValue();
 	}
 
 	@Authors("Dominik")
-	public float getDurchschnittFassungskapazitaet(TraktorGruppierung gruppierung) {
-		boolean diesel = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Diesel);
-		boolean biogas = gruppierung.equals(TraktorGruppierung.Gesamt) || gruppierung.equals(TraktorGruppierung.Biogas);
-		float summe = 0;
+	public double getDurchschnittFassungskapazitaet(TraktorGruppierung gruppierung) {
+		return getStatistik(EinsatzzweckGruppierung.SAEEN, gruppierung, StatistikTyp.DURCHSCHNITT_FASSUNGSKAPAZITAET).doubleValue();
+	}
+
+	@Authors("Dominik")
+	private Number getStatistik(EinsatzzweckGruppierung einsatzzweckGruppierung, TraktorGruppierung traktorGruppierung, StatistikTyp statistik) {
+		boolean saeen = einsatzzweckGruppierung == EinsatzzweckGruppierung.GESAMT || einsatzzweckGruppierung == EinsatzzweckGruppierung.SAEEN;
+		boolean duengen = einsatzzweckGruppierung == EinsatzzweckGruppierung.GESAMT || einsatzzweckGruppierung == EinsatzzweckGruppierung.DUENGEN;
+		boolean diesel = traktorGruppierung == TraktorGruppierung.GESAMT || traktorGruppierung == TraktorGruppierung.DIESEL;
+		boolean biogas = traktorGruppierung == TraktorGruppierung.GESAMT || traktorGruppierung == TraktorGruppierung.BIOGAS;
+		Number value = 0;
 		int anzahl = 0;
 
 		Bauernhof.TraktorenListe.TraktorEintrag current = traktoren.getHead();
 		do {
 			Traktor traktor = current.getTraktor();
-			if ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas)) {
+			if (((traktor.tutDuengen() && duengen) || (traktor.tutSaeen() && saeen))
+					&& ((traktor instanceof DieselTraktor && diesel) || (traktor instanceof BiogasTraktor && biogas))) {
 				anzahl += 1;
-				summe += traktor.getFassungskapazitaet();
+				if (statistik == StatistikTyp.DURCHSCHNITT_VERBRAUCH) {
+					if (traktor instanceof DieselTraktor) {
+						value = value.intValue() + ((DieselTraktor) traktor).getBisherigerVerbrauch();
+					} else if (traktor instanceof BiogasTraktor) {
+						value = value.doubleValue() + ((BiogasTraktor) traktor).getBisherigerVerbrauch();
+					}
+				} else if (statistik == StatistikTyp.DURCHSCHNITT_BETRIEBSSTUNDEN) {
+					value = value.intValue() + traktor.getBetriebsstunden();
+				} else if (statistik == StatistikTyp.DURCHSCHNITT_FASSUNGSKAPAZITAET && traktor.tutDuengen()) {
+					value = value.doubleValue() + traktor.getFassungskapazitaet();
+				} else if (statistik == StatistikTyp.MINIMUM_SAESCHARE && traktor.tutSaeen()) {
+					value = Math.min(value.intValue(), traktor.getAnzahlSaeschare());
+				} else if (statistik == StatistikTyp.MAXIMUM_SAESCHARE && traktor.tutSaeen()) {
+					value = Math.max(value.intValue(), traktor.getAnzahlSaeschare());
+				}
 			}
 		} while ((current = current.getNext()) != null);
 
-		return summe / anzahl;
+		if (statistik == StatistikTyp.MINIMUM_SAESCHARE || statistik == StatistikTyp.MAXIMUM_SAESCHARE) {
+			return value;
+		} else if (statistik == StatistikTyp.DURCHSCHNITT_BETRIEBSSTUNDEN || statistik == StatistikTyp.DURCHSCHNITT_FASSUNGSKAPAZITAET
+				|| statistik == StatistikTyp.DURCHSCHNITT_VERBRAUCH) {
+			return value.doubleValue() / anzahl;
+		} else {
+			return Double.NaN;
+		}
 	}
 
 	/**
@@ -191,7 +140,7 @@ public class Bauernhof {
 		TraktorEintrag head = null;
 
 		@Authors("Dominik")
-		public Traktor get(int nummer) {
+		protected Traktor get(int nummer) {
 			TraktorEintrag current = head;
 			do {
 				if (current.getTraktor().getNummer() == nummer) {
@@ -202,7 +151,7 @@ public class Bauernhof {
 		}
 
 		@Authors("Dominik")
-		public void add(Traktor traktor) {
+		protected void add(Traktor traktor) {
 			if (head != null) {
 				if (!contains(traktor)) {
 					TraktorEintrag newHead = new TraktorEintrag(traktor);
@@ -215,7 +164,7 @@ public class Bauernhof {
 		}
 
 		@Authors("Dominik")
-		public void remove(Traktor traktor) {
+		protected void remove(Traktor traktor) {
 			if (head.getTraktor().getNummer() != traktor.getNummer()) {
 				TraktorEintrag current = head;
 				TraktorEintrag last = null;
@@ -247,7 +196,7 @@ public class Bauernhof {
 		}
 
 		@Authors("Dominik")
-		public TraktorEintrag getHead() {
+		protected TraktorEintrag getHead() {
 			return head;
 		}
 
@@ -257,22 +206,22 @@ public class Bauernhof {
 			private TraktorEintrag next = null;
 
 			@Authors("Dominik")
-			public TraktorEintrag(Traktor traktor) {
+			protected TraktorEintrag(Traktor traktor) {
 				this.traktor = traktor;
 			}
 
 			@Authors("Dominik")
-			public Traktor getTraktor() {
+			protected Traktor getTraktor() {
 				return traktor;
 			}
 
 			@Authors("Dominik")
-			public TraktorEintrag getNext() {
+			protected TraktorEintrag getNext() {
 				return next;
 			}
 
 			@Authors("Dominik")
-			public void add(TraktorEintrag traktorEintrag) {
+			protected void add(TraktorEintrag traktorEintrag) {
 				if (next == null) {
 					next = traktorEintrag;
 				} else {
@@ -281,7 +230,7 @@ public class Bauernhof {
 			}
 
 			@Authors("Dominik")
-			public void setNext(TraktorEintrag traktorEintrag) {
+			protected void setNext(TraktorEintrag traktorEintrag) {
 				next = traktorEintrag;
 			}
 		}
