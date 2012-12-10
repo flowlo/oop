@@ -18,7 +18,7 @@ public class Test {
 		System.out.println("Starte Traktoren-Test");
 		System.out.println("  Erzeuge Dieseltraktor zum DUENGEN");
 
-		DieselTraktor diesel = new DieselTraktor(1, new Duengen(3.5));
+		DieselTraktor diesel = new DieselTraktor(new Duengen(3.5));
 		diesel.erhoeheBetriebsstunden(4);
 		diesel.erhoeheVerbrauch(3);
 		diesel.erhoeheBetriebsstunden(6);
@@ -35,7 +35,7 @@ public class Test {
 		assertThat("Saeschare", 8, diesel.getAnzahlSaeschare());
 
 		System.out.println("  Erzeuge Dieseltraktor zum SAEEN");
-		BiogasTraktor biogas = new BiogasTraktor(2, new Saeen(3));
+		BiogasTraktor biogas = new BiogasTraktor(new Saeen(3));
 		biogas.erhoeheBetriebsstunden(12);
 		biogas.erhoeheVerbrauch(18);
 		biogas.erhoeheBetriebsstunden(8);
@@ -76,6 +76,7 @@ public class Test {
 		printClass(Test.class);
 		printClass(Traktor.class);
 		printClass(TraktorGruppierung.class);
+		printClass(HofListe.class);
 
 		if (failed) {
 			System.out.println("Autorentest FEHLGESCHLAGEN");
@@ -86,9 +87,12 @@ public class Test {
 
 	@Authors("Dominik")
 	private static void printClass(Class<?> clazz) {
-		System.out.println("  " + String.format("%-35s", clazz.getSimpleName()) + "Autoren: " + getAuthors(clazz));
+		System.out.println("  " + String.format("%-35s", clazz.getSimpleName())
+				+ "Autoren: " + getAuthors(clazz));
 		for (Method method : clazz.getMethods()) {
-			System.out.println("    " + String.format("%-35s", method.getName()) + "Autoren: " + getAuthors(method));
+			System.out.println("    "
+					+ String.format("%-35s", method.getName()) + "Autoren: "
+					+ getAuthors(method));
 		}
 	}
 
@@ -115,7 +119,8 @@ public class Test {
 		if (should.equals(is)) {
 			System.out.println("    PASSED: " + test + " - " + is);
 		} else {
-			System.out.println("    FAILED: " + test + " - Should be " + should + ", but is " + is);
+			System.out.println("    FAILED: " + test + " - Should be " + should
+					+ ", but is " + is);
 			failed = true;
 		}
 	}

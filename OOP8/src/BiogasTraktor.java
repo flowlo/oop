@@ -2,8 +2,8 @@
 public class BiogasTraktor extends Traktor {
 
 	@Authors("Dominik")
-	public BiogasTraktor(int nummer, Einsatzzweck einsatzzweck) {
-		super(nummer, einsatzzweck);
+	public BiogasTraktor(Einsatzzweck einsatzzweck) {
+		super(einsatzzweck);
 	}
 
 	@Authors("Dominik")

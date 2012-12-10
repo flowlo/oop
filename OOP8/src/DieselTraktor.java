@@ -2,8 +2,8 @@
 public class DieselTraktor extends Traktor {
 
 	@Authors("Dominik")
-	public DieselTraktor(int nummer, Einsatzzweck einsatzzweck) {
-		super(nummer, einsatzzweck);
+	public DieselTraktor(Einsatzzweck einsatzzweck) {
+		super(einsatzzweck);
 	}
 
 	@Authors("Dominik")

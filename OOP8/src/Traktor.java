@@ -1,19 +1,20 @@
 /**
- * Zusicherungen:
- * * Die Nummer des Traktors ist eindeutig und unveraenderlich
- * * Traktoren haben entweder DIESEL- oder BIOGAS-Motoren
- * * Ein Traktor kann entweder nur zum SAEEN oder nur zum DUENGEN verwendet werden
+ * Zusicherungen: * Die Nummer des Traktors ist eindeutig und unveraenderlich *
+ * Traktoren haben entweder DIESEL- oder BIOGAS-Motoren * Ein Traktor kann
+ * entweder nur zum SAEEN oder nur zum DUENGEN verwendet werden
  */
 @Authors("Dominik")
 public abstract class Traktor {
+	private static int IDCounter = 0;
 	private final int nummer;
 	private int betriebsstunden;
 	protected Number bisherigerVerbrauch;
 	private Einsatzzweck einsatzzweck;
 
 	@Authors("Dominik")
-	public Traktor(int nummer, Einsatzzweck einsatzzweck) {
-		this.nummer = nummer;
+	public Traktor(Einsatzzweck einsatzzweck) {
+		IDCounter++;
+		this.nummer = IDCounter;
 		this.einsatzzweck = einsatzzweck;
 		betriebsstunden = 0;
 		bisherigerVerbrauch = 0;
@@ -43,8 +44,7 @@ public abstract class Traktor {
 	public int getAnzahlSaeschare() {
 		if (einsatzzweck != null && einsatzzweck instanceof Saeen) {
 			return ((Saeen) einsatzzweck).getSaeSchare();
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}
@@ -53,8 +53,7 @@ public abstract class Traktor {
 	public double getFassungskapazitaet() {
 		if (einsatzzweck != null && einsatzzweck instanceof Duengen) {
 			return ((Duengen) einsatzzweck).getFassungskapazitaet();
-		}
-		else {
+		} else {
 			return 0d;
 		}
 	}
