@@ -45,7 +45,18 @@ public class Test {
 		else
 			System.out.println("FAILED");
 
-		System.out.println("");
+		// TODO: alles testen... die HofListe sollte alle Methoden zu verfuegung
+		// stellen.
+		// ich hab sie wegen dem Absatz :
+		// "Jeder Bauernhof in der Menge soll über seinen eindeutigen Namen angesprochen werden, und jeder Traktor eines Bauernhofes über seine eindeutige Nummer. "
+		// in der Angabe geschrieben. Dies ist hier erfuellt
+
+		// ich hab das todo vor allem fuern lorenz drinnen. wenns morgen nicht
+		// erledigt ist dann kuemmere ich mich noch um die tests.
+		throw new IllegalArgumentException("TODO NOCH NICHT ERLEDIGT"); // loesche
+																		// mich!!
+
+		// System.out.println("");
 
 	}
 

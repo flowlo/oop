@@ -1,3 +1,11 @@
+/*
+ * Collection fuer Bauernhoefe.
+ * Zusicherung: 
+ * - jeder Bauernhof hat einen eindeutigen Namen
+ * - jeder Traktor hat eine eindeutige ID
+ * - auf Hoefe und Traktoren wird mit deren Namen bzw. Nummern zugegriffen
+ * 
+ */
 @Authors("Simon")
 public class HofListe {
 	private Bauernhof hof;
@@ -142,7 +150,6 @@ public class HofListe {
 				next = new HofListe();
 			next.addBauernhof(hof);
 		}
-
 	}
 
 	@Authors("Simon")
@@ -174,4 +181,25 @@ public class HofListe {
 			return next.getBauernhof(name);
 		}
 	}
+
+	@Authors("Simon")
+	public void erhoeheBetriebsStunden(int id, int stunden) {
+		Bauernhof tmp = containsTraktor(id);
+		if (tmp == null)
+			return;
+		else {
+			tmp.getTraktor(id).erhoeheBetriebsstunden(stunden);
+		}
+	}
+
+	@Authors("Simon")
+	public int getBetriebsStunden(int id) {
+		Bauernhof tmp = containsTraktor(id);
+		if (tmp == null)
+			return -1;
+		else {
+			return tmp.getTraktor(id).getBetriebsstunden();
+		}
+	}
+
 }

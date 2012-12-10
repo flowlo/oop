@@ -36,6 +36,11 @@ public class Bauernhof {
 		return traktoren.contains(nummer);
 	}
 
+	@Authors("Simon")
+	public Traktor getTraktor(int nummer) {
+		return traktoren.get(nummer);
+	}
+
 	@Authors("Dominik")
 	public void erhoeheDieselVerbrauch(int nummer, Integer diesel) {
 		Traktor traktor = traktoren.get(nummer);
@@ -217,6 +222,21 @@ public class Bauernhof {
 			} else {
 				head = head.getNext();
 			}
+		}
+
+		@Authors("Simon")
+		protected Traktor getTraktor(int nummer) {
+			if (head.getTraktor().getNummer() != nummer) {
+				TraktorEintrag current = head;
+				while ((current = current.getNext()) != null) {
+					if (current.getTraktor().getNummer() == nummer) {
+						return current.getTraktor();
+					}
+				}
+			} else {
+				head = head.getNext();
+			}
+			return null;
 		}
 
 		@Authors("Simon")
