@@ -146,6 +146,23 @@ public class HofListe {
 	}
 
 	@Authors("Simon")
+	public String getAlleNamen() {
+		return buildAlleNamen(new StringBuilder());
+	}
+
+	@Authors("Simon")
+	private String buildAlleNamen(StringBuilder sb) {
+		if (hof != null) {
+			sb.append(hof.getName());
+			sb.append("\n");
+			if (next != null)
+				next.buildAlleNamen(sb);
+			return sb.toString();
+		} else
+			return sb.toString();
+	}
+
+	@Authors("Simon")
 	private Bauernhof getBauernhof(String name) {
 		if (hof == null)
 			return null;

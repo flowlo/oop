@@ -7,14 +7,51 @@ public class Test {
 
 	@Authors("Dominik")
 	public static void main(String[] args) {
+		mainTest();
 		traktorTest();
 		autorenTest();
+	}
+
+	@Authors("Simon")
+	public static void mainTest() {
+		System.out.println("Starte Test für mehrere Hoefe und Traktoren");
+		System.out
+				.println("Alle Hoefe durch Namen, alle Traktoren durch Nummern angesprochen.");
+		HofListe hoefe = new HofListe();
+		hoefe.addBauernhof(new Bauernhof("Familie Gruber"));
+		hoefe.addBauernhof(new Bauernhof("Familie Hofer"));
+		hoefe.addBauernhof(new Bauernhof("Familie Mayer"));
+		System.out.println("3 Hoefe angelegt: ");
+		System.out.println(hoefe.getAlleNamen());
+		DieselTraktor diesel1 = new DieselTraktor(new Duengen(3.5));
+		System.out.println("Neuen Traktor fuer Familie Gruber...");
+		hoefe.addTraktor("Familie Gruber", diesel1);
+
+		System.out.print("Versuche Traktor fuer Familie Hofer zu loeschen ");
+		if (!hoefe.removeTraktor("Familie Hofer", 1))
+			System.out.println("PASSED");
+		else
+			System.out.println("FAILED");
+
+		System.out.print("Versuche Traktor fuer Familie Gruber zu loeschen ");
+		if (hoefe.removeTraktor("Familie Gruber", 1))
+			System.out.println("PASSED");
+		else
+			System.out.println("FAILED");
+		System.out
+				.print("Versuche Traktor fuer Familie Gruber noch einmal zu loeschen ");
+		if (!hoefe.removeTraktor("Familie Gruber", 1))
+			System.out.println("PASSED");
+		else
+			System.out.println("FAILED");
+
+		System.out.println("");
+
 	}
 
 	@Authors("Dominik")
 	public static void traktorTest() {
 		failed = false;
-
 		System.out.println("Starte Traktoren-Test");
 		System.out.println("  Erzeuge Dieseltraktor zum DUENGEN");
 
