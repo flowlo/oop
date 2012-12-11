@@ -1,6 +1,6 @@
 import java.lang.reflect.Method;
 
-@Authors("Dominik")
+@Authors("Dominik, Simon")
 public class Test {
 
 	private static boolean failed = false;
@@ -14,7 +14,7 @@ public class Test {
 
 	@Authors("Simon")
 	public static void mainTest() {
-		System.out.println("Starte Test für mehrere Hoefe und Traktoren");
+		System.out.println("Starte Test fuer mehrere Hoefe und Traktoren");
 		System.out
 				.println("Alle Hoefe durch Namen, alle Traktoren durch Nummern angesprochen.");
 		// ---------------------------------------------------------------------------hoefe
