@@ -202,4 +202,20 @@ public class HofListe {
 		}
 	}
 
+	@Authors("Simon")
+	public int getAnzahlSaeschare(int id) {
+		Bauernhof tmp = containsTraktor(id);
+		if (tmp == null)
+			return -1;
+		return tmp.getTraktor(id).getAnzahlSaeschare();
+	}
+
+	@Authors("Simon")
+	public double getFassungsKapazitaet(int id) {
+		Bauernhof tmp = containsTraktor(id);
+		if (tmp == null)
+			return -1;
+		return tmp.getTraktor(id).getFassungskapazitaet();
+	}
+
 }
