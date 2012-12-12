@@ -12,17 +12,8 @@ public class Keks extends KeksBasis {
 	private Teigart teigart;
 
 	public Keks(Form form, Teigart teigart) {
-		super();
 		this.form = form;
 		this.teigart = teigart;
-	}
-
-	public Form getForm() {
-		return form;
-	}
-
-	public Teigart getTeigart() {
-		return teigart;
 	}
 
 	@Override

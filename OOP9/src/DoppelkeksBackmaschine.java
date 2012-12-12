@@ -2,6 +2,11 @@
  * Eine DoppelkeksBackmaschine baeckt Doppelkekse. Dafuer muss ein einfacher Keks eingelegt
  * werden.
  * 
+ * Die KeksBackmaschine und die DoppelkeksBackmaschine haben keine Gemeinsmkeit, abseits
+ * der backe-Methode. Die Methoden dieser beiden Klassen sich jedoch zu unterschiedlich, um eine
+ * Vererbungsbeziehung darstellen zu koennen.
+ * 
+ * 
  * @author Dominik
  * 
  */

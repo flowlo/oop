@@ -15,21 +15,8 @@ public class Doppelkeks extends KeksBasis {
 	private Keks deckel;
 
 	public Doppelkeks(Fuellung fuellung, Keks basis, Keks deckel) {
-		super();
 		this.fuellung = fuellung;
 		this.basis = basis;
 		this.deckel = deckel;
-	}
-
-	public Fuellung getFuellung() {
-		return fuellung;
-	}
-
-	public Keks getBasis() {
-		return basis;
-	}
-
-	public Keks getDeckel() {
-		return deckel;
 	}
 }
