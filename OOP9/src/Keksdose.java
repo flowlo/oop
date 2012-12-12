@@ -17,7 +17,7 @@ public class Keksdose {
 	/**
 	 * Schreibt eine Zusammenfassung der aktuellen Keksdose in die Standardausgabe.
 	 */
-	public void print() {
+	public void inhalt() {
 
 	}
 }

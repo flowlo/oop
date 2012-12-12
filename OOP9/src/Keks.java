@@ -1,11 +1,11 @@
 /**
  * Ein Keks hat eine bestimmte Form und eine bestimmte Teigart.
  * 
- * @author Dominik
+ * Zusicherungen
+ * * Jeder Keks kann entweder rund, Mond- oder Weihnachmann-foermig sein
+ * * Jeder Keks kann entweder aus Muerb-, Zimtstern- oder Schokoladeteig bestehen
  * 
- *         Zusicherungen
- *         * Jeder Keks kann entweder rund, Mond- oder Weihnachmann-foermig sein
- *         * Jeder Keks kann entweder aus Muerb-, Zimtstern- oder Schokoladeteig bestehen
+ * @author Dominik
  */
 public class Keks extends KeksBasis {
 	private Form form;
@@ -23,5 +23,10 @@ public class Keks extends KeksBasis {
 
 	public Teigart getTeigart() {
 		return teigart;
+	}
+
+	@Override
+	public Keks clone() {
+		return null;
 	}
 }

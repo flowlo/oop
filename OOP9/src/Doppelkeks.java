@@ -3,10 +3,10 @@
  * Die beiden Kekse müssen sich nicht gleichen, die Doppelkeksbackmaschine stellt jedoch nur solche
  * her, bei denen das der Fall ist.
  * 
- * @author Dominik
+ * Zusicherungen:
+ * * Die Fuellung des Doppelkekses kann entweder Schokolade oder Marmelade sein.
  * 
- *         Zusicherungen
- *         * Die Fuellung des Doppelkekses kann entweder Schokolade oder Marmelade sein.
+ * @author Dominik
  * 
  */
 public class Doppelkeks extends KeksBasis {

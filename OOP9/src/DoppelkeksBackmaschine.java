@@ -12,6 +12,9 @@ public class DoppelkeksBackmaschine {
 	 * Baeckt einen zweiten Keks, mit der Vorlage der aktuellen Ladung und einer bestimmten
 	 * Fuellung.
 	 * 
+	 * Zusicherungen:
+	 * * Backmaschine muss beim Aufruf der Methode beladen sein
+	 * 
 	 * @param fuellung
 	 *            die Fuellung des Doppelkekses
 	 * @return ein Doppelkeks

@@ -11,6 +11,14 @@ public class Position {
 	private Teigart teigart;
 	private Fuellung fuellung;
 
+	/**
+	 * @param anzahl
+	 * @param form
+	 * @param teigart
+	 * @param fuellung
+	 *            wenn null, keine Fuellung --> einfacher Keks
+	 *            sonst Doppelkeks
+	 */
 	public Position(int anzahl, Form form, Teigart teigart, Fuellung fuellung) {
 		super();
 		this.anzahl = anzahl;

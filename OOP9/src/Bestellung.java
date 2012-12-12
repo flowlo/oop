@@ -5,6 +5,9 @@ import java.util.List;
  * in welcher Anzahl gekauft werden. Weiters kann aus der Bestellung eine Keksdose
  * generiert werden.
  * 
+ * Zusicherungen:
+ * Generierte Keksdosen enthalten alle Kekse der Positionen.
+ * 
  * @author Dominik
  * 
  */
