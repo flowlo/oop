@@ -19,4 +19,9 @@ public class Doppelkeks extends KeksBasis {
 		this.basis = basis;
 		this.deckel = deckel;
 	}
+	
+	@Override
+	public String toString() {
+		return new String("Doppelkeks bestehend aus: \n -"+basis.toString()+"\n -Fuellung: "+fuellung+"\n -"+deckel.toString());
+	}
 }

@@ -37,7 +37,7 @@ public class KeksBackmaschine {
 	 * @return den neuen Keks
 	 */
 	public Keks backe(Teigart teigart) {
-		return null;
+		return new Keks(form, teigart);
 	}
 
 }

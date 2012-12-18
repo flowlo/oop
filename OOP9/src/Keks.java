@@ -18,6 +18,11 @@ public class Keks extends KeksBasis {
 
 	@Override
 	public Keks clone() {
-		return null;
+		return new Keks(form, teigart);
+	}
+
+	@Override
+	public String toString() {
+		return new String("Keks mit Form: "+form+"; Teigart: "+teigart);
 	}
 }

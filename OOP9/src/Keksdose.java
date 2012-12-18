@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,6 +10,11 @@ import java.util.List;
 public class Keksdose {
 	private List<KeksBasis> kekse;
 
+	public Keksdose()
+	{
+		kekse=new ArrayList<KeksBasis>();
+	}
+	
 	public Keksdose(List<KeksBasis> kekse) {
 		super();
 		this.kekse = kekse;
@@ -18,6 +24,20 @@ public class Keksdose {
 	 * Schreibt eine Zusammenfassung der aktuellen Keksdose in die Standardausgabe.
 	 */
 	public void inhalt() {
-
+		for(KeksBasis k : kekse)
+		{
+			System.out.println(k.toString());
+		}
 	}
+	
+	public void addKekse(List<? extends KeksBasis> k)
+	{
+		kekse.addAll(k);
+	}
+	
+	public void addKeks(KeksBasis k)
+	{
+		kekse.add(k);
+	}
+
 }

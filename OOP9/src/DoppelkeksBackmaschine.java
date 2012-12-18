@@ -27,7 +27,13 @@ public class DoppelkeksBackmaschine {
 	 *             wenn die Maschine nicht beladen ist.
 	 */
 	public Doppelkeks backe(Fuellung fuellung) throws BackmaschineNichtBeladenException {
-		return null;
+		if(ladung==null) throw new BackmaschineNichtBeladenException();
+		else
+		{
+			Doppelkeks result=new Doppelkeks(fuellung, ladung,ladung.clone());
+			this.ladung=null;
+			return result;
+		}
 	}
 
 	/**
@@ -38,7 +44,7 @@ public class DoppelkeksBackmaschine {
 	 * @param keks
 	 */
 	public void lade(Keks keks) {
-
+		this.ladung=keks;
 	}
 
 }

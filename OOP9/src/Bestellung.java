@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,19 +20,19 @@ public class Bestellung {
 		this.positionen = positionen;
 	}
 
-	/**
-	 * Generiert eine Keksdose aus der Bestellung
-	 * 
-	 * @return eine Keksdose, die alle bestellten Kekse beinhaltet
-	 */
-	public Keksdose getKeksdose() {
-		return null;
+	public List<Position> getPositionen()
+	{
+		return positionen;
 	}
 
 	/**
 	 * Schreibt die Bestellung und all ihre Positionen in die Standardausgabe.
 	 */
 	public void drucke() {
-
+		System.out.println("Bestellung mit folgenden Keksen: ");
+		for(Position p : positionen)
+		{
+			System.out.println(p.toString());
+		}
 	}
 }

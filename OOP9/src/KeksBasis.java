@@ -6,5 +6,6 @@
  * 
  */
 public abstract class KeksBasis {
-
+	//zwingt alle Kekse eine eigene toString-Methode zu enthalten
+	public abstract String toString();
 }

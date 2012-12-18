@@ -20,7 +20,6 @@ public class Position {
 	 *            sonst Doppelkeks
 	 */
 	public Position(int anzahl, Form form, Teigart teigart, Fuellung fuellung) {
-		super();
 		this.anzahl = anzahl;
 		this.form = form;
 		this.teigart = teigart;
@@ -41,5 +40,13 @@ public class Position {
 
 	public Fuellung getFuellung() {
 		return fuellung;
+	}
+	
+	public String toString()
+	{
+		if(fuellung==null)
+			return new String(anzahl+"x Keks der Form "+form+" aus "+teigart);
+		else 
+			return new String(anzahl+"x Doppelkeks der Form "+form+" aus "+teigart+" mit der Fuellung "+fuellung);
 	}
 }
