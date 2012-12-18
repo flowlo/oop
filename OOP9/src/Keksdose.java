@@ -26,7 +26,7 @@ public class Keksdose {
 	public void inhalt() {
 		for(KeksBasis k : kekse)
 		{
-			System.out.println(k.toString());
+			System.out.println(" - "+k.toString());
 		}
 	}
 	

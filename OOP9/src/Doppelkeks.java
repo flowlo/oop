@@ -22,6 +22,6 @@ public class Doppelkeks extends KeksBasis {
 	
 	@Override
 	public String toString() {
-		return new String("Doppelkeks bestehend aus: \n -"+basis.toString()+"\n -Fuellung: "+fuellung+"\n -"+deckel.toString());
+		return new String("Doppelkeks bestehend aus: "+basis.toString()+" + Fuellung: "+fuellung+" + "+deckel.toString());
 	}
 }

@@ -23,6 +23,6 @@ public class Keks extends KeksBasis {
 
 	@Override
 	public String toString() {
-		return new String("Keks mit Form: "+form+"; Teigart: "+teigart);
+		return new String("Keks mit Form: "+form+" | Teigart: "+teigart);
 	}
 }

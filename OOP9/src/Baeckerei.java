@@ -10,6 +10,7 @@ public class Baeckerei {
 	public Baeckerei()
 	{
 		this.doppelKeksMaschine=new DoppelkeksBackmaschine();
+		maschinen=new HashMap<Form, KeksBackmaschine>();
 	}
 	
 	public void addMaschine(Form form)
