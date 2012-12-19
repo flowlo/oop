@@ -1,6 +1,6 @@
 /**
  * Ein Doppelkeks besteht aus zwei (einfachen) Keksen, die durch eine Fuellung zusammengeklebt sind.
- * Die beiden Kekse müssen sich nicht gleichen, die Doppelkeksbackmaschine stellt jedoch nur solche
+ * Die beiden Kekse muessen sich nicht gleichen, die Doppelkeksbackmaschine stellt jedoch nur solche
  * her, bei denen das der Fall ist.
  * 
  * Zusicherungen:
