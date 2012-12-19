@@ -9,7 +9,7 @@
  * gewesen, eine abstrakte KeksBackmaschine mit drei Unterklassen fuer jede Teigart zu erstellen.
  * Die hier vorliegende Loesung ist jedoch weit wartbarer, als unnoetige Vererbungsbeziehungen.
  * 
- * Weiters haben die KeksBackmaschine und die DoppelkeksBackmaschine keine Gemeinsmkeit, abseits
+ * Weiters haben die KeksBackmaschine und die DoppelkeksBackmaschine keine Gemeinsamkeit, abseits
  * der backe-Methode. Die Methoden dieser beiden Klassen sich jedoch zu unterschiedlich, um eine
  * Vererbungsbeziehung darstellen zu koennen.
  * 

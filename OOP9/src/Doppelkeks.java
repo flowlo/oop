@@ -7,6 +7,7 @@
  * * Die Fuellung des Doppelkekses kann entweder Schokolade oder Marmelade sein.
  * 
  * @author Dominik
+ * @author Simon
  * 
  */
 public class Doppelkeks extends KeksBasis {
@@ -19,9 +20,9 @@ public class Doppelkeks extends KeksBasis {
 		this.basis = basis;
 		this.deckel = deckel;
 	}
-	
+
 	@Override
 	public String toString() {
-		return new String("Doppelkeks bestehend aus: "+basis.toString()+" + Fuellung: "+fuellung+" + "+deckel.toString());
+		return new String("Doppelkeks bestehend aus: " + basis.toString() + " + Fuellung: " + fuellung + " + " + deckel.toString());
 	}
 }

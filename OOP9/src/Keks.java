@@ -6,6 +6,7 @@
  * * Jeder Keks kann entweder aus Muerb-, Zimtstern- oder Schokoladeteig bestehen
  * 
  * @author Dominik
+ * @author Simon
  */
 public class Keks extends KeksBasis {
 	private Form form;
@@ -23,6 +24,6 @@ public class Keks extends KeksBasis {
 
 	@Override
 	public String toString() {
-		return new String("Keks mit Form: "+form+" | Teigart: "+teigart);
+		return new String("Keks mit Form: " + form + " | Teigart: " + teigart);
 	}
 }

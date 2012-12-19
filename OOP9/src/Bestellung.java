@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,9 +29,9 @@ public class Bestellung {
 	 */
 	public void drucke() {
 		System.out.println("Bestellung mit folgenden Keksen: ");
-		for(Position p : positionen)
+		for (Position p : positionen)
 		{
-			System.out.println(" - "+p.toString());
+			System.out.println(" - " + p.toString());
 		}
 	}
 }

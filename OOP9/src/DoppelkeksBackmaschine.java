@@ -8,6 +8,7 @@
  * 
  * 
  * @author Dominik
+ * @author Simon
  * 
  */
 public class DoppelkeksBackmaschine {
@@ -27,11 +28,12 @@ public class DoppelkeksBackmaschine {
 	 *             wenn die Maschine nicht beladen ist.
 	 */
 	public Doppelkeks backe(Fuellung fuellung) throws BackmaschineNichtBeladenException {
-		if(ladung==null) throw new BackmaschineNichtBeladenException();
-		else
+		if (ladung == null) {
+			throw new BackmaschineNichtBeladenException();
+		} else
 		{
-			Doppelkeks result=new Doppelkeks(fuellung, ladung,ladung.clone());
-			this.ladung=null;
+			Doppelkeks result = new Doppelkeks(fuellung, ladung, ladung.clone());
+			this.ladung = null;
 			return result;
 		}
 	}
@@ -44,7 +46,7 @@ public class DoppelkeksBackmaschine {
 	 * @param keks
 	 */
 	public void lade(Keks keks) {
-		this.ladung=keks;
+		this.ladung = keks;
 	}
 
 }

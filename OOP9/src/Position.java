@@ -3,6 +3,7 @@
  * welcher Menge bestellt wurden.
  * 
  * @author Dominik
+ * @author Simon
  * 
  */
 public class Position {
@@ -41,12 +42,13 @@ public class Position {
 	public Fuellung getFuellung() {
 		return fuellung;
 	}
-	
+
+	@Override
 	public String toString()
 	{
-		if(fuellung==null)
-			return new String(anzahl+"x Keks der Form "+form+" aus "+teigart);
-		else 
-			return new String(anzahl+"x Doppelkeks der Form "+form+" aus "+teigart+" mit der Fuellung "+fuellung);
+		if (fuellung == null)
+			return new String(anzahl + "x Keks der Form " + form + " aus " + teigart);
+		else
+			return new String(anzahl + "x Doppelkeks der Form " + form + " aus " + teigart + " mit der Fuellung " + fuellung);
 	}
 }
